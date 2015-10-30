@@ -1,16 +1,16 @@
 Tasks:
 -----
 
-Phase I (16 hrs) 
--> Create bare minimum layout for time duration section on homepage -- Wed 10/28 by 8pm (estimate: 2 hrs) 
--> Parse the records with respect to time duration section (overall info) -- Fri 10/30 by 10 pm (estimate: 3 hrs)
--> Try out bar chart for time duration with test data -- Sat 10/31 by 6pm (estimate: 6 hrs)
--> Load the bar chart with time duration data that is parsed above - Mon 11/02 by 10 pm (estimate: 3 hrs)
--> Unit test the above time duration code - Wed 11/3 by 10 pm (estimate: 2 hrs)
+Phase I (8 hrs) 
+-> Create bare minimum layout for time duration section on homepage -- Wed 10/28 by 8pm (estimate: 1 hrs) 
+-> Parse the records with respect to time duration section (overall info) -- Fri 10/30 by 10 pm (estimate: 1.5 hrs)
+-> Try out bar chart for time duration with test data -- Sat 10/31 by 6pm (estimate: 4 hrs)
+-> Load the bar chart with time duration data that is parsed above - Mon 11/02 by 10 pm (estimate: 0.5 hrs)
+-> Unit test the above time duration code - Wed 11/3 by 10 pm (estimate: 1 hrs)
 
-Phase II (14.5 hrs)
--> Add layout for sub-section filter (age, race, region and gender) on homepage -- Wed 11/04 by 1pm (estimate: 1.5 hrs)
--> Parse the records with sub-section filter -- Wed 11/04 by 10pm (estimate: 4 hrs)
--> Draw stacked bar for the sub-sections with test data - Thu 11/05 by 10pm (estimate: 5 hrs)
--> Unit Test and verify results of all sections - Fri 11/06 by 5pm (estimate: 2 hrs)
--> Integrating with Kunal's code - Fri 11/06 by 9pm (estimate: 2 hrs) 
+Phase II (8 hrs)
+-> Add layout for sub-section filter (age, race, region and gender) on homepage -- Wed 11/04 by 1pm (estimate: 0.5 hrs)
+-> Parse the records with sub-section filter -- Wed 11/04 by 10pm (estimate: 1.5 hrs)
+-> Draw stacked bar for the sub-sections with test data - Thu 11/05 by 10pm (estimate: 4 hrs)
+-> Unit Test and verify results of all sections - Fri 11/06 by 5pm (estimate: 1 hrs)
+-> Integrating with Kunal's code - Fri 11/06 by 9pm (estimate: 1 hrs) 
