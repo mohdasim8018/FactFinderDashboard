@@ -1,33 +1,31 @@
 Schedule and delivarables:
 	
-	For Overview view: (13.5 hrs)
-	 -	Dashboard title with proper color schemes -- 10/28 (Estimate: 1 hr)
+	For Overview view: (5 hrs)
 	 -	Creating the csv file for medical conditions with relevant columns -- 10/29 (Estimate: 30 mins)
-	 -	Creating section for displaying medical conditions with proper alignment on the screen and proper alignment of section title -- 10/30 (Estimate: 1hr)
-	 - 	Parsing the csv file for medical condition and aggregating the related data -- 10/30 (Estimate: 2hr)
-	 - 	Populating the aggregated data in a table and aligning the table with proper color schemes in the medical conditions section -- 10/30 (Estimate: 2hr)
-	 -	Creation and placement of tabular/graphical view buttons and drop down filters under the medical conditions section -- 10/31 (Estimate: 1hr)
-	 - 	aggregating all the data as needed for the bar graph -- 10/31 (Estimate 2hrs)
-	 - 	building the bar graph with aggregated data created in the previous activity with proper color schemes -- 11/01 (Estimate 4hrs)
+	 - 	Parsing the csv file for medical condition and aggregating the related data -- 10/30 (Estimate: 1hr)
+	 - 	Populating the aggregated data in a table and aligning the table with proper color schemes in the medical conditions section -- 10/30 (Estimate: 30mins)
+	 -	Creation and placement of tabular/graphical view buttons and drop down filters under the medical conditions section -- 10/31 (Estimate: 30mins)
+	 - 	aggregating all the data as needed for the bar graph -- 10/31 (Estimate 30mins)
+	 - 	building the bar graph with aggregated data created in the previous activity with proper color schemes -- 11/01 (Estimate 2hrs)
 	
-	For Detailed View: (16 hrs)
-	 -	Linking the overview view with detailed view on button click and displaying the detailed view as a pop up on the overview screen -- 11/01 (Estimate 2hrs)
-	 - 	Parsing the csv file for medical condition and aggregating the related data for detailed tabular view -- 11/01 (Estimate: 2hr)
-	 - 	Populating the aggregated data in a table and aligning the table with proper color schemes in the medical conditions section  -- 11/02 (Estimate: 2hr)
-	 - 	aggregating all the data as needed for the stacked bar graph -- 11/03 (Estimate 2hrs)
-	 - 	building the stacked bar graph with aggregated data created in previous activity with proper color schemes -- 11/05 (Estimate 4hrs)
-	 -	creating a chloropeth map for region based data -- 11/04 (4 hrs)
+	For Detailed View: (7 hrs)
+	 -	Linking the overview view with detailed view on button click and displaying the detailed view as a pop up on the overview screen -- 11/01 (Estimate 1hr)
+	 - 	Parsing the csv file for medical condition and aggregating the related data for detailed tabular view -- 11/01 (Estimate: 1hr)
+	 - 	Populating the aggregated data in a table and aligning the table with proper color schemes in the medical conditions section  -- 11/02 (Estimate: 1hr)
+	 - 	aggregating all the data as needed for the stacked bar graph -- 11/03 (Estimate 1hrs)
+	 - 	building the stacked bar graph with aggregated data created in previous activity with proper color schemes -- 11/05 (Estimate 1hrs)
+	 -	creating a chloropeth map for region based data -- 11/04 (2 hrs)
 	
 	
-	For Code Integration: (2 hrs)
-	 - 	Integrating Asim's code i.e section for Time duration analysis -- 11/06 (Estimated 2hrs)
+	For Code Integration: (30 mins)
+	 - 	Integrating Asim's code i.e section for Time duration analysis -- 11/06 (Estimated 30 mins)
 	
-	For Testing and bug fixes (9 hrs):
-	 -	Performing first round of testing for the low ball target and also performing data vaidation -- 11/06(Estimated: 2hrs)
-	 -	Fixing all the bugs for the first round of testing -- 11/07 (Estimated 3hrs)
-	 -	Performing second round of testing of the entire low ball target deliverable and also testing the bugs of the first round -- 11/07(2hrs)
-	 -	Fixing bugs if any and retesting-- 11/07 (2hrs)
+	For Testing and bug fixes (3 hrs):
+	 -	Performing first round of testing for the low ball target and also performing data vaidation -- 11/06(Estimated: 30 mins)
+	 -	Fixing all the bugs for the first round of testing -- 11/07 (Estimated 1hr)
+	 -	Performing second round of testing of the entire low ball target deliverable and also testing the bugs of the first round -- 11/07(1hr)
+	 -	Fixing bugs if any and retesting-- 11/07 (30 mins)
 	
-	Buffer Time for Unanticipated Bugs and situations (14 hrs):
-	 -	Buffer time for unanticipated bugs and situations -- 11/08 (10 hrs)
-	 -	Final round of testing for verifying proper functioning of the low ball target and preparing for the demo -- 11/08 (4hrs)
+	Buffer Time for Unanticipated Bugs and situations (2 hrs 30 mins):
+	 -	Buffer time for unanticipated bugs and situations -- 11/08 (2 hrs)
+	 -	Final round of testing for verifying proper functioning of the low ball target and preparing for the demo -- 11/08 (30 mins)
