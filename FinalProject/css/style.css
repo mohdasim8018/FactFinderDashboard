@@ -1,0 +1,102 @@
+.line {
+  fill: none;
+  stroke: #65b5b4;
+  font-weight: normal;
+  stroke-width: 1px;
+}
+div.tooltip {
+  position: absolute;	
+  text-align: center;	
+  width: 100px;	
+  height: 30px;		
+  padding: 1px;	
+  font: 12px sans-serif;	
+  background: black;	
+  border: 0px;					
+	
+}
+
+//css for title bar
+.titlebar{
+	border: 1px solid;
+	background-color: #1FB5AD;
+	padding: 20px;
+	color: white;
+	font-size: 200%;
+	margin: -10px -10px 0 -10px;
+	font-family:verdana, arial, 'sans-serif';
+}
+
+//css for centering the title
+.center-title{
+	padding-left: 400px;
+}
+
+//css for left div
+.left-div{
+	float: left;
+}
+
+//css for right div
+.right-div{
+	overflow: hidden;
+	padding: 5px;
+}
+
+//css for sections
+.sections{
+	background-color: white;
+	box-shadow: 0 2px #DCE0E2;
+}
+
+//css for section headers
+.section-headers{
+	background-color: #32323A;
+	color: #1FB5AD;
+	font-family:verdana, arial, 'sans-serif';
+	margin: -20px -20px 0 -20px;
+	padding: 20px;
+}
+
+//css for toggle
+.toggle-icons{
+	border-bottom: 2px solid #1FB5AD;
+} 
+
+//css for overview tabular view
+.overview-tabular{
+	border-collapse: collapse;
+	width: 600px; 
+	margin-top: 30px;
+}
+
+
+
+.panel-heading {background-color: #32323A!important;color: #1FB5AD!important; }
+.panel-primary{border-color: #32323A!important;}
+.btn-primary {
+    color: #fff;
+    background-color: #1FB5AD!important;
+    border-color: #2e6da4;
+}
+
+.gi-2x{font-size: 2em;}
+.gi-3x{font-size: 3em;}
+.gi-4x{font-size: 4em;}
+.gi-5x{font-size: 5em;}
+
+#panel-body .row {
+    margin-right: -230px;
+    margin-left: -50px;
+}
+
+thead th {
+  background-color: #1FB5AD!important;
+  color: white;
+  font-family:verdana, arial, 'sans-serif';
+  font-weight: normal;
+  border-color: white;
+}
+#detailedTable tbody tr td{
+	border-color: white;
+}
