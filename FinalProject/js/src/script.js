@@ -276,21 +276,7 @@ function switchView(view){
 }
 
 
-function switchView(hide,removeBorder,show,addBorder){
-	
-	if(view == "Table"){
-		$('#tableContainer').show();
-		$('#graphContainer').hide();
-		$("#Table").css("border-bottom","2px solid #1FB5AD");
-		$("#Graph").css("border-bottom","");
-	}
-	if(view == "Graph"){
-		$('#tableContainer').hide();
-		$('#graphContainer').show();
-		$("#Graph").css("border-bottom","2px solid #1FB5AD");
-		$("#Table").css("border-bottom","");
-	}
-}
+
 
 function closeDetailedView(){
 	document.getElementById("detailContainer").innerHTML = "";
