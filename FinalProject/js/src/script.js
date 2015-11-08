@@ -20,7 +20,14 @@
 	var graphMargin = {top: 10, right: 10, bottom: 10, left: 80};
     var graphWidth = 400 - graphMargin.left - graphMargin.right;
     var graphHeight = 250 - graphMargin.top - graphMargin.bottom;
-
+	var WIDTH = 400,
+	HEIGHT = 280,
+	MARGINS = {
+		top: 20,
+		right: 20,
+		bottom: 20,
+		left: 35
+	};
 	var xAxisScale = d3.scale.ordinal()
     .rangeRoundBands([0, graphWidth], 0.35);
 
@@ -35,8 +42,23 @@
     .scale(yAxisScale)
     .orient("left");
 
+	var legendData = [
+					{condition: "Hypertension",color: "#A48AD4"},
+					{condition: "Diabetes",color: "#FDD752"},
+					{condition: "Heart Disease",color: "#EFB3E6"},
+					{condition: "Cancer",color: "#FA8564"}
+				   ];
 
-
+	var age = ["below 1","above 85"];
+	var sex = ["male","female"];
+	var region = ["Northeast","Midwest","South","West"];	
+	var race = [ "White",
+                 "Black/African American",
+                 "Indian (American)",
+                 "Chinese",
+                 "Filipino",
+                 "Asian Indian",
+				 "Multiple race"];
 
 
 function d3Tutorial(){
@@ -275,17 +297,201 @@ function switchView(view){
 	}
 }
 
+function switchViewForDuration(view){
+	
+	if(view == "Table"){
+		$('#timeDurationOverviewTable').show();
+		$('#graphContainerTimeDuration').hide();
+		$("#tableTimeDurationIcon").css("border-bottom","2px solid #1FB5AD");
+		$("#graphTimeDurationIcon").css("border-bottom","");
+	}
+	if(view == "Graph"){
+		$('#timeDurationOverviewTable').hide();
+		$('#graphContainerTimeDuration').show();
+		$("#graphTimeDurationIcon").css("border-bottom","2px solid #1FB5AD");
+		$("#tableTimeDurationIcon").css("border-bottom","");
+		buildLineGraphData();
+	}
+}
+
 
 
 
 function closeDetailedView(){
+	isRegion = false;
 	document.getElementById("detailContainer").innerHTML = "";
 	document.getElementById("graphContainerDetailed").innerHTML = "";
+	$("#dropDownContainer").hide();
 	$("#overlay").hide();
 	$("#frame").hide();
 	$("#TableDetailed").css("border-bottom","2px solid #1FB5AD");
 	$("#GraphDetailed").css("border-bottom","");
 	
 }
+
+function buildLineGraphData(){
+	var diabetes2D = [ 
+							{period: "Less 3",count: 0},
+							{period: "3 to 5",count: 0},
+							{period: "6 to 12",count: 0},
+							{period: "12 plus",count: 0},
+						];
+						
+	var hypertension2D = [ 
+							{period: "Less 3",count: 0},
+							{period: "3 to 5",count: 0},
+							{period: "6 to 12",count: 0},
+							{period: "12 plus",count: 0},
+						];
+						
+	var heart2D = [ 
+							{period: "Less 3",count: 0},
+							{period: "3 to 5",count: 0},
+							{period: "6 to 12",count: 0},
+							{period: "12 plus",count: 0},
+						];
+						
+	var cancer2D = [ 
+							{period: "Less 3",count: 0},
+							{period: "3 to 5",count: 0},
+							{period: "6 to 12",count: 0},
+							{period: "12 plus",count: 0},
+						];
+	for(var i=0;i<graphDataArray.length;i++){
+		if(graphDataArray[i].condition=="Hypertension"){
+			hypertension2D[0].count = graphDataArray[i].duration1;
+			hypertension2D[1].count = graphDataArray[i].duration2;
+			hypertension2D[2].count = graphDataArray[i].duration3;
+			hypertension2D[3].count = graphDataArray[i].duration4;
+			
+		}else if(graphDataArray[i].condition=="Diabetes"){
+			diabetes2D[0].count = graphDataArray[i].duration1;
+			diabetes2D[1].count = graphDataArray[i].duration2;
+			diabetes2D[2].count = graphDataArray[i].duration3;
+			diabetes2D[3].count = graphDataArray[i].duration4;
+			
+		}else if(graphDataArray[i].condition=="Heart Disease"){
+			heart2D[0].count = graphDataArray[i].duration1;
+			heart2D[1].count = graphDataArray[i].duration2;
+			heart2D[2].count = graphDataArray[i].duration3;
+			heart2D[3].count = graphDataArray[i].duration4;
+			
+		}else if(graphDataArray[i].condition=="Cancer"){
+			cancer2D[0].count = graphDataArray[i].duration1;
+			cancer2D[1].count = graphDataArray[i].duration2;
+			cancer2D[2].count = graphDataArray[i].duration3;
+			cancer2D[3].count = graphDataArray[i].duration4;
+		}
+	}
+	buildMultiLineGraph(hypertension2D, cancer2D, heart2D, diabetes2D);
+	buildLegendTimeDuration(legendData);
+}
+
+
+function buildMultiLineGraph(hypertension2D, cancer2D, heart2D, diabetes2D){
+	
+	d3.selectAll("#visualisation").remove();
+	var vis = d3.select("#graphTimeDuration").append("svg").attr("id","visualisation").attr("height",HEIGHT).attr("width",WIDTH);	
+	
+	// Make scales for X&Y
+	xScale = d3.scale.ordinal()
+		.rangePoints([MARGINS.left, WIDTH], 0.5)
+		.domain(hypertension2D.map(function(d) { return d.period;})),
+	yScale = d3.scale.linear()
+		.range([HEIGHT - MARGINS.top, MARGINS.bottom])
+		.domain([0,d3.max(hypertension2D, function(d) {return d.count;})]),
+						
+	// Create X & Y Axes
+	xAxis = d3.svg.axis()
+		.scale(xScale),
+	yAxis = d3.svg.axis()
+		.scale(yScale)
+		.orient("left");
+				
+	// Transform X&Y axis to get proper axes alignment
+				
+	vis.append('svg')
+		.append('g')
+		.attr("transform", "translate(" + (MARGINS.left) + ",0)")
+		.attr("class","line")
+		.call(yAxis);
+							
+	vis.append('svg')
+		.append('g')	
+		.attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
+		.attr("class","line")
+		.call(xAxis);
+						
+	// Draw a line
+	var lineGen = d3.svg.line()
+	    .x(function(d) {
+			return xScale(d.period);
+		})
+		.y(function(d) {
+			return yScale(d.count);
+		});
+						  
+	// draw data points line  
+	vis.append('svg:path')
+	    .attr('d', lineGen(hypertension2D))
+		.attr('stroke', '#A48AD4')
+		.attr('stroke-width', 2)
+		.attr('fill', 'none');
+		
+	vis.append('svg:path')
+	    .attr('d', lineGen(diabetes2D))
+		.attr('stroke', '#FDD752')
+		.attr('stroke-width', 2)
+		.attr('fill', 'none');
+		
+	vis.append('svg:path')
+	    .attr('d', lineGen(cancer2D))
+		.attr('stroke', '#FA8564')
+		.attr('stroke-width', 2)
+		.attr('fill', 'none');
+	
+	vis.append('svg:path')
+	    .attr('d', lineGen(heart2D))
+		.attr('stroke', '#EFB3E6')
+		.attr('stroke-width', 2)
+		.attr('fill', 'none');
+
+}
+
+function buildLegendTimeDuration(legendData){
+
+		var legend = d3.select("#legendTimeDuration");
+		 
+		var legendXPadding = WIDTH - (MARGINS.left) - (MARGINS.right);
+		
+		var legendRect = legend.selectAll('rect').data(legendData)
+				.enter()
+				.append("rect")
+				.attr("x", legendXPadding-200)
+				.attr("width", 10)
+				.attr("height", 10)
+				.attr("y", function(d, i) {
+					return (i * 20);
+				})
+				.style("fill", function(d) {
+					return d.color;
+				});
+				
+		var label = legend.selectAll("text").data(legendData)
+			.enter()
+			.append("text")
+			.attr("x",legendXPadding-180)
+			.attr("y", function(d, i) {
+				return (i * 20) +9;
+			})
+			.style("font-family","verdana, arial, 'sans-serif'")
+			.style("font-size","13px")
+			.style("fill","#1FB5AD")
+			.text(function(d){
+				return d.condition;
+			});
+
+}
+
 
 

@@ -19,9 +19,9 @@ div.tooltip {
 //css for title bar
 .titlebar{
 	border: 1px solid;
-	background-color: #1FB5AD;
+	background-color: white;
 	padding: 20px;
-	color: white;
+	color: black;
 	font-size: 200%;
 	margin: -10px -10px 0 -10px;
 	font-family:verdana, arial, 'sans-serif';
@@ -72,12 +72,12 @@ div.tooltip {
 
 
 
-.panel-heading {background-color: #32323A!important;color: #1FB5AD!important; }
-.panel-primary{border-color: #32323A!important;}
+.panel-heading {background-color: #006699!important;color: white!important; }
+.panel-primary{border-color: black!important;}
 .btn-primary {
-    color: #fff;
-    background-color: #1FB5AD!important;
-    border-color: #2e6da4;
+    color: white;
+    background-color: #006699!important;
+    border-color: black;
 }
 
 .gi-2x{font-size: 2em;}
@@ -90,7 +90,7 @@ div.tooltip {
     margin-left: -50px;
 }
 
-thead th {
+/*thead th {
   background-color: #1FB5AD!important;
   color: white;
   font-family:verdana, arial, 'sans-serif';
@@ -99,4 +99,37 @@ thead th {
 }
 #detailedTable tbody tr td{
 	border-color: white;
+}*/
+.svg-style{
+	margin-left: -30%;
+	margin-bottom: -20%;
+}
+
+.tagline{
+	font-size: 35%;
+	margin-left: 1%;
+	color: #FFFF9C;
+	
+}
+
+.btn {
+    display: inline-block;
+    padding: 0px 5px 0px 5px!important;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
 }
