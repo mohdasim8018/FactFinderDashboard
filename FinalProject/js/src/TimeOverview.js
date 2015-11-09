@@ -281,7 +281,7 @@ function dropdown(optionData){
 		options = select.selectAll('option').data(optionData);
 		options.enter().append("option").text(function(d) { return d;});
 		
-	var button = d3.selectAll("#unique").append("button")
+	var button = d3.selectAll("#dropdown").append("button")
 					.on("click", detailedWindow)
 					.attr("class","btn-group");
 }

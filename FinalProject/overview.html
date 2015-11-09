@@ -209,8 +209,7 @@
 								</tr>
 							</table>
 						</div>
-						<div id = "graphContainerTimeDuration" class="row" style="display:none">
-							
+						<div id = "graphContainerTimeDuration" class="row" style="display:none">	
 							<div id="graphTimeDuration" class="col-md-6">
 							</div>
 							<div class="col-md-6">
@@ -219,17 +218,19 @@
 						</div>
 						<div class="row">
 							<div class = "col-md-4"></div>
-							<div class = "col-md-4">
+							<div class = "col-md-2">
 								<select id="filterId" onchange="filterSwitch(this)">
-								  <option value="default"> Select </option>
+								  <option value="select"> Select </option>
 								  <option value="age"> Age </option>
-								  <option value="sex"> Sex </option>
+								  <option value="sex"> Gender </option>
 								  <option value="race"> Race </option>
 								  <option value="region"> Region </option>
 								</select>
 							</div>
-							<div class = "col-md-4" id="unique">
-								
+							<div class = "col-md-4" id="unique"> 
+							</div>
+							<div class = "col-md-2" id="unique1" style="display:none">
+								<input type="button" class="btn btn-primary" value="Search" onclick="parseData_D();">
 							</div>
 						</div>
 					</div>
