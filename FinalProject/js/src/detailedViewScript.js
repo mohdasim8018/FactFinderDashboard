@@ -1004,7 +1004,7 @@ function filterSwitch(filter){
 function clearDynamicContent(){
 	// Clear already existing sub section filter
 	d3.selectAll("#dropdown").remove();
-	d3.selectAll("#btn-group").remove();
+	$("#unique1").hide();
 }
 
 function dropdown(optionData){
@@ -1012,9 +1012,14 @@ function dropdown(optionData){
 		options = select.selectAll('option').data(optionData);
 		options.enter().append("option").text(function(d) { return d;});
 		
-	var button = d3.selectAll("#unique").append("button")
+	$("#unique1").show();
+		
+	/*var button = d3.selectAll("#unique1").append("button")
 					.on("click", parseData_D)
-					.attr("id","btn-group");
+					.attr("id","btn-group")
+					.attr("value","Search")
+					.attr("height","10px")
+					//.style({stroke: "black", "stroke-width": "2px"});*/
 }
 
 function buildMapData(filteredData,criteria){
