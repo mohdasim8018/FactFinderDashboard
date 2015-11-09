@@ -391,6 +391,7 @@ function buildLineGraphData(){
 function buildMultiLineGraph(hypertension2D, cancer2D, heart2D, diabetes2D){
 	
 	d3.selectAll("#visualisation").remove();
+	d3.select("#graphTimeDuration").style("margin-top","-10%");
 	var vis = d3.select("#graphTimeDuration").append("svg").attr("id","visualisation").attr("height",HEIGHT).attr("width",WIDTH);	
 	
 	// Make scales for X&Y
@@ -414,7 +415,16 @@ function buildMultiLineGraph(hypertension2D, cancer2D, heart2D, diabetes2D){
 		.append('g')
 		.attr("transform", "translate(" + (MARGINS.left) + ",0)")
 		.attr("class","line")
-		.call(yAxis);
+		.call(yAxis)
+		.append("text")
+			  .attr("transform", "rotate(-90)")
+			  .attr("y", -60)
+			  .attr("x", -100)
+			  .attr("dy", ".71em")
+			  .style("text-anchor", "end")
+			  .style("color","black")
+			  .style("margin-left","-10%")
+			  .text("Patient Count");
 							
 	vis.append('svg')
 		.append('g')	

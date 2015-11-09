@@ -1078,14 +1078,13 @@ function buildMapData(filteredData,criteria){
 
 function buildMap(mapData,colorShades){
 	
-	console.log(mapData);
-								
-	$("#panel").css("background-color",colorShades[0]);
+	console.log(mapData);						
+	$("#panel").css("background-color",colorShades[0]+"!important");
 	//setting width and height of the map
 	var width = 550;
 	var height = 500;
 	var svg = d3.select("#graphContainerDetailed")
-								.append("div").attr("class","col-md-6").attr("id","detailedGraph")
+								.append("div").attr("class","col-md-7").attr("id","detailedGraph")
 								.append("svg")
 								.attr("id","mapHolder")
 								.attr("width", width)
@@ -1159,8 +1158,8 @@ function buildMap(mapData,colorShades){
 		.attr("font-family","Arial")
 		.attr("font-weight","bold");
 	});
-	
-	choroplethLegend(colorShades);
+	var legend = d3.select("#graphContainerDetailed").append("div").attr("class","col-md-5").attr("id","legendDetailed").style("margin-top","30px").append("svg").style("margin-left","15%");
+	//choroplethLegend(colorShades);
 }
 
 function detailedRegionWise(filter){
@@ -1216,30 +1215,28 @@ function choroplethLegend(colorData){
 			.style("fill", function(d) {
 				console.log(d);
 				return d;
-			});
+			})
+			.style("stroke","black");
 			endY = endY + 20;
-			console.log(startY);
-			console.log(endY);
 			
 			legend.append("line")
-			.style("stroke","black")
-			    .style("stroke", "black") 
+			    .style("stroke", colorData[0]) 
 				.attr("x1", startX)    
 				.attr("y1", startY)      
 				.attr("x2", endX)     
 				.attr("y2", endY);
 			
 			legend.append("line")	
-			    .style("stroke", "black")
+			    .style("stroke", colorData[0])
 				.attr("x1", startX)    
 				.attr("y1", startY)    
-				.attr("x2", startX+20)    
-				.attr("y2", startY +10);
+				.attr("x2", startX+10)    
+				.attr("y2", startY +20);
 			legend.append("line")
-				.style("stroke","black")
+				.style("stroke",colorData[0])
 				.attr("x1", startX)    
 				.attr("y1", startY)    
-				.attr("x2", startX+-10)    
+				.attr("x2", startX-10)    
 				.attr("y2", startY +20);
 	/*var label = legend.selectAll("text").data(colorData)
 		.enter()
