@@ -172,7 +172,7 @@ function detailLoad(){
 		$("#frame").show();
 		$("#detailedtitle").html("Medical Condition By "+filterCrieria);
 		
-		createTable(filteredData);
+		createTable(filteredData,filterCrieria);
 		console.log(isRegion);
 		
 	});
@@ -248,7 +248,7 @@ function filterData(data,criteria,filter){
 
 
 //function for creating table
-function createTable(filteredData){
+function createTable(filteredData,filterCrieria){
 
 	var container = d3.select("#detailContainer").style("display","block").style("margin-top","5px");
 	var table = container.append("table").attr("id","detailedTable").attr("class","table table-hover").style("margin-top","10px");
@@ -274,6 +274,8 @@ function createTable(filteredData){
 					return "Heart Disease";
 				else if(column == "cancerCount")
 					return "Cancer";
+				else if(column == "text")
+					return filterCrieria;
 				else 
 					return column;
 			});
@@ -1108,7 +1110,7 @@ function buildMapData(filteredData,criteria){
 function buildMap(mapData,colorShades){
 	
 	console.log(mapData);						
-	$("#panel").css("background-color",colorShades[0]+"!important");
+	$("#panel").css("background-color",colorShades[0]);
 	//setting width and height of the map
 	var width = 550;
 	var height = 500;

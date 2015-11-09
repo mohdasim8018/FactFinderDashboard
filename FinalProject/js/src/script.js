@@ -326,6 +326,7 @@ function closeDetailedView(){
 	$("#frame").hide();
 	$("#TableDetailed").css("border-bottom","2px solid #1FB5AD");
 	$("#GraphDetailed").css("border-bottom","");
+	$("#panel").css("background-color","#006699");
 	
 }
 
@@ -391,7 +392,7 @@ function buildLineGraphData(){
 function buildMultiLineGraph(hypertension2D, cancer2D, heart2D, diabetes2D){
 	
 	d3.selectAll("#visualisation").remove();
-	d3.select("#graphTimeDuration").style("margin-top","-10%");
+	d3.select("#graphTimeDuration").style("margin-top","-8.5%");
 	var vis = d3.select("#graphTimeDuration").append("svg").attr("id","visualisation").attr("height",HEIGHT).attr("width",WIDTH);	
 	
 	// Make scales for X&Y
