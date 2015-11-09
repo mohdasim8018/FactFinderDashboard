@@ -970,7 +970,13 @@ function buildLegend_D(legendData_D){
 }
 function filterSwitch(filter){
 	
-	if (filter.value == "age"){
+	
+	if (filter.value == "select"){
+		clearDynamicContent();
+		alert("Please select an option from the dropdown");
+		return false;
+	}
+	else if (filter.value == "age"){
 		// Clear dynamic filters
 		clearDynamicContent();
 		
