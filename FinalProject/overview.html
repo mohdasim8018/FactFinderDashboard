@@ -20,7 +20,7 @@
 	<div id = "overlay" style="width: 100%;height: 100%;position: absolute;background-color: black;opacity: 0.7;z-index: 500;display: none"></div>
 	<div class="container-fluid">
 		<div id = "frame" class="panel panel-primary" style="position:fixed;background-color: white;margin: 25%;margin-top: 50px;border-radius: 4px;z-index: 500;display: none;margin-bottom: -200px;">
-			<div class="panel-heading"><span id="detailedtitle"></span>
+			<div id="panel" class="panel-heading"><span id="detailedtitle"></span>
 				<a href="#" onclick="closeDetailedView()">
 					<span style="float: right;margin-bottom: 5px;">
 						<img src="images/close.png" height="12px" width="12px"></img>
@@ -34,8 +34,6 @@
 					<span id="GraphDetailed" style="padding-bottom: 8px"><a href="#" onclick="switchDetailedView('Graph');"><img src="images/graph.png" height="20px" width="20px"></img></a></span>
 				</div>
 				<div class="row" id="detailContainer" style="margin: 0px 0px 10px 0px;">
-					<table id="detailedTable" style="margin-top: 10px;" align="center" class="table table-striped">
-					</table>
 				</div>
 				<div id = "graphContainerDetailed" class="row" style="display:none;margin-bottom: -20px;">
 				</div>

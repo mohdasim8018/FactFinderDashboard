@@ -249,24 +249,14 @@ function filterData(data,criteria,filter){
 
 //function for creating table
 function createTable(filteredData){
-	//setting up table headers
-	/*document.getElementById('detailContainer').innerHTML ='<div class="row">'+
-																	'<div class="col-md-10"></div>'+
-																	'<div class="col-md-2" style="margin: 0px -20px 10px 0px">'+
-																		'<span id="TableDetailed" style="border-bottom: 2px solid #1FB5AD"><a href="#" '+ 'onclick="switchDetailedView("Table");"><img src="images/table.png" height="20px" '+ 'width="20px"></img></a></span>'+ 
-																		'<img src="images/separator.png" height="20px" width="20px">'+
-																		'<span id="GraphDetailed"><a href="#" onclick="switchDetailedView("Graph");"><img '+ 'src="images/graph.png" height="20px" width="20px"></img></a></span>'+
-																	'</div>'+
-																	'</div>';*/
-	
+
 	var container = d3.select("#detailContainer").style("display","block").style("margin-top","5px");
 	var table = container.append("table").attr("id","detailedTable").attr("class","table table-hover").style("margin-top","10px");
 					
-	var thead = table.append("thead");
+	var thead = table.append("thead").style("border-top","1px solid #DDDDDD");
       var  tbody = table.append("tbody");
 	  
 	  thead.append("tr")
-		.attr("class","info")
         .selectAll("th")
         .data(tableheaders)
         .enter()
@@ -302,7 +292,6 @@ function createTable(filteredData){
 				})
 			.enter()
 				.append("td")
-				.attr("style", "border: 2px solid #F0FCFC")
 				.html(function(d) { 
 				return d.value; });
 	
@@ -512,7 +501,7 @@ function buildStackBarChart(barData){
 
 function buildLegendDetailed(colorData){
 
-	
+
 	
 	var legend = d3.select("#graphContainerDetailed").append("div").attr("class","col-md-5").attr("id","legendDetailed").style("margin-top","30px").append("svg").style("margin-left","-5%");
 	
@@ -1080,6 +1069,7 @@ function buildMap(mapData,colorShades){
 	
 	console.log(mapData);
 								
+	$("#panel").css("background-color",colorShades[0]);
 	//setting width and height of the map
 	var width = 550;
 	var height = 500;
@@ -1158,8 +1148,8 @@ function buildMap(mapData,colorShades){
 		.attr("font-family","Arial")
 		.attr("font-weight","bold");
 	});
-	d3.select("#graphContainerDetailed").append("div").attr("class","col-md-5").attr("id","legendDetailed").style("margin-top","30px").append("svg").style("margin-left","-5%");
-	//buildLegendDetailed(colorData);
+	
+	choroplethLegend(colorShades);
 }
 
 function detailedRegionWise(filter){
@@ -1170,6 +1160,7 @@ function detailedRegionWise(filter){
 }
 function switchDetailedView(view){
 	if(view == "Table"){
+		$("#panel").css("background-color","#006699");
 		$('#detailContainer').show();
 		$('#graphContainerDetailed').hide();
 		$("#TableDetailed").css("border-bottom","2px solid #1FB5AD");
@@ -1189,7 +1180,71 @@ function switchDetailedView(view){
 		$("#GraphDetailed").css("border-bottom","2px solid #1FB5AD");
 		$("#TableDetailed").css("border-bottom","");
 	}
+	
 }	
+
+function choroplethLegend(colorData){
+	
+	var legend = d3.select("#graphContainerDetailed").append("div").attr("class","col-md-5").attr("id","legendDetailed").style("margin-top","30px").append("svg").style("margin-left","15%");
+	var startX = graphWidth - 250+25;
+	var endX = graphWidth - 250+25;
+	var startY = 0;
+	var endY = 0;
+	var legendRect = legend.selectAll('rect').data(colorData)
+			.enter()
+			.append("rect")
+			.attr("x", graphWidth - 250)
+			.attr("width", 10)
+			.attr("height", 10)
+			.attr("y", function(d, i) {
+				if(i==0)
+						startY = i * 20;
+				endY = i * 20;
+				return (i * 20);
+			})
+			.style("fill", function(d) {
+				console.log(d);
+				return d;
+			});
+			endY = endY + 20;
+			console.log(startY);
+			console.log(endY);
+			
+			legend.append("line")
+			.style("stroke","black")
+			    .style("stroke", "black") 
+				.attr("x1", startX)    
+				.attr("y1", startY)      
+				.attr("x2", endX)     
+				.attr("y2", endY);
+			
+			legend.append("line")	
+			    .style("stroke", "black")
+				.attr("x1", startX)    
+				.attr("y1", startY)    
+				.attr("x2", startX+20)    
+				.attr("y2", startY +10);
+			legend.append("line")
+				.style("stroke","black")
+				.attr("x1", startX)    
+				.attr("y1", startY)    
+				.attr("x2", startX+-10)    
+				.attr("y2", startY +20);
+	/*var label = legend.selectAll("text").data(colorData)
+		.enter()
+		.append("text")
+		.attr("x",graphWidth - 230)
+		.attr("y", function(d, i) {
+			return (i * 20) +9;
+		})
+		.style("font-family","verdana, arial, 'sans-serif'")
+		.style("font-size","13px")
+		.style("fill","#1FB5AD")
+		.text(function(d){
+			return d.condition;
+		});*/
+
+}
 
 
 

@@ -1,0 +1,117 @@
+.imageDiv{
+	float: left;
+	padding-top: 19;
+}
+.contentDiv{
+	overflow: hidden;
+	padding-left: 20px
+}
+.profilePic{
+	width:200px;
+	height:328px
+}
+.navigation{
+	align: center;
+	padding: 5px;
+}
+
+table, th, td {
+    border: 1px solid #626262;
+    border-collapse: collapse;
+}
+
+h3{
+	background-color: #606A57;
+}
+
+.header{
+	min-height: 40px;
+	padding-left: 20px;
+	padding-right: 20px;
+	
+	background-color: #4e5944;
+ *zoom: 1;
+	color: #b8c6ac;
+	font-family: Lucida Sans Unicode;
+}
+
+body{
+	color: #626262;
+	background-color: #e2e2e2;
+	font-family: 'Droid Sans', sans-serif;
+}
+.zoom{
+	font-size: 20;
+}
+a:link{
+	color: #0000FF;
+    font-weight: normal;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+a:visited{
+	color: #6319D1;
+    font-weight: normal;
+	font-family: Arial, Helvetica, sans-serif;
+	text-decoration: none;
+}
+
+.container{
+	padding: 5px;
+	border: 1px solid #003D45;
+}
+
+.currentPage{
+	color: #006D45;
+	font-weight: bold;
+}
+.homeLink{
+	float: left;
+}
+
+.innerContainer{
+	float: left;
+	overflow:hidden;
+}
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+.highlightClass{
+	background: #E0FFA3;
+}
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+div.tooltip {
+  position: absolute;	
+  text-align: center;	
+  width: 120px;	
+  height: 15px;		
+  padding: 1px;	
+  font: 12px sans-serif;	
+  background: black;	
+  border: 0px;					
+  border-radius: 8px;
+ /*  pointer-events: none;	This line needs to be removed */
+	
+}
+
+
+
+
