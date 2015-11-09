@@ -539,16 +539,16 @@ function buildLegendDetailed(colorData){
 function dataEncoding_D(section, sub){
 	var result = [section,""];
 	
-	if (section == "age_D"){
+	if (section == "age"){
 		finalSection_D = age_D;
 	}
-	else if (section == "sex_D"){
+	else if (section == "sex"){
 		finalSection_D = sex_D;
 	}
-	else if (section == "region_D"){
+	else if (section == "region"){
 		finalSection_D = region_D;
 	}
-	else if (section == "race_D"){
+	else if (section == "race"){
 		finalSection_D = race_D;
 	}
 	
@@ -567,12 +567,13 @@ function dataEncoding_D(section, sub){
 function parseData_D(section, sub){
 	$("#overlay").show();
 	d3.csv("dataset/OriginalDataset.csv", function(data) {	
-		section = "race_D";
-		var subC = "Asian Indian";
-		dataEncoding_D(section, subC);
+		//section = "race_D";
+		
+		dataEncoding_D(section, sub);
+		//var subC = finalSub_D;
 
 		
-		if (section == "sex_D"){
+		if (section == "sex"){
 			for(var i = 0;i<data.length;i++){
 				  // Hypertension each category_D data
 				  if(data[i].Aldurb9 == "1" && data[i].Sex == finalSub_D){
@@ -634,7 +635,7 @@ function parseData_D(section, sub){
 		}
 		
 		
-		if (section == "race_D"){
+		if (section == "race"){
 			for(var i = 0;i<data.length;i++){
 				  
 				  // Hypertension each category_D data
@@ -698,7 +699,7 @@ function parseData_D(section, sub){
 		}
 		
 		
-		if (section == "age_D"){
+		if (section == "age"){
 			for(var i = 0;i<data.length;i++){
 				  
 				  // Hypertension each category_D data
@@ -761,7 +762,7 @@ function parseData_D(section, sub){
 		}
 		
 		
-		if (section == "region_D"){
+		if (section == "region"){
 			for(var i = 0;i<data.length;i++){
 				  
 				  // Hypertension each category_D data
@@ -827,12 +828,12 @@ function parseData_D(section, sub){
 		
 		$("#frame").show();
 		var title = "Time Duration for ";
-		if(section == "sex_D"){
-			title = title + "Gender: " + subC;
-		}else if(section == "region_D"){
-			title = title + "Region: " + subC;
-		}else if(section == "race_D"){
-			title = title + "Race: " + subC;
+		if(section == "sex"){
+			title = title + "Gender: " + finalSub_D;
+		}else if(section == "region"){
+			title = title + "Region: " + finalSub_D;
+		}else if(section == "race"){
+			title = title + "Race: " + finalSub_D;
 		}
 		$("#detailedtitle").html(title);
 		buildMultiLineGraph_D(hypertension2D_D, cancer2D_D, heart2D_D, diabetes2D_D);
@@ -999,22 +1000,50 @@ function filterSwitch(filter){
 function clearDynamicContent(){
 	// Clear already existing sub section filter
 	d3.selectAll("#dropdown").remove();
-	$("#unique1").hide();
+	$("#btn-div").hide();
+	//d3.selectAll("#time-button").remove();
 }
 
 function dropdown(optionData){
 	var select  = d3.selectAll("#unique").append("select").attr("id","dropdown"),
 		options = select.selectAll('option').data(optionData);
-		options.enter().append("option").text(function(d) { return d;});
+		options.enter().append("option").text(function(d) { return d;}).attr("value",function(d) { return d;});
 		
-	$("#unique1").show();
+	$("#btn-div").show();
 		
-	/*var button = d3.selectAll("#unique1").append("button")
-					.on("click", parseData_D)
-					.attr("id","btn-group")
-					.attr("value","Search")
-					.attr("height","10px")
-					//.style({stroke: "black", "stroke-width": "2px"});*/
+	var button = d3.selectAll("#time-button")
+					.on("click", function(){parseData_D(d3.select("#filterId").node().value, d3.select("#dropdown").node().value);})
+					//.attr("id","btn-group")
+					//.style({stroke: "black", "stroke-width": "2px"});
+					/*.style({
+						"-moz-box-shadow":"inset 0px 1px 0px 0px #54a3f7",
+						"-webkit-box-shadow":"inset 0px 1px 0px 0px #54a3f7",
+						"box-shadow":"inset 0px 1px 0px 0px #54a3f7",
+						"background":"-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #007dc1), color-stop(1, #0061a7))",
+						"background":"-moz-linear-gradient(top, #007dc1 5%, #0061a7 100%)",
+						"background":"-webkit-linear-gradient(top, #007dc1 5%, #0061a7 100%)",
+						"background":"-o-linear-gradient(top, #007dc1 5%, #0061a7 100%)",
+						"background":"-ms-linear-gradient(top, #007dc1 5%, #0061a7 100%)",
+						"background":"linear-gradient(to bottom, #007dc1 5%, #0061a7 100%)",
+						"filter":"progid:DXImageTransform.Microsoft.gradient(startColorstr='#007dc1', endColorstr='#0061a7',GradientType=0)",
+						"background-color":"#007dc1",
+						"-moz-border-radius":"3px",
+						"-webkit-border-radius":"3px",
+						"border-radius":"3px",
+						"border":"1px solid #124d77",
+						"display":"inline-block",
+						"cursor":"pointer",
+						"color":"#ffffff",
+						"font-family":"Arial",
+						"font-size":"13px",
+						"padding":"12px 32px",
+						"text-decoration":"none",
+						"text-shadow":"0px 1px 0px #154682"
+
+					})
+					.attr("value", "Save");*/
+	//$("#btn-group").addClass('btn btn-primary');
+					//	.attr("class","btn btn-primary");
 }
 
 function buildMapData(filteredData,criteria){
