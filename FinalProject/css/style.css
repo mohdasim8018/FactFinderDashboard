@@ -141,3 +141,32 @@ div.tooltip {
     border: 1px solid transparent;
     border-radius: 4px;
 }
+
+#container {
+
+}
+.node {
+  border: solid 1px white;
+  font: 10px sans-serif;
+  line-height: 12px;
+  overflow: hidden;
+  position: absolute;
+  text-indent: 2px;
+}
+.highcharts-button{
+	display: none;
+}
+.toggle-primary {
+    color: black;
+    background-color: #EEEEEE!important;
+    border-color: black;
+}
+.toggle-active {
+    color: white;
+    background-color: black!important;
+    border-color: black;
+}
+.criteria{
+	font-family: Verdana,Arial,sans-serif ;
+	font-weight: bold;
+}

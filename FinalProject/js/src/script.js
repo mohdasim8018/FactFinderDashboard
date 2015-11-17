@@ -161,9 +161,9 @@ function d3Tutorial(){
 	 $("#cancerCount4").text(graphDataArray[4].duration4);
 
 		 
-	 buildBarChart(barData);
-	 buildLegend(barData)		 
-		
+	 //buildBarChart(barData);
+	 //buildLegend(barData)		 
+	buildTreeMap(barData);	
 	
 	});
 		
@@ -504,5 +504,31 @@ function buildLegendTimeDuration(legendData){
 
 }
 
+function buildTreeMap(barData){
+
+	var treeMapData = [];
+	for(var i=0;i<barData.length;i++){
+		treeMapData.push({
+			name: barData[i].condition,
+			value: barData[i].count,
+			color: barData[i].color
+		})
+	}
+	
+	$('#container').highcharts({
+        colorAxis: {
+            minColor: '#FFFFFF',
+            maxColor: Highcharts.getOptions().colors[0]
+        },
+        series: [{
+            type: 'treemap',
+            layoutAlgorithm: 'squarified',
+            data: treeMapData
+        }],
+        title: {
+            text: 'Highcharts Treemap'
+        }
+    });
+}
 
 

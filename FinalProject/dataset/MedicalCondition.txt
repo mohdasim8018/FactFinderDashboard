@@ -7,4 +7,68 @@ CHDEV
 SEX
 REGION
 AGE_P
-MRACBPI2
+mracbpi2
+
+hypev     "Ever been told you have hypertension"
+chlev     "Ever told you had high cholesterol"
+chdev     "Ever been told you had coronary heart disease"
+angev     "Ever been told you had angina pectoris"
+miev      "Ever been told you had a heart attack"
+hrtev     "Ever been told you had a heart condition/disease"
+strev     "Ever been told you had a stroke"
+ephev     "Ever been told you had emphysema"
+copdev    "Ever been told you had COPD"
+aasmev    "Ever been told you had asthma"
+ulcev     "Ever been told you have an ulcer"
+canev     "Ever told by a doctor you had cancer"
+dibev     "Ever been told that you have diabetes"
+
+AHAYFYR   "Told that you had hay fever, past 12 m"
+SINYR     "Told that you had sinusitis, past 12 m"
+CBRCHYR   "Told you had chronic bronchitis, 12 m"
+KIDWKYR   "Told you had weak/failing kidneys, 12 m"
+LIVYR     "Told you had liver condition, past 12 m"
+arth1     "Ever been told you had arthritis"
+
+
+Cancer
+CNKIND1   "What kind of cancer ... Bladder"
+   CNKIND2   "What kind of cancer ... Blood"
+   CNKIND3   "What kind of cancer ... Bone"
+   CNKIND4   "What kind of cancer ... Brain"
+   CNKIND5   "What kind of cancer ... Breast"
+   CNKIND6   "What kind of cancer ... Cervix"
+   CNKIND7   "What kind of cancer ... Colon"
+   CNKIND8   "What kind of cancer ... Esophagus"
+   CNKIND9   "What kind of cancer ... Gallbladder"
+   CNKIND10  "What kind of cancer ... Kidney"
+   CNKIND11  "What kind of cancer ... larynx-windpipe"
+   CNKIND12  "What kind of cancer ... Leukemia"
+   CNKIND13  "What kind of cancer ... Liver"
+   CNKIND14  "What kind of cancer ... Lung"
+   CNKIND15  "What kind of cancer ... Lymphoma"
+   CNKIND16  "What kind of cancer ... Melanoma"
+   CNKIND17  "What kind of cancer ... mouth/tongue/lip"
+   CNKIND18  "What kind of cancer ... Ovary"
+   CNKIND19  "What kind of cancer ... Pancreas"
+   CNKIND20  "What kind of cancer ... Prostate"
+   CNKIND21  "What kind of cancer ... Rectum"
+   CNKIND22  "What kind of cancer ... skin (non-melanoma)"
+   CNKIND23  "What kind of cancer ... skin (DK kind)"
+   CNKIND24  "What kind of cancer ... soft tissue (muscle or fat)"
+   CNKIND25  "What kind of cancer ... Stomach"
+   CNKIND26  "What kind of cancer ... Testis"
+   CNKIND27  "What kind of cancer ... throat - pharynx"
+   CNKIND28  "What kind of cancer ... Thyroid"
+   CNKIND29  "What kind of cancer ... Uterus"
+   CNKIND30  "What kind of cancer ... Other"
+   
+   
+   Cardiovascular disease
+   chdev     "Ever been told you had coronary heart disease"
+	angev     "Ever been told you had angina pectoris"
+	miev      "Ever been told you had a heart attack"
+	hrtev     "Ever been told you had a heart condition/disease"
+	strev     "Ever been told you had a stroke"
+	
+	
