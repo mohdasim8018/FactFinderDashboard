@@ -831,11 +831,11 @@ function parseData_D(section, sub){
 		$("#frame").show();
 		var title = "Time Duration for ";
 		if(section == "sex"){
-			title = title + "Gender: " + finalSub_D;
+			title = title + "Gender: " + sub.toUpperCase();
 		}else if(section == "region"){
-			title = title + "Region: " + finalSub_D;
+			title = title + "Region: " + sub.toUpperCase();
 		}else if(section == "race"){
-			title = title + "Race: " + finalSub_D;
+			title = title + "Race: " + sub.toUpperCase();
 		}
 		$("#detailedtitle").html(title);
 		buildMultiLineGraph_D(hypertension2D_D, cancer2D_D, heart2D_D, diabetes2D_D);
@@ -1014,38 +1014,9 @@ function dropdown(optionData){
 	$("#btn-div").show();
 		
 	var button = d3.selectAll("#time-button")
-					.on("click", function(){parseData_D(d3.select("#filterId").node().value, d3.select("#dropdown").node().value);})
-					//.attr("id","btn-group")
-					//.style({stroke: "black", "stroke-width": "2px"});
-					/*.style({
-						"-moz-box-shadow":"inset 0px 1px 0px 0px #54a3f7",
-						"-webkit-box-shadow":"inset 0px 1px 0px 0px #54a3f7",
-						"box-shadow":"inset 0px 1px 0px 0px #54a3f7",
-						"background":"-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #007dc1), color-stop(1, #0061a7))",
-						"background":"-moz-linear-gradient(top, #007dc1 5%, #0061a7 100%)",
-						"background":"-webkit-linear-gradient(top, #007dc1 5%, #0061a7 100%)",
-						"background":"-o-linear-gradient(top, #007dc1 5%, #0061a7 100%)",
-						"background":"-ms-linear-gradient(top, #007dc1 5%, #0061a7 100%)",
-						"background":"linear-gradient(to bottom, #007dc1 5%, #0061a7 100%)",
-						"filter":"progid:DXImageTransform.Microsoft.gradient(startColorstr='#007dc1', endColorstr='#0061a7',GradientType=0)",
-						"background-color":"#007dc1",
-						"-moz-border-radius":"3px",
-						"-webkit-border-radius":"3px",
-						"border-radius":"3px",
-						"border":"1px solid #124d77",
-						"display":"inline-block",
-						"cursor":"pointer",
-						"color":"#ffffff",
-						"font-family":"Arial",
-						"font-size":"13px",
-						"padding":"12px 32px",
-						"text-decoration":"none",
-						"text-shadow":"0px 1px 0px #154682"
-
-					})
-					.attr("value", "Save");*/
-	//$("#btn-group").addClass('btn btn-primary');
-					//	.attr("class","btn btn-primary");
+					.on("click", function(){
+						parseData_D(d3.select("#filterId").node().value,
+						d3.select("#dropdown").node().value);})
 }
 
 function buildMapData(filteredData,criteria){
