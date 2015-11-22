@@ -98,6 +98,10 @@ div.tooltip {
     margin-left: -50px;
 }
 
+.panel-body {
+    padding: 0px;
+}
+
 /*thead th {
   background-color: #1FB5AD!important;
   color: white;
@@ -208,14 +212,4 @@ div.tooltip {
 	color: white;
 	opacity: 0.6!important;
 }
-/*.alert-info {
-    color: #31708f;
-    background-color: #eaf5fb!important;
-    border-color: #bce8f1;
-	height: 5px!important;
-	font-size: 10px!important;
-	//padding-top: -5cm;
-}*/
-.alert-info {
-background-color: #eaf5fb!important;
-}
+
