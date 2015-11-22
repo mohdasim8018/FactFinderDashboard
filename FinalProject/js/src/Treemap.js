@@ -1,3 +1,5 @@
+
+
 $( document ).ready(function() {
 //maps
 var diseaseObj = {};
@@ -6,10 +8,12 @@ var raceMap = {};
 var genderMap = {};
 var ageMap = {};
 
-
-
+//showGauge();
 
 var csvObj = [];
+
+//Medical condition by age data (Detailed view)
+
 
 var filteredTree;
 
@@ -551,6 +555,150 @@ function filterData(){
 	//buildTreeMap();
 }
 
+
+
+
+function showGauge(){
+	
+	$(function () {
+
+		var gaugeOptions = {
+
+			chart: {
+				type: 'solidgauge'
+			},
+
+			title: null,
+
+			pane: {
+				center: ['50%', '85%'],
+				size: '140%',
+				startAngle: -90,
+				endAngle: 90,
+				background: {
+					backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+					innerRadius: '60%',
+					outerRadius: '100%',
+					shape: 'arc'
+				}
+			},
+
+			tooltip: {
+				enabled: false
+			},
+
+			// the value axis
+			yAxis: {
+				stops: [
+					[0.1, '#55BF3B'], // green
+					[0.5, '#DDDF0D'], // yellow
+					[0.9, '#DF5353'] // red
+				],
+				lineWidth: 0,
+				minorTickInterval: null,
+				tickPixelInterval: 400,
+				tickWidth: 0,
+				title: {
+					y: -70
+				},
+				labels: {
+					y: 16
+				}
+			},
+
+			plotOptions: {
+				solidgauge: {
+					dataLabels: {
+						y: 5,
+						borderWidth: 0,
+						useHTML: true
+					}
+				}
+			}
+		};
+
+		// The speed gauge
+		$('#container-speed').highcharts(Highcharts.merge(gaugeOptions, {
+			yAxis: {
+				min: 0,
+				max: 100,
+				title: {
+					text: 'Speed'
+				}
+			},
+
+			credits: {
+				enabled: false
+			},
+
+			series: [{
+				name: 'Speed',
+				data: [0],
+				dataLabels: {
+					format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+						((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+						   '<span style="font-size:12px;color:silver">km/h</span></div>'
+				},
+				tooltip: {
+					valueSuffix: ' km/h'
+				}
+			}]
+
+		}));
+		
+		var slide = document.getElementById('slide'),
+		sliderDiv = document.getElementById("sliderAmount");
+		console.log("slide: "+slide);
+		
+		
+		
+		// Bring life to the dials
+		slide.oninput = function() {
+		this.value = 18;
+		getGaugeData(this.value);
+		/*var upperLimit = function () {
+							var min = Infinity, max = -Infinity, x;
+							for( x in conditionByAge) {
+								//if( conditionByAge[x] < min) min = conditionByAge[x];
+								if( conditionByAge[x] > max) max = conditionByAge[x];
+							}
+							return max;
+						}; */
+		
+		console.log(upperLimit);
+		
+		var val = conditionByAge["hyper"];
+		
+		console.log(val);
+		
+		// Speed
+		var chart = $('#container-speed').highcharts(),
+		point,
+		//newVal,
+		inc;
+
+		if (chart) {
+			point = chart.series[0].points[0];
+			//inc = Math.round((Math.random() - 0.5) * 100);
+			inc = 0;
+			newVal = val;
+
+			if (newVal < 0 || newVal > 100) {
+				newVal = val;
+			}
+
+			point.update(newVal);
+		}
+
+	 
+
+
+		}
+	});
+}
+
+
+
 function position() {
   this.style("left", function(d) { return d.x + "px"; })
       .style("top", function(d) { return d.y + "px"; })
@@ -667,3 +815,20 @@ function infoText(){
 }
 
 });
+
+
+function getGaugeData(age){
+	
+	d3.csv("dataset/MedicalConditions.csv", function(data) {
+		var hyperAge = data.filter(function(d, i) 
+		{ 
+            if (d["Hypev"] == 1 && d["Age_P"] == age){	
+				return d; 
+            } 
+			
+
+        })
+		conditionByAge["hyper"] = hyperAge.length;
+	});
+	
+}
