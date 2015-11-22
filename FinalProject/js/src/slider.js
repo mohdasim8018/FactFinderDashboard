@@ -278,6 +278,7 @@ function onMove(value) {
 				}
 				
 				cholestrolAge = (cholestrolAge.length/total) * 100;
+				console.log("cholestrolAge: "+cholestrolAge)
 				cancerAge = (cancerAge.length/total) * 100;
 				heartAge = (heartAge.length/total) * 100;
 				diabetesAge = (diabetesAge.length/total) * 100;

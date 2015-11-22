@@ -33,8 +33,8 @@ var filteredData = [];
 var max;
 var min;
 
-var minRange = '#a8dd85';
-var maxRange = '#084081'
+var minRange = '#d0d1e6';
+var maxRange = '#023858'
 
 function parseCSV(){
 	var cv = 0;
@@ -390,6 +390,7 @@ function buildTreeMap(tree){
 	  .style("color","white")
 	  .style("font-size","15px")
 	  .style("text-align","center")
+	  .style("border","1px solid")
       .text(function(d) { return d.children ? null : d.name; })
 	  .on('mouseover',function(d,i){
 			
@@ -786,7 +787,7 @@ function calculateExtremes(treeData){
 }
 
 function infoText(){
-	var finalText="Showing for ";
+	var finalText="Showing diseases for ";
 	if(gender=="" || gender=="All"){
 		finalText = finalText + "Both Genders , "
 	}else{
