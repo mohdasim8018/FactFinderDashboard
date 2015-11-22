@@ -277,14 +277,6 @@ function onMove(value) {
 					total = 1;
 				}
 				
-<<<<<<< HEAD
-				cholestrolAge = (cholestrolAge.length/total) * 100;
-				console.log("cholestrolAge: "+cholestrolAge)
-				cancerAge = (cancerAge.length/total) * 100;
-				heartAge = (heartAge.length/total) * 100;
-				diabetesAge = (diabetesAge.length/total) * 100;
-				hyperAge = (hyperAge.length/total) * 100;
-=======
 				cholestrolAge = parseFloat(((cholestrolAge.length/total) * 100).toFixed(1));
 				cancerAge = parseFloat(((cancerAge.length/total) * 100).toFixed(1));
 				heartAge = parseFloat(((heartAge.length/total) * 100).toFixed(1));
@@ -295,7 +287,6 @@ function onMove(value) {
 				
 				
 				console.log(cholestrolAge);
->>>>>>> 1cd44d436029937de8b3f124c1fb17abb4cd46ad
 				
 				conditionByAge["hyper"] = hyperAge;
 				//console.log('Value=>'+conditionByAge["hyper"]);
