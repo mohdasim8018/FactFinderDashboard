@@ -67,7 +67,7 @@ function showGauge(){
 				min: 0,
 				max: 100,
 				title: {
-					text: 'Hypertension'
+					text: ''
 				}
 			},
 
@@ -97,7 +97,7 @@ function showGauge(){
 				min: 0,
 				max: 100,
 				title: {
-					text: 'diabetes'
+					text: ''
 				}
 			},
 
@@ -127,7 +127,7 @@ function showGauge(){
 				min: 0,
 				max: 100,
 				title: {
-					text: 'heart'
+					text: ''
 				}
 			},
 
@@ -156,7 +156,7 @@ function showGauge(){
 				min: 0,
 				max: 100,
 				title: {
-					text: 'cancer'
+					text: ''
 				}
 			},
 
@@ -186,7 +186,7 @@ function showGauge(){
 				min: 0,
 				max: 100,
 				title: {
-					text: 'cholestrol'
+					text: ''
 				}
 			},
 
@@ -277,11 +277,16 @@ function onMove(value) {
 					total = 1;
 				}
 				
-				cholestrolAge = (cholestrolAge.length/total) * 100;
-				cancerAge = (cancerAge.length/total) * 100;
-				heartAge = (heartAge.length/total) * 100;
-				diabetesAge = (diabetesAge.length/total) * 100;
-				hyperAge = (hyperAge.length/total) * 100;
+				cholestrolAge = parseFloat(((cholestrolAge.length/total) * 100).toFixed(1));
+				cancerAge = parseFloat(((cancerAge.length/total) * 100).toFixed(1));
+				heartAge = parseFloat(((heartAge.length/total) * 100).toFixed(1));
+				diabetesAge = parseFloat(((diabetesAge.length/total) * 100).toFixed(1));
+				hyperAge = parseFloat(((hyperAge.length/total) * 100).toFixed(1));
+				
+				cholestrolAge = parseFloat(cholestrolAge.toFixed(1));
+				
+				
+				console.log(cholestrolAge);
 				
 				conditionByAge["hyper"] = hyperAge;
 				//console.log('Value=>'+conditionByAge["hyper"]);
@@ -314,11 +319,11 @@ function onMove(value) {
 			
 			
 			conditionByAge["diabetes"] = diabetesAge;
-			console.log('Value=>'+conditionByAge["diabetes"]);
+			//console.log('Value=>'+conditionByAge["diabetes"]);
 			
 			var val_diabetes = conditionByAge["diabetes"];
 			
-			console.log('Dia =>'+val_diabetes);
+			//console.log('Dia =>'+val_diabetes);
 			
 			// Diabetes
 			var chart_diabetes = $('#diabetes').highcharts(),
@@ -344,11 +349,11 @@ function onMove(value) {
 			
 			
 			conditionByAge["heart"] = heartAge;
-			console.log('Value=>'+conditionByAge["heart"]);
+			//console.log('Value=>'+conditionByAge["heart"]);
 			
 			var val_heart = conditionByAge["heart"];
 			
-			console.log('Dia =>'+val_heart);
+			//console.log('Dia =>'+val_heart);
 			
 			// Heart
 			var chart_heart = $('#heart').highcharts(),
@@ -375,11 +380,11 @@ function onMove(value) {
 			
 			
 			conditionByAge["cancer"] = cancerAge;
-			console.log('Value=>'+conditionByAge["cancer"]);
+			//console.log('Value=>'+conditionByAge["cancer"]);
 			
 			var val_cancer = conditionByAge["cancer"];
 			
-			console.log('Dia =>'+val_cancer);
+			//console.log('Dia =>'+val_cancer);
 			
 			// Cancer
 			var chart_cancer = $('#cancer').highcharts(),
@@ -405,11 +410,11 @@ function onMove(value) {
 			
 			
 			conditionByAge["cholestrol"] = cholestrolAge;
-			console.log('Value=>'+conditionByAge["cholestrol"]);
+			//console.log('Value=>'+conditionByAge["cholestrol"]);
 			
 			var val_cholestrol = conditionByAge["cholestrol"];
 			
-			console.log('Dia =>'+val_cholestrol);
+			//console.log('Dia =>'+val_cholestrol);
 			
 			// Cholestrol
 			var chart_cholestrol = $('#cholestrol').highcharts(),
@@ -425,6 +430,8 @@ function onMove(value) {
 				if (newVal_cholestrol < 0 || newVal_cholestrol > 100) {
 					newVal_cholestrol = val_cholestrol;
 				}
+				
+				//console.log(point_cholestrol);
 
 				point_cholestrol.update(newVal_cholestrol);
 			}
@@ -441,4 +448,22 @@ function getUpperLimit(d) {
 		if( d[x] > max) max = d[x];
 	}
 	return max;
+}
+
+function toFixedX(x) {
+  if (Math.abs(x) < 1.0) {
+    var e = parseInt(x.toString().split('e-')[1]);
+    if (e) {
+        x *= Math.pow(10,e-1);
+        x = '0.' + (new Array(e)).join('0') + x.toString().substring(2);
+    }
+  } else {
+    var e = parseInt(x.toString().split('+')[1]);
+    if (e > 20) {
+        e -= 20;
+        x /= Math.pow(10,e);
+        x += (new Array(e+1)).join('0');
+    }
+  }
+  return x;
 }

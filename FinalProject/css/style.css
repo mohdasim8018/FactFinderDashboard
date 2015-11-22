@@ -98,6 +98,10 @@ div.tooltip {
     margin-left: -50px;
 }
 
+.panel-body {
+    padding: 0px;
+}
+
 /*thead th {
   background-color: #1FB5AD!important;
   color: white;
