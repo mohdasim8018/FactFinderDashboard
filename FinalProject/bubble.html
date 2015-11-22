@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+  
+		<!--including css-->
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<!--including css/-->
+		
+		<!--including all the js-->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+		<script type="text/javascript" src="js/lib/d3.min.js"></script>
+		<script type="text/javascript" src="js/src/bubble.js"></script>
+		
+		<!--including all the js/-->
+		
+		<title>CDC Fact Finder</title>
+		
+	</head>
+	<body onload="parseCSV();">
+		<div class = "page-header" style="border: 1px solid;background-color: black;color: black;font-size: 200%;font-family:verdana, arial, 'sans-serif';margin-top: -1%">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4"></div>
+					<div class="col-md-1" style="margin-top: 10px;">
+						<img src="images/title-image.png" height="70px" width="70px"></img>
+					</div>
+					<div class="col-md-7" style="margin-left: -25px;color: white">
+						<h1>
+						  CDC Fact Finder<br>
+						  <div class="tagline">Medical Trends.Simplified.</div>
+						</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div>
+			<div class="col-md-4">
+				<div class="row">
+					<div class="col-md-1"></div>
+					<div class="col-md-11">
+						<div class="btn-group">
+							<button type="button" id="All" class="btn toggle-active" name="All" onclick="search('All');">All</button>
+							<button type="button" id="Gender" class="btn toggle-primary" name="Gender" onclick="search('Gender');">Gender</button>
+							<button type="button" id="Region" class="btn toggle-primary" name="Region" onclick="search('Region');">Region</button>
+							<!--<button type="button" id="Race" class="btn toggle-primary" name="Race" onclick="search('Race');">Race</button>-->
+						</div>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-md-1">
+						<svg width="20" height="20">
+							<rect width="300" height="100" style="fill:#8dd3c7;stroke-width:0;stroke:rgb(0,0,0)" />
+						</svg>
+					</div>
+					<div class="col-md-11">Doesn't need doctor/haven't had problems</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-1">
+						<svg width="20" height="20">
+							<rect width="300" height="100" style="fill:#ffffb3;stroke-width:0;stroke:rgb(0,0,0)" />
+						</svg>
+					</div>
+					<div class="col-md-11">Doesn't like/trust/believe in doctors</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-1">
+						<svg width="20" height="20">
+							<rect width="300" height="100" style="fill:#bebada;stroke-width:0;stroke:rgb(0,0,0)" />
+						</svg>
+					</div>
+					<div class="col-md-11">Doesn't know where to go</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-1">
+						<svg width="20" height="20">
+							<rect width="300" height="100" style="fill:#fb8072;stroke-width:0;stroke:rgb(0,0,0)" />
+						</svg>
+					</div>
+					<div class="col-md-11">Previous doctor is not available/moved</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-1">
+						<svg width="20" height="20">
+							<rect width="300" height="100" style="fill:#80b1d3;stroke-width:0;stroke:rgb(0,0,0)" />
+						</svg>
+					</div>
+					<div class="col-md-11">Too expensive/no insurance/cost</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-1">
+						<svg width="20" height="20">
+							<rect width="300" height="100" style="fill:#fdb462;stroke-width:0;stroke:rgb(0,0,0)" />
+						</svg>
+					</div>
+					<div class="col-md-11">Speak a different language</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-1">
+						<svg width="20" height="20">
+							<rect width="300" height="100" style="fill:#b3de69;stroke-width:0;stroke:rgb(0,0,0)" />
+						</svg>
+					</div>
+					<div class="col-md-11">No care available/too far away/not convenient</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-1">
+						<svg width="20" height="20">
+							<rect width="300" height="100" style="fill:#fccde5;stroke-width:0;stroke:rgb(0,0,0)" />
+						</svg>
+					</div>
+					<div class="col-md-11">Put if off/didn't get around to it</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-1">
+						<svg width="20" height="20">
+							<rect width="300" height="100" style="fill:#d9d9d9;stroke-width:0;stroke:rgb(0,0,0)" />
+						</svg>
+					</div>
+					<div class="col-md-11">Other reason no usual place of care</div>
+				</div>
+			</div>
+			<div id="wrapper" class="col-md-8">
+			</div>
+		</div>
+		
+		
+	</body>
+</html>

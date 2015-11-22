@@ -172,106 +172,39 @@ div.tooltip {
 }
 
 
-#input-wrapper {
-  width: 300px;
-  margin: 0 auto;
-  position: relative;
-  padding-top: 64px;
-  padding-bottom: 10px;
-  overflow-x: hidden;
+
+.popover{
+	position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1060;
+    display: none;
+    max-width: 276px;
+    padding: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: left;
+    text-align: start;
+    text-decoration: none;
+    text-shadow: none;
+    text-transform: none;
+    letter-spacing: normal;
+    word-break: normal;
+    word-spacing: normal;
+    word-wrap: normal;
+    white-space: normal;
+    background-color: black!important;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 6px;
+    -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    line-break: auto;
+	color: white;
+	opacity: 0.6!important;
 }
-
-#rangeslider {
-  display: block;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  outline: none;
-  height: 5px;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.3);
-}
-
-#rangeslider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  cursor: pointer;
-  height: 5px;
-  width: 54px;
-  position: relative;
-}
-
-#rangeslider::-webkit-slider-thumb:after {
-  content: '< >';
-  word-spacing: 20px;
-  text-align: center;
-  background: hsl(140, 50%, 70%);
-  font: bold 17px/25px Sniglet;
-  color: white;
-  width: 54px;
-  height: 25px;
-  position: absolute;
-  top: -10px;
-  left: 0;
-  color: transparent;
-  -webkit-transition: color 0.25s;
-  transition: color 0.25s;
-}
-
-#rangeslider::-webkit-slider-thumb:before {
-  content: '';
-  height: 5px;
-  width: 400px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: hsl(140, 50%, 70%);
-  pointer-events: none;
-}
-
-#reel {
-  width: 54px;
-  height: 54px;
-  overflow: hidden;
-  position: absolute;
-  top: 0; 
-  opacity: 0;
-  -webkit-transition: opacity 0.25s;
-  transition: opacity 0.25s;
-}
-
-#rn {
-  background: -webkit-linear-gradient(hsl(0, 80%, 70%), hsl(120, 80%, 70%));
-  background: linear-gradient(hsl(0, 80%, 70%), hsl(120, 80%, 70%));
-  -webkit-transition: all 0.25s;
-  transition: all 0.25s; 
-}
-
-#rn span {
-  font: 30px/54px Oswald;
-  color: white;
-  display: block;
-  text-align: center;
-}
-
-#static-output {
-  font: bold 17px/25px Sniglet;
-  color: white;
-  position: absolute;
-  bottom: 0;
-  height: 25px;
-  width: 54px;
-  text-align: center;
-  pointer-events: none;
-  -webkit-transition: color 0.25s;
-  transition: color 0.25s;
-}
-
-.active #reel { opacity: 1; }
-
-.active #static-output { color: transparent; }
-
-.active #rangeslider::-webkit-slider-thumb:after {
-  color: white;
-}
-

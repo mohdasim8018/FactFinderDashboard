@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+  
+		<!--including css-->
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<!--including css/-->
+		
+		<!--including all the js-->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+		<script type="text/javascript" src="js/lib/d3.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/highcharts-more.js"></script>
+		<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+		
+		<script type="text/javascript" src="js/src/gauge.js"></script>
+		
+		<!--including all the js/-->
+		
+		<title>CDC Fact Finder</title>
+		
+	</head>
+	<body onload="showGauge(0);">
+	
+	
+		Points:
+		<input id="slide" type="range" name="points" min="0" max="10" value="0"><br><br>
+		Value<div id = "sliderAmount"></div>
+		
+		<div style="width: 600px; height: 400px; margin: 0 auto">
+			<div id="container-speed" style="width: 300px; height: 200px; float: left"></div>
+			<div id="container-rpm" style="width: 300px; height: 200px; float: left"></div>
+		</div>
+	</body>
+</html>
