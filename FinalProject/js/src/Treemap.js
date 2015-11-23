@@ -33,8 +33,8 @@ var filteredData = [];
 var max;
 var min;
 
-var minRange = '#d0d1e6';
-var maxRange = '#023858'
+var minRange = '#c7e9c0';
+var maxRange = '#00441b';
 
 function parseCSV(){
 	var cv = 0;
@@ -354,7 +354,7 @@ function assignColorValues(){
 }*/
 function buildTreeMap(tree){
 
-	var margin = {top:0, right: 0, bottom: 10, left: 0},
+	var margin = {top:0, right: 0, bottom: 10, left: 20},
     width = 850 - margin.left - margin.right,
     height = 380 - margin.top - margin.bottom;
 
@@ -388,11 +388,11 @@ function buildTreeMap(tree){
       .style("background", function(d) { return colorScale(d.value) })
 	  .style("font-weight","bold")
 	  .style("color","white")
-	  .style("font-size","15px")
+	  .style("font-size","12px")
 	  .style("text-align","center")
 	  .style("border","1px solid")
-      .text(function(d) { return d.children ? null : d.name; })
-	  .on('mouseover',function(d,i){
+      .text(function(d) { return d.children ? null : d.name +"(" + d.value + ")"; })
+	  /*.on('mouseover',function(d,i){
 			
 		//for displaying the tool-tip
 		d3.select(".tooltip").style("display","block");
@@ -409,7 +409,7 @@ function buildTreeMap(tree){
 		})
 		.on("mouseout",function(d,i){
 			d3.select(".tooltip").style("display","none");
-		})
+		})*/
   
   d3.selectAll("#hiddenB").on("click", function() {
 	  var colorScale = d3.scale.linear()
@@ -422,28 +422,30 @@ function buildTreeMap(tree){
             node.transition().duration(1500).call(position)
 			.style("background", function(d) { return colorScale(d.value) })
 			.style("font-weight","bold")
-			.style("font-size","15px")
+			.style("font-size","12px")
 			.style("text-align","center")
 			.style("color","white")
-			.text(function(d) { return d.children ? null : d.name; })
-			.on('mouseover',function(d,i){
+			.text(function(d) { return d.children ? null : d.name+"(" + d.value + ")"; })
+			
+			/*node.on('mouseover',function(d,i){
 			
 				//for displaying the tool-tip
 				d3.select(".tooltip").style("display","block");
-				var currentState = this;													
+				var currentState = this		
 				tip.transition()
 				   .style("opacity","0.9")
 				   .style("width","150px")
 				   .style("height","30px")
 				   .style("background","black");
 				tip.html("<strong><span style='color: red'>"+d.name+": "+"</span></strong>"+"<br><span style='color: white'>"+ d.value+"</span>") 
-					.style("left", ((d3.event.pageX) - 350) + "px")
+					.style("left", (d.dx) + "px")
 					.style("color","white")			
-					.style("top", (d3.event.pageY - 120) + "px");	
+					.style("top", d.dy + "px");	
 				})
 			.on("mouseout",function(d,i){
 				d3.select(".tooltip").style("display","none");
-			});
+			});*/
+			
 		});
 
 	
@@ -800,12 +802,12 @@ function infoText(){
 		finalText = finalText + region + " Region, ";
 	}
 	
-	if(age=="" || age=="All"){
+	/*if(age=="" || age=="All"){
 		finalText = finalText + "All Age Groups, ";
 	}else{
 		finalText = finalText + ageMap[age].value + " Group, ";
 	}
-	
+	*/
 	if(race == "" || race == "All"){
 		finalText = finalText + "All Races ";
 	}else{

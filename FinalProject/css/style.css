@@ -162,12 +162,12 @@ div.tooltip {
 }
 .toggle-primary {
     color: black;
-    background-color: #EEEEEE!important;
+    background-color: #BCE8F1!important;
     border-color: black;
 }
 .toggle-active {
     color: white;
-    background-color: black!important;
+    background-color: #286090!important;
     border-color: black;
 }
 .criteria{
@@ -211,5 +211,12 @@ div.tooltip {
     line-break: auto;
 	color: white;
 	opacity: 0.6!important;
+}
+
+alert-info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+	opacity: 0.3!important;
 }
 

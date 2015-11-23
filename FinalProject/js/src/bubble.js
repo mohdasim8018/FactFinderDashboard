@@ -22,8 +22,8 @@
 		var regionMap = {};
 		var raceMap = {};
 		
-		var marginTop = "-200px";
-		var translateY = 200;
+		var marginTop = "0px";
+		var translateY = 100;
 		var temp;
 		
 		
@@ -149,17 +149,18 @@
 					
 					for(var j=0;j<nested_filter.length;j++){
 						var value = "";
-						if(criteria == "Gender")
+						if(criteria == "Gender"){
 							value = genderMap[nested_filter[j].key].value;
-						else if(criteria == "Region"){
+							translateY = 220;
+						}else if(criteria == "Region"){
 							value = regionMap[nested_filter[j].key].value;
-							translateY = 200;
-							marginTop = "-100px";
+							translateY = 250;
+							//marginTop = "-100px";
 						}else if(criteria == "Race")
 							value = raceMap[nested_filter[j].key].value;
 						else{
-							marginTop = "-200px";
-							var translateY = 200;
+							//marginTop = "-200px";
+							translateY = 200;
 						}
 						
 						finalObj.push({
@@ -175,14 +176,13 @@
 				data = 	finalObj;
 			}else{
 				data = temp;
-				marginTop = "-200px";
-				translateY = 200;
+				translateY = 220;
 			}
 			buildBubbles(data);			
 		}
 		
 		function buildBubbles(data){
-			var width = 1000, height = 800;
+			var width = 800, height = 480;
 		$("#bubbles").remove();
         var svg = d3.select("#wrapper").append("svg").attr("id","bubbles").style("margin-top",marginTop)
             .attr("width", width)
@@ -250,11 +250,13 @@
               .attr("cx", function (d) { return d.x; })
               .attr("cy", function (d) { 
 				if(d.All=="Midwest" || d.All=="Northeast")
-					return d.y - 150;
-				else if(d.All=="Male" || d.All=="Female")
+					return d.y - 200;
+				else if(d.All=="South" || d.All=="West")
 					return d.y - 100;
+				else if(d.All=="Male" || d.All=="Female")
+					return d.y - 200;
 				else
-					return d.y;	
+					return d.y - 200;	
 			  });
           }
         }
@@ -265,15 +267,21 @@
           svg.selectAll(".label")
           .data(centers).enter().append("text")
           .attr("class", "label")
-          .text(function (d) { return d.name })
+          .text(function (d) { 
+			
+			if(d.name == "All")
+				return "Overall"
+			else
+				return d.name 
+		  })
           .attr("transform", function (d) {
 			 
 			if(d.name=="Midwest" || d.name=="Northeast"){
-				translateY = 20;
+				translateY = -40;
 			}else if(d.name=="South" || d.name=="West"){
-				translateY = 120;
+				translateY = 20;
 			}else{
-				translateY = 200;
+				translateY = 50;
 			}  
             return "translate(" + (d.x + (d.dx / 2)) + ", " + (d.y + translateY) + ")";
           });

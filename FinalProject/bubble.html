@@ -37,112 +37,119 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<ul class="nav nav-tabs nav-justified">
-			  <li><a href="#">Home</a></li>
-			  <li><a href="treemap.html">Compare Diseases: Gender-Region-Race</a></li>
-			  <li><a href="slider.html">Analyse Diseases: Time(Age)</a></li>
-			  <li class="active"><a href="#">Medical Services Survey</a></li>
-			</ul>
+		<div class="container-fluid">
+			<div class="row">
+				<ul class="nav nav-tabs nav-justified">
+				  <li><a href="#">Home</a></li>
+				  <li><a href="treemap.html">Compare Diseases: Gender-Region-Race</a></li>
+				  <li><a href="slider.html">Analyse Diseases: Time(Age)</a></li>
+				  <li class="active"><a href="#">Why people avoid healthcare?</a></li>
+				</ul>
+			</div>
 		</div>
 		
-		<div>
-			<div class="col-md-4">
-				<div class="row">
-					<div class="col-md-1"></div>
-					<div class="col-md-11">
-						<div class="btn-group">
-							<button type="button" id="All" class="btn toggle-active" name="All" onclick="search('All');">All</button>
-							<button type="button" id="Gender" class="btn toggle-primary" name="Gender" onclick="search('Gender');">Gender</button>
-							<button type="button" id="Region" class="btn toggle-primary" name="Region" onclick="search('Region');">Region</button>
-							<!--<button type="button" id="Race" class="btn toggle-primary" name="Race" onclick="search('Race');">Race</button>-->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-4" style="margin-top: 10px">
+					<div class="row">
+						<div class="col-md-2" style="color: black;font-weight: bold">Filters: </div>
+						<div class="col-md-10">
+							<div class="btn-group">
+								<button type="button" id="All" class="btn toggle-active" name="All" onclick="search('All');">All</button>
+								<button type="button" id="Gender" class="btn toggle-primary" name="Gender" onclick="search('Gender');">Gender</button>
+								<button type="button" id="Region" class="btn toggle-primary" name="Region" onclick="search('Region');">Region</button>
+							</div>
 						</div>
 					</div>
-				</div>
-				<br>
-				<div class="row">
-					<div class="col-md-1">
-						<svg width="20" height="20">
-							<rect width="300" height="100" style="fill:#8dd3c7;stroke-width:0;stroke:rgb(0,0,0)" />
-						</svg>
+					<br>
+					<div class="row">
+						<div class="row">
+							<div class="col-md-2" style="color: black;font-weight: bold;margin-left: 12px;">Reasons: </div>
+							<div class="col-md-10"></div>
+						</div>
+						<div class="col-md-1">
+							<svg width="20" height="20">
+								<rect width="300" height="100" style="fill:#8dd3c7;stroke-width:0;stroke:rgb(0,0,0)" />
+							</svg>
+						</div>
+						<div class="col-md-11">Doesn't need doctor/haven't had problems</div>
 					</div>
-					<div class="col-md-11">Doesn't need doctor/haven't had problems</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-md-1">
-						<svg width="20" height="20">
-							<rect width="300" height="100" style="fill:#ffffb3;stroke-width:0;stroke:rgb(0,0,0)" />
-						</svg>
+					
+					<div class="row">
+						<div class="col-md-1">
+							<svg width="20" height="20">
+								<rect width="300" height="100" style="fill:#ffffb3;stroke-width:0;stroke:rgb(0,0,0)" />
+							</svg>
+						</div>
+						<div class="col-md-11">Doesn't like/trust/believe in doctors</div>
 					</div>
-					<div class="col-md-11">Doesn't like/trust/believe in doctors</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-md-1">
-						<svg width="20" height="20">
-							<rect width="300" height="100" style="fill:#bebada;stroke-width:0;stroke:rgb(0,0,0)" />
-						</svg>
+					
+					<div class="row">
+						<div class="col-md-1">
+							<svg width="20" height="20">
+								<rect width="300" height="100" style="fill:#bebada;stroke-width:0;stroke:rgb(0,0,0)" />
+							</svg>
+						</div>
+						<div class="col-md-11">Doesn't know where to go</div>
 					</div>
-					<div class="col-md-11">Doesn't know where to go</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-md-1">
-						<svg width="20" height="20">
-							<rect width="300" height="100" style="fill:#fb8072;stroke-width:0;stroke:rgb(0,0,0)" />
-						</svg>
+					
+					<div class="row">
+						<div class="col-md-1">
+							<svg width="20" height="20">
+								<rect width="300" height="100" style="fill:#fb8072;stroke-width:0;stroke:rgb(0,0,0)" />
+							</svg>
+						</div>
+						<div class="col-md-11">Previous doctor is not available/moved</div>
 					</div>
-					<div class="col-md-11">Previous doctor is not available/moved</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-md-1">
-						<svg width="20" height="20">
-							<rect width="300" height="100" style="fill:#80b1d3;stroke-width:0;stroke:rgb(0,0,0)" />
-						</svg>
+					
+					<div class="row">
+						<div class="col-md-1">
+							<svg width="20" height="20">
+								<rect width="300" height="100" style="fill:#80b1d3;stroke-width:0;stroke:rgb(0,0,0)" />
+							</svg>
+						</div>
+						<div class="col-md-11">Too expensive/no insurance/cost</div>
 					</div>
-					<div class="col-md-11">Too expensive/no insurance/cost</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-md-1">
-						<svg width="20" height="20">
-							<rect width="300" height="100" style="fill:#fdb462;stroke-width:0;stroke:rgb(0,0,0)" />
-						</svg>
+					
+					<div class="row">
+						<div class="col-md-1">
+							<svg width="20" height="20">
+								<rect width="300" height="100" style="fill:#fdb462;stroke-width:0;stroke:rgb(0,0,0)" />
+							</svg>
+						</div>
+						<div class="col-md-11">Speak a different language</div>
 					</div>
-					<div class="col-md-11">Speak a different language</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-md-1">
-						<svg width="20" height="20">
-							<rect width="300" height="100" style="fill:#b3de69;stroke-width:0;stroke:rgb(0,0,0)" />
-						</svg>
+					
+					<div class="row">
+						<div class="col-md-1">
+							<svg width="20" height="20">
+								<rect width="300" height="100" style="fill:#b3de69;stroke-width:0;stroke:rgb(0,0,0)" />
+							</svg>
+						</div>
+						<div class="col-md-11">No care available/too far away/not convenient</div>
 					</div>
-					<div class="col-md-11">No care available/too far away/not convenient</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-md-1">
-						<svg width="20" height="20">
-							<rect width="300" height="100" style="fill:#fccde5;stroke-width:0;stroke:rgb(0,0,0)" />
-						</svg>
+					
+					<div class="row">
+						<div class="col-md-1">
+							<svg width="20" height="20">
+								<rect width="300" height="100" style="fill:#fccde5;stroke-width:0;stroke:rgb(0,0,0)" />
+							</svg>
+						</div>
+						<div class="col-md-11">Put if off/didn't get around to it</div>
 					</div>
-					<div class="col-md-11">Put if off/didn't get around to it</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-md-1">
-						<svg width="20" height="20">
-							<rect width="300" height="100" style="fill:#d9d9d9;stroke-width:0;stroke:rgb(0,0,0)" />
-						</svg>
+					
+					<div class="row">
+						<div class="col-md-1">
+							<svg width="20" height="20">
+								<rect width="300" height="100" style="fill:#d9d9d9;stroke-width:0;stroke:rgb(0,0,0)" />
+							</svg>
+						</div>
+						<div class="col-md-11">Other reason no usual place of care</div>
 					</div>
-					<div class="col-md-11">Other reason no usual place of care</div>
 				</div>
-			</div>
-			<div id="wrapper" class="col-md-8">
-			</div>
+				<div id="wrapper" class="col-md-8" style="border: 1px solid #cccccc;margin-top: 10px;">
+				</div>
+		</div>
 		</div>
 		
 		
