@@ -213,3 +213,10 @@ div.tooltip {
 	opacity: 0.6!important;
 }
 
+.panel-body {
+	padding-bottom:10px; 
+	padding-top:10px; 
+	padding-left:10px; 
+	padding-right:10px;
+}
+
