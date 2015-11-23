@@ -1,0 +1,11 @@
+Schedule and delivarables:
+	
+	-Talking to the client and getting new requirements 11/10 (Estimated 2hrs)
+	-Exploring new prototypes 11/11 (Estimated 6 hrs)
+	-Developing treemap for detail/overview view for medical conditions 11/14,11/15 (6 hrs)
+	-Developing filters for treemap 11/16 (2 hrs)
+	-Developing bubble layout 11/19,11/20 (6hrs)
+	-Developing filters for bubble layout 11/21 (2hrs)
+	-Testing the code fixing bugs 11/22 (3 hrs)
+	
+	

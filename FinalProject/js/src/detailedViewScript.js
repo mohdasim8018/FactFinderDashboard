@@ -144,10 +144,10 @@ var isRegion = false;
 
 function detailLoad(){
 	var filterCrieria = $("#filterCategory").val();
-	if(filterCrieria == "Select"){
+	/*if(filterCrieria == "Select"){
 		alert("Please select an option from the dropdown");
 		return false;
-	}
+	}*/
 	$("#overlay").show();
 	
 	
@@ -964,9 +964,9 @@ function filterSwitch(filter){
 	
 	
 	if (filter.value == "select"){
-		clearDynamicContent();
+		/*clearDynamicContent();
 		alert("Please select an option from the dropdown");
-		return false;
+		return false;*/
 	}
 	else if (filter.value == "age"){
 		// Clear dynamic filters
