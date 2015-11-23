@@ -387,12 +387,12 @@ function buildTreeMap(tree){
       .call(position)
       .style("background", function(d) { return colorScale(d.value) })
 	  .style("font-weight","bold")
-	  .style("color","white")
+	  .style("color","black")
 	  .style("font-size","12px")
 	  .style("text-align","center")
 	  .style("border","1px solid")
-      .text(function(d) { return d.children ? null : d.name +"(" + d.value + ")"; })
-	  /*.on('mouseover',function(d,i){
+      .text(function(d) { return d.children ? null : d.name})
+	  .on('mouseover',function(d,i){
 			
 		//for displaying the tool-tip
 		d3.select(".tooltip").style("display","block");
@@ -402,14 +402,14 @@ function buildTreeMap(tree){
 		   .style("width","150px")
 		   .style("height","30px")
 		   .style("background","black");
-		tip.html("<strong><span style='color: red'>"+d.name+": "+"</span></strong>"+"<br><span style='color: white'>"+ d.value+"</span>") 
-			.style("left", ((d3.event.pageX) - 350) + "px")
+		tip.html("<strong><span style='color: red'>"+d.name+"</span></strong>"+"<br><span style='color: white'> Count = "+ d.value+"</span>") 
+			.style("left", d3.event.pageX - 500 +"px")
 			.style("color","white")			
-			.style("top", (d3.event.pageY - 120) + "px");	
+			.style("top", d3.event.pageY - 250 + "px");	
 		})
 		.on("mouseout",function(d,i){
 			d3.select(".tooltip").style("display","none");
-		})*/
+		})
   
   d3.selectAll("#hiddenB").on("click", function() {
 	  var colorScale = d3.scale.linear()
@@ -424,10 +424,10 @@ function buildTreeMap(tree){
 			.style("font-weight","bold")
 			.style("font-size","12px")
 			.style("text-align","center")
-			.style("color","white")
-			.text(function(d) { return d.children ? null : d.name+"(" + d.value + ")"; })
+			.style("color","black")
+			.text(function(d) { return d.children ? null : d.name})
 			
-			/*node.on('mouseover',function(d,i){
+			node.on('mouseover',function(d,i){
 			
 				//for displaying the tool-tip
 				d3.select(".tooltip").style("display","block");
@@ -437,14 +437,14 @@ function buildTreeMap(tree){
 				   .style("width","150px")
 				   .style("height","30px")
 				   .style("background","black");
-				tip.html("<strong><span style='color: red'>"+d.name+": "+"</span></strong>"+"<br><span style='color: white'>"+ d.value+"</span>") 
-					.style("left", (d.dx) + "px")
+				tip.html("<strong><span style='color: red'>"+d.name+"</span></strong>"+"<br><span style='color: white'> Count = "+ d.value+"</span>") 
+					.style("left", d3.event.pageX - 500 +"px")
 					.style("color","white")			
-					.style("top", d.dy + "px");	
+					.style("top", d3.event.pageY - 250 + "px");	
 				})
 			.on("mouseout",function(d,i){
 				d3.select(".tooltip").style("display","none");
-			});*/
+			});
 			
 		});
 
