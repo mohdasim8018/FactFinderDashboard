@@ -210,14 +210,14 @@ function showGauge(){
 		}));
 		
 		
-		onMove(18);
+		onMove(20);
 		
 		
-		var slide = document.getElementById('slide'),
+		var rangeslider = document.getElementById('rangeslider'),
 		sliderDiv = document.getElementById("sliderAmount");
 		
 		
-		var slide = document.getElementById('slide'),
+		var rangeslider = document.getElementById('rangeslider'),
 		sliderDiv = document.getElementById("sliderAmount");
 		
 		
@@ -225,9 +225,9 @@ function showGauge(){
 		
 		
 		// Connect slider to the hypertension dial
-		slide.oninput = function(){
-							onMove(this.value);
-		}
+		//rangeslider.oninput = function(){
+		//					onMove(this.value);
+		//}
 		
 		
 		
