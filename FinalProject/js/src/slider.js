@@ -2,7 +2,7 @@
 var conditionByAge = {hyper:0, cancer:0, heart:0, diabetes:0, cholestrol:0};
 
 
-function showGauge(){
+function showGauge(disease){
 	
 	$(function () {
 
@@ -238,205 +238,59 @@ function showGauge(){
 function onMove(value) {
 			d3.select("#sliderAmount").text(value);
 			var age = value;
-			d3.csv("dataset/MedicalConditions.csv", function(data) {
-				var hyperAge = data.filter(function(d, i) { 
-					if (d["Hypev"] == 1 && d["Age_P"] == age){	
-						return d; 
-					} 
-				})
-				
-				
-				var diabetesAge = data.filter(function(d, i) { 
-					if (d["Dibev"] == 1 && d["Age_P"] == age){	
-						return d; 
-					} 
-				})
-				
-				
-				var heartAge = data.filter(function(d, i) { 
-					if (d["Chdev"] == 1 && d["Age_P"] == age){	
-						return d; 
-					} 
-				})				
-
-				var cancerAge = data.filter(function(d, i) { 
-					if (d["Canev"] == 1 && d["Age_P"] == age){	
-						return d; 
-					} 
-				})
-				
-				var cholestrolAge = data.filter(function(d, i) { 
-					if (d["Chlev"] == 1 && d["Age_P"] == age){	
-						return d; 
-					} 
-				})
-				
-				var total  = cholestrolAge.length + cancerAge.length + heartAge.length + diabetesAge.length + hyperAge.length;
-				
-				if ( total == 0){
-					total = 1;
-				}
-				
-				cholestrolAge = parseFloat(((cholestrolAge.length/total) * 100).toFixed(1));
-				cancerAge = parseFloat(((cancerAge.length/total) * 100).toFixed(1));
-				heartAge = parseFloat(((heartAge.length/total) * 100).toFixed(1));
-				diabetesAge = parseFloat(((diabetesAge.length/total) * 100).toFixed(1));
-				hyperAge = parseFloat(((hyperAge.length/total) * 100).toFixed(1));
-				
-				cholestrolAge = parseFloat(cholestrolAge.toFixed(1));
-				
-				
-				console.log(cholestrolAge);
-				
-				conditionByAge["hyper"] = hyperAge;
-				//console.log('Value=>'+conditionByAge["hyper"]);
-				
-				var val = conditionByAge["hyper"];
-	
-				
-				// Hypertension
-				var chart = $('#hyper').highcharts(),
-				point,
-				newVal;
-				//inc;
-
-				if (chart) {
-					point = chart.series[0].points[0];
-					//inc = 0;
-					newVal = val;
-
-					if (newVal < 0 || newVal > 100) {
-						newVal = val;
+			d3.csv("dataset/MedicalConditions.csv", function(data) {				
+					
+				if (globDisease == "Diabetes") {
+					var diabetesAge = data.filter(function(d, i) { 
+						if (d["Dibev"] == 1 && d["Age_P"] == age){	
+							return d; 
+						} 
+					})
+					
+					
+					//var total  = cholestrolAge.length + cancerAge.length + heartAge.length + diabetesAge.length + hyperAge.length;
+					var total  = diabetesAge.length;
+					
+					if ( total == 0){
+						total = 1;
 					}
+					
+					/*cholestrolAge = parseFloat(((cholestrolAge.length/total) * 100).toFixed(1));
+					cancerAge = parseFloat(((cancerAge.length/total) * 100).toFixed(1));
+					heartAge = parseFloat(((heartAge.length/total) * 100).toFixed(1));*/
+					//diabetesAge = parseFloat(((diabetesAge.length/total) * 100).toFixed(1));
+					//diabetesAge = parseFloat(((diabetesAge.length/total) * 100).toFixed(1));
+					
+					//hyperAge = parseFloat(((hyperAge.length/total) * 100).toFixed(1));
+					
+					//cholestrolAge = parseFloat(cholestrolAge.toFixed(1));
+					
+					// Connect slider to diabetes div
+					conditionByAge["diabetes"] = diabetesAge.length;
+					//console.log('Value=>'+conditionByAge["diabetes"]);
+					
+					var val_diabetes = conditionByAge["diabetes"];
+					
+					//console.log('Dia =>'+val_diabetes);
+					
+					// Diabetes
+					var chart_diabetes = $('#diabetes').highcharts(),
+					point_diabetes,
+					newVal_diabetes;
+					//inc;
 
-					point.update(newVal);
-				}
-		
+					if (chart_diabetes) {
+						point_diabetes = chart_diabetes.series[0].points[0];
+						//inc = 0;
+						newVal_diabetes = val_diabetes;
 			
-			// Connect slider to diabetes div
-		
-			
-			
-			
-			conditionByAge["diabetes"] = diabetesAge;
-			//console.log('Value=>'+conditionByAge["diabetes"]);
-			
-			var val_diabetes = conditionByAge["diabetes"];
-			
-			//console.log('Dia =>'+val_diabetes);
-			
-			// Diabetes
-			var chart_diabetes = $('#diabetes').highcharts(),
-			point_diabetes,
-			newVal_diabetes;
-			//inc;
+						if (newVal_diabetes < 0 || newVal_diabetes > 100) {
+							newVal_diabetes = val_diabetes;
+						}
 
-			if (chart_diabetes) {
-				point_diabetes = chart_diabetes.series[0].points[0];
-				//inc = 0;
-				newVal_diabetes = val_diabetes;
-	
-				if (newVal_diabetes < 0 || newVal_diabetes > 100) {
-					newVal_diabetes = val_diabetes;
-				}
-
-				point_diabetes.update(newVal_diabetes);
-			}
-			
-			
-			// Connect slider to heart div
-
-			
-			
-			conditionByAge["heart"] = heartAge;
-			//console.log('Value=>'+conditionByAge["heart"]);
-			
-			var val_heart = conditionByAge["heart"];
-			
-			//console.log('Dia =>'+val_heart);
-			
-			// Heart
-			var chart_heart = $('#heart').highcharts(),
-			point_heart,
-			newVal_heart;
-			//inc;
-
-			if (chart_heart) {
-				point_heart = chart_heart.series[0].points[0];
-				//inc = 0;
-				newVal_heart = val_heart;
-	
-				if (newVal_heart < 0 || newVal_heart > 100) {
-					newVal_heart = val_heart;
-				}
-
-				point_heart.update(newVal_heart);
-			}
-			
-			
-			
-			// Connect slider to cancer div
-
-			
-			
-			conditionByAge["cancer"] = cancerAge;
-			//console.log('Value=>'+conditionByAge["cancer"]);
-			
-			var val_cancer = conditionByAge["cancer"];
-			
-			//console.log('Dia =>'+val_cancer);
-			
-			// Cancer
-			var chart_cancer = $('#cancer').highcharts(),
-			point_cancer,
-			newVal_cancer;
-			//inc;
-
-			if (chart_cancer) {
-				point_cancer = chart_cancer.series[0].points[0];
-				//inc = 0;
-				newVal_cancer = val_cancer;
-	
-				if (newVal_cancer < 0 || newVal_cancer > 100) {
-					newVal_cancer = val_cancer;
-				}
-
-				point_cancer.update(newVal_cancer);
-			}
-			
-			
-			// Connect slider to cholestrol div
-
-			
-			
-			conditionByAge["cholestrol"] = cholestrolAge;
-			//console.log('Value=>'+conditionByAge["cholestrol"]);
-			
-			var val_cholestrol = conditionByAge["cholestrol"];
-			
-			//console.log('Dia =>'+val_cholestrol);
-			
-			// Cholestrol
-			var chart_cholestrol = $('#cholestrol').highcharts(),
-			point_cholestrol,
-			newVal_cholestrol;
-			//inc;
-
-			if (chart_cholestrol) {
-				point_cholestrol = chart_cholestrol.series[0].points[0];
-				//inc = 0;
-				newVal_cholestrol = val_cholestrol;
-	
-				if (newVal_cholestrol < 0 || newVal_cholestrol > 100) {
-					newVal_cholestrol = val_cholestrol;
-				}
-				
-				//console.log(point_cholestrol);
-
-				point_cholestrol.update(newVal_cholestrol);
-			}
-			
-			
+						point_diabetes.update(newVal_diabetes);
+					}
+				}				
 		});
 	}
 
