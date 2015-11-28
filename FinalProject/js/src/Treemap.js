@@ -414,6 +414,7 @@ function buildTreeMap(tree){
 		}).on("click",function(d,i){
 			console.log(d);
 			console.log(d.id);
+			console.log("Yes! Yes!!");
 		})
   
  /* d3.selectAll("#hiddenB").on("click", function() {
@@ -830,12 +831,12 @@ function getGaugeData(age){
 	d3.csv("dataset/MedicalConditions.csv", function(data) {
 		var hyperAge = data.filter(function(d, i) 
 		{ 
-            if (d["Hypev"] == 1 && d["Age_P"] == age){	
+			if (d["Hypev"] == 1 && d["Age_P"] == age){	
 				return d; 
-            } 
+		} 
 			
 
-        })
+		});
 		conditionByAge["hyper"] = hyperAge.length;
 	});
 	
