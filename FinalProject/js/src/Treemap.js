@@ -314,8 +314,8 @@ function assignColorValues(){
 	
 	buildTreeMap(tree);
 }
-
-/*function buildTreeMap(treeData){
+/*
+function buildTreeMap(treeData){
 	Highcharts.setOptions({
         lang: {
             drillUpText: ''
@@ -355,8 +355,8 @@ function assignColorValues(){
 function buildTreeMap(tree){
 
 	var margin = {top:0, right: 0, bottom: 10, left: 20},
-    width = 850 - margin.left - margin.right,
-    height = 380 - margin.top - margin.bottom;
+    width = 450 - margin.left - margin.right,
+    height = 130 - margin.top - margin.bottom;
 
 
 	var colorScale = d3.scale.linear()
@@ -391,6 +391,7 @@ function buildTreeMap(tree){
 	  .style("font-size","12px")
 	  .style("text-align","center")
 	  .style("border","1px solid")
+	  .style("cursor","pointer")
       .text(function(d) { return d.children ? null : d.name})
 	  .on('mouseover',function(d,i){
 			
@@ -406,19 +407,23 @@ function buildTreeMap(tree){
 			.style("left", d3.event.pageX - 500 +"px")
 			.style("color","white")			
 			.style("top", d3.event.pageY - 250 + "px");	
+		
 		})
 		.on("mouseout",function(d,i){
 			d3.select(".tooltip").style("display","none");
+		}).on("click",function(d,i){
+			console.log(d);
+			console.log(d.id);
 		})
   
-  d3.selectAll("#hiddenB").on("click", function() {
+ /* d3.selectAll("#hiddenB").on("click", function() {
 	  var colorScale = d3.scale.linear()
     .range([minRange,maxRange]) // or use hex values
     .domain([min, max]);
             var node = div.datum(filteredTree).selectAll(".node")
 			    .data(treemap.nodes)
 			.attr("class", "node");
-            console.log(node);
+            //console.log(node);
             node.transition().duration(1500).call(position)
 			.style("background", function(d) { return colorScale(d.value) })
 			.style("font-weight","bold")
@@ -452,8 +457,8 @@ function buildTreeMap(tree){
 	
 }
 function applyFilter(criteria,filter){
-	console.log("criteria: "+criteria);
-	console.log("filter: "+filter);
+	//console.log("criteria: "+criteria);
+	//console.log("filter: "+filter);
 	
 	
 
@@ -651,7 +656,7 @@ function showGauge(){
 		
 		var slide = document.getElementById('slide'),
 		sliderDiv = document.getElementById("sliderAmount");
-		console.log("slide: "+slide);
+		//console.log("slide: "+slide);
 		
 		
 		
@@ -668,11 +673,11 @@ function showGauge(){
 							return max;
 						}; */
 		
-		console.log(upperLimit);
+		//console.log(upperLimit);
 		
 		var val = conditionByAge["hyper"];
 		
-		console.log(val);
+		//console.log(val);
 		
 		// Speed
 		var chart = $('#container-speed').highcharts(),
@@ -744,7 +749,7 @@ function assignColorValuesF(){
 	calculateExtremes(treeData);
 	//buildTreeMap(tree);
 	filteredTree = tree;
-	console.log(filteredTree);
+	//console.log(filteredTree);
 	document.getElementById("hiddenB").click();
 }
 parseCSV();
