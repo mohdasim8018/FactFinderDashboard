@@ -197,7 +197,7 @@
 				<div class="col-sm-4">
 					<div class="panel panel-primary">
 						<div id= "panel-body" class="panel-body">
-							<h3>AGE ANALYSIS</h3>
+							<h4 style="padding-bottom:0px;">AGE ANALYSIS</h4>
 							<!-- to see the distribution of patients among the listed diseases
 							<p>
 								(Drag slider to the desired age to see the distribution of patients among the listed diseases)
@@ -209,7 +209,8 @@
 							
 							<div id="input-wrapper" style="padding-top=0px;">
 									
-									<input type="range" id="rangeslider" min="0" max="100" value="20" step="1" 
+									<input type="range" id="rangeslider" min="0" max="100" value="20" step="1"
+									style = "visibility:hidden"
 									oninput="updateOutput(value, true)" 
 									onchange="deactivate()" 
 									onmouseup="deactivate()" >

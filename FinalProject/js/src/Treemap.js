@@ -416,6 +416,7 @@ function buildTreeMap(tree){
 		.on("mouseout",function(d,i){
 			d3.select(".tooltip").style("display","none");
 		}).on("click",function(d,i){
+			document.getElementById("rangeslider").setAttribute("style", "visibility:visible");
 			document.getElementById("rangeslider").value = "20";
 			updateOutput($("#rangeslider").val(), false);
 			//console.log(d);
