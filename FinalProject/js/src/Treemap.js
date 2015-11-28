@@ -276,6 +276,8 @@ function buildFilterMaps(){
 	ageMap['Group5'] = {value: "55-64"};
 	ageMap['Group'] = {value: "65+"};
 }
+
+
 function assignColorValues(){
 	var treeData=[];
 	var child = [];
