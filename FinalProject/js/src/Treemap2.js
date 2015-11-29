@@ -818,10 +818,10 @@ function buildTreeMap(tree){
 		.on("mouseout",function(d,i){
 			d3.select(".tooltip").style("display","none");
 		}).on("click",function(d,i){
-			
+			/*****Commented by Kunal
 			document.getElementById("rangeslider").setAttribute("style", "visibility:visible");
 			document.getElementById("rangeslider").value = "20";
-			updateOutput($("#rangeslider").val(), false);
+			updateOutput($("#rangeslider").val(), false);*/
 			mapShade = ["#88419d","#8c96c6","#b3cde3","#edf8fb"];
 			console.log(prev);
 			console.log(prevBgColor);
@@ -850,14 +850,10 @@ function buildTreeMap(tree){
 			document.getElementById("genderTitle").innerHTML = "GENDER (" + d.name + ")";
 			document.getElementById("regionTitle").innerHTML = "REGION (" + d.name + ")";
 			document.getElementById("diseaseTitle").innerHTML = "DISEASE ANALYSIS (" + d.name + ")";
-			document.getElementById("ageTitle").innerHTML = "AGE ANALYSIS (" + d.name + ")";
 			//scaleGenderSize(d.maleCount,d.femaleCount);
-			
-			
-			console.log("Yes! Yes!!");
-			globDisease = d.id;
+			/*****Commented by Kunal
 			showGauge(d.id);
-			raceGauge();
+			***/
 			showSpecificMap(d);
 		})
   
@@ -1011,6 +1007,144 @@ function filterData(){
 
 
 
+function showGauge(){
+	
+	$(function () {
+
+		var gaugeOptions = {
+
+			chart: {
+				type: 'solidgauge'
+			},
+
+			title: null,
+
+			pane: {
+				center: ['50%', '85%'],
+				size: '140%',
+				startAngle: -90,
+				endAngle: 90,
+				background: {
+					backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+					innerRadius: '60%',
+					outerRadius: '100%',
+					shape: 'arc'
+				}
+			},
+
+			tooltip: {
+				enabled: false
+			},
+
+			// the value axis
+			yAxis: {
+				stops: [
+					[0.1, '#55BF3B'], // green
+					[0.5, '#DDDF0D'], // yellow
+					[0.9, '#DF5353'] // red
+				],
+				lineWidth: 0,
+				minorTickInterval: null,
+				tickPixelInterval: 400,
+				tickWidth: 0,
+				title: {
+					y: -70
+				},
+				labels: {
+					y: 16
+				}
+			},
+
+			plotOptions: {
+				solidgauge: {
+					dataLabels: {
+						y: 5,
+						borderWidth: 0,
+						useHTML: true
+					}
+				}
+			}
+		};
+
+		// The speed gauge
+		$('#container-speed').highcharts(Highcharts.merge(gaugeOptions, {
+			yAxis: {
+				min: 0,
+				max: 100,
+				title: {
+					text: 'Speed'
+				}
+			},
+
+			credits: {
+				enabled: false
+			},
+
+			series: [{
+				name: 'Speed',
+				data: [0],
+				dataLabels: {
+					format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+						((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+						   '<span style="font-size:12px;color:silver">km/h</span></div>'
+				},
+				tooltip: {
+					valueSuffix: ' km/h'
+				}
+			}]
+
+		}));
+		
+		var slide = document.getElementById('slide'),
+		sliderDiv = document.getElementById("sliderAmount");
+		//console.log("slide: "+slide);
+		
+		
+		
+		// Bring life to the dials
+		slide.oninput = function() {
+		this.value = 18;
+		getGaugeData(this.value);
+		/*var upperLimit = function () {
+							var min = Infinity, max = -Infinity, x;
+							for( x in conditionByAge) {
+								//if( conditionByAge[x] < min) min = conditionByAge[x];
+								if( conditionByAge[x] > max) max = conditionByAge[x];
+							}
+							return max;
+						}; */
+		
+		//console.log(upperLimit);
+		
+		var val = conditionByAge["hyper"];
+		
+		//console.log(val);
+		
+		// Speed
+		var chart = $('#container-speed').highcharts(),
+		point,
+		//newVal,
+		inc;
+
+		if (chart) {
+			point = chart.series[0].points[0];
+			//inc = Math.round((Math.random() - 0.5) * 100);
+			inc = 0;
+			newVal = val;
+
+			if (newVal < 0 || newVal > 100) {
+				newVal = val;
+			}
+
+			point.update(newVal);
+		}
+
+	 
+
+
+		}
+	});
+}
 
 
 
@@ -1322,9 +1456,6 @@ function onMove(value) {
 						else if (globDisease == "COPD" && d["Copdev"] == 1 && d["Age_P"] <= age){
 							return d;
 						}
-						else if (globDisease == "Hypertension" && d["Hypev"] == 1 && d["Age_P"] <= age){
-							return d;
-						}
 					})
 					
 					var allAges = data.filter(function(d, i) { 
@@ -1365,9 +1496,6 @@ function onMove(value) {
 							return d;
 						}
 						else if (globDisease == "COPD" && d["Copdev"] == 1 ){
-							return d;
-						}
-						else if (globDisease == "Hypertension" && d["Hypev"] == 1){
 							return d;
 						}
 					})
@@ -1421,396 +1549,6 @@ function getUpperLimit(d) {
 
 /************* End of Age Analysis Code*****************/
 
-/************* RACE Code************************/
-
-function raceGauge (){
-	var raceMap = {White:0.0, Black:0.0, Alaska:0.0, Chinese:0.0, Filipino:0.0, Asian:0.0, Multiple:0.0};
-	d3.csv("dataset/MedicalConditions.csv", function(data) {
-		var diseaseSelection ;
-		data.filter(function(d, i) {
-			if ( globDisease == "Diabetes" && d["Dibev"] == 1){	
-				if (d["Mracbpi2"] == 1){
-					 raceMap["White"]++; 
-				}
-				else if (d["Mracbpi2"] == 2){
-					 raceMap["Black"]++; 
-				}
-				else if (d["Mracbpi2"] == 3){
-					 raceMap["Alaska"]++; 
-				}
-				else if (d["Mracbpi2"] == 6){
-					 raceMap["Chinese"]++; 
-				}
-				else if (d["Mracbpi2"] == 7){
-					 raceMap["Filipino"]++; 
-				}
-				else if (d["Mracbpi2"] == 12){
-					 raceMap["Asian"]++; 
-				}
-				else if (d["Mracbpi2"] == 17){
-					 raceMap["Multiple"]++; 
-				}
-			} 
-			else if (globDisease == "High Cholesterol" && d["Chlev"] == 1){
-				if (d["Mracbpi2"] == 1){
-					 raceMap["White"]++; 
-				}
-				else if (d["Mracbpi2"] == 2){
-					 raceMap["Black"]++; 
-				}
-				else if (d["Mracbpi2"] == 3){
-					 raceMap["Alaska"]++; 
-				}
-				else if (d["Mracbpi2"] == 6){
-					 raceMap["Chinese"]++; 
-				}
-				else if (d["Mracbpi2"] == 7){
-					 raceMap["Filipino"]++; 
-				}
-				else if (d["Mracbpi2"] == 12){
-					 raceMap["Asian"]++; 
-				}
-				else if (d["Mracbpi2"] == 17){
-					 raceMap["Multiple"]++; 
-				}
-			}
-			else if (globDisease == "Coronary Heart Disease" && d["Chdev"] == 1){
-				if (d["Mracbpi2"] == 1){
-					 raceMap["White"]++; 
-				}
-				else if (d["Mracbpi2"] == 2){
-					 raceMap["Black"]++; 
-				}
-				else if (d["Mracbpi2"] == 3){
-					 raceMap["Alaska"]++; 
-				}
-				else if (d["Mracbpi2"] == 6){
-					 raceMap["Chinese"]++; 
-				}
-				else if (d["Mracbpi2"] == 7){
-					 raceMap["Filipino"]++; 
-				}
-				else if (d["Mracbpi2"] == 12){
-					 raceMap["Asian"]++; 
-				}
-				else if (d["Mracbpi2"] == 17){
-					 raceMap["Multiple"]++; 
-				}
-			}
-			else if (globDisease == "Angina Pectoris" && d["Angev"] == 1 ){
-				if (d["Mracbpi2"] == 1){
-					 raceMap["White"]++; 
-				}
-				else if (d["Mracbpi2"] == 2){
-					 raceMap["Black"]++; 
-				}
-				else if (d["Mracbpi2"] == 3){
-					 raceMap["Alaska"]++; 
-				}
-				else if (d["Mracbpi2"] == 6){
-					 raceMap["Chinese"]++; 
-				}
-				else if (d["Mracbpi2"] == 7){
-					 raceMap["Filipino"]++; 
-				}
-				else if (d["Mracbpi2"] == 12){
-					 raceMap["Asian"]++; 
-				}
-				else if (d["Mracbpi2"] == 17){
-					 raceMap["Multiple"]++; 
-				}
-			}
-			else if (globDisease == "Heart Attack" && d["Miev"] == 1){
-				if (d["Mracbpi2"] == 1){
-					 raceMap["White"]++; 
-				}
-				else if (d["Mracbpi2"] == 2){
-					 raceMap["Black"]++; 
-				}
-				else if (d["Mracbpi2"] == 3){
-					 raceMap["Alaska"]++; 
-				}
-				else if (d["Mracbpi2"] == 6){
-					 raceMap["Chinese"]++; 
-				}
-				else if (d["Mracbpi2"] == 7){
-					 raceMap["Filipino"]++; 
-				}
-				else if (d["Mracbpi2"] == 12){
-					 raceMap["Asian"]++; 
-				}
-				else if (d["Mracbpi2"] == 17){
-					 raceMap["Multiple"]++; 
-				}
-			}
-			else if (globDisease == "Heart Condition/Disease" && d["Hrtev"] == 1){
-				if (d["Mracbpi2"] == 1){
-					 raceMap["White"]++; 
-				}
-				else if (d["Mracbpi2"] == 2){
-					 raceMap["Black"]++; 
-				}
-				else if (d["Mracbpi2"] == 3){
-					 raceMap["Alaska"]++; 
-				}
-				else if (d["Mracbpi2"] == 6){
-					 raceMap["Chinese"]++; 
-				}
-				else if (d["Mracbpi2"] == 7){
-					 raceMap["Filipino"]++; 
-				}
-				else if (d["Mracbpi2"] == 12){
-					 raceMap["Asian"]++; 
-				}
-				else if (d["Mracbpi2"] == 17){
-					 raceMap["Multiple"]++; 
-				}
-			}		
-			else if (globDisease == "Stroke" && d["Strev"] == 1 ){
-				if (d["Mracbpi2"] == 1){
-					 raceMap["White"]++; 
-				}
-				else if (d["Mracbpi2"] == 2){
-					 raceMap["Black"]++; 
-				}
-				else if (d["Mracbpi2"] == 3){
-					 raceMap["Alaska"]++; 
-				}
-				else if (d["Mracbpi2"] == 6){
-					 raceMap["Chinese"]++; 
-				}
-				else if (d["Mracbpi2"] == 7){
-					 raceMap["Filipino"]++; 
-				}
-				else if (d["Mracbpi2"] == 12){
-					 raceMap["Asian"]++; 
-				}
-				else if (d["Mracbpi2"] == 17){
-					 raceMap["Multiple"]++; 
-				}
-			}
-			else if (globDisease == "Emphysema" && d["Ephev"] == 1 ){
-				if (d["Mracbpi2"] == 1){
-					 raceMap["White"]++; 
-				}
-				else if (d["Mracbpi2"] == 2){
-					 raceMap["Black"]++; 
-				}
-				else if (d["Mracbpi2"] == 3){
-					 raceMap["Alaska"]++; 
-				}
-				else if (d["Mracbpi2"] == 6){
-					 raceMap["Chinese"]++; 
-				}
-				else if (d["Mracbpi2"] == 7){
-					 raceMap["Filipino"]++; 
-				}
-				else if (d["Mracbpi2"] == 12){
-					 raceMap["Asian"]++; 
-				}
-				else if (d["Mracbpi2"] == 17){
-					 raceMap["Multiple"]++; 
-				}
-			}
-			else if (globDisease == "Asthma" && d["Aasmev"] == 1 ){
-				if (d["Mracbpi2"] == 1){
-					 raceMap["White"]++; 
-				}
-				else if (d["Mracbpi2"] == 2){
-					 raceMap["Black"]++; 
-				}
-				else if (d["Mracbpi2"] == 3){
-					 raceMap["Alaska"]++; 
-				}
-				else if (d["Mracbpi2"] == 6){
-					 raceMap["Chinese"]++; 
-				}
-				else if (d["Mracbpi2"] == 7){
-					 raceMap["Filipino"]++; 
-				}
-				else if (d["Mracbpi2"] == 12){
-					 raceMap["Asian"]++; 
-				}
-				else if (d["Mracbpi2"] == 17){
-					 raceMap["Multiple"]++; 
-				}
-			}
-			else if (globDisease == "Ulcer" && d["Ulcev"] == 1 ){
-				if (d["Mracbpi2"] == 1){
-					 raceMap["White"]++; 
-				}
-				else if (d["Mracbpi2"] == 2){
-					 raceMap["Black"]++; 
-				}
-				else if (d["Mracbpi2"] == 3){
-					 raceMap["Alaska"]++; 
-				}
-				else if (d["Mracbpi2"] == 6){
-					 raceMap["Chinese"]++; 
-				}
-				else if (d["Mracbpi2"] == 7){
-					 raceMap["Filipino"]++; 
-				}
-				else if (d["Mracbpi2"] == 12){
-					 raceMap["Asian"]++; 
-				}
-				else if (d["Mracbpi2"] == 17){
-					 raceMap["Multiple"]++; 
-				}
-			}
-			else if (globDisease == "Cancer" && d["Canev"] == 1 ){
-				if (d["Mracbpi2"] == 1){
-					 raceMap["White"]++; 
-				}
-				else if (d["Mracbpi2"] == 2){
-					 raceMap["Black"]++; 
-				}
-				else if (d["Mracbpi2"] == 3){
-					 raceMap["Alaska"]++; 
-				}
-				else if (d["Mracbpi2"] == 6){
-					 raceMap["Chinese"]++; 
-				}
-				else if (d["Mracbpi2"] == 7){
-					 raceMap["Filipino"]++; 
-				}
-				else if (d["Mracbpi2"] == 12){
-					 raceMap["Asian"]++; 
-				}
-				else if (d["Mracbpi2"] == 17){
-					 raceMap["Multiple"]++; 
-				}
-			}
-			else if (globDisease == "Arthritis" && d["Arth1"] == 1 ){
-				if (d["Mracbpi2"] == 1){
-					 raceMap["White"]++; 
-				}
-				else if (d["Mracbpi2"] == 2){
-					 raceMap["Black"]++; 
-				}
-				else if (d["Mracbpi2"] == 3){
-					 raceMap["Alaska"]++; 
-				}
-				else if (d["Mracbpi2"] == 6){
-					 raceMap["Chinese"]++; 
-				}
-				else if (d["Mracbpi2"] == 7){
-					 raceMap["Filipino"]++; 
-				}
-				else if (d["Mracbpi2"] == 12){
-					 raceMap["Asian"]++; 
-				}
-				else if (d["Mracbpi2"] == 17){
-					 raceMap["Multiple"]++; 
-				}
-			}
-			else if (globDisease == "COPD" && d["Copdev"] == 1 ){
-				if (d["Mracbpi2"] == 1){
-					 raceMap["White"]++; 
-				}
-				else if (d["Mracbpi2"] == 2){
-					 raceMap["Black"]++; 
-				}
-				else if (d["Mracbpi2"] == 3){
-					 raceMap["Alaska"]++; 
-				}
-				else if (d["Mracbpi2"] == 6){
-					 raceMap["Chinese"]++; 
-				}
-				else if (d["Mracbpi2"] == 7){
-					 raceMap["Filipino"]++; 
-				}
-				else if (d["Mracbpi2"] == 12){
-					 raceMap["Asian"]++; 
-				}
-				else if (d["Mracbpi2"] == 17){
-					 raceMap["Multiple"]++; 
-				}
-			}		
-			else if (globDisease == "Hypertension" && d["Hypev"] == 1){
-				if (d["Mracbpi2"] == 1){
-					 raceMap["White"]++; 
-				}
-				else if (d["Mracbpi2"] == 2){
-					 raceMap["Black"]++; 
-				}
-				else if (d["Mracbpi2"] == 3){
-					 raceMap["Alaska"]++; 
-				}
-				else if (d["Mracbpi2"] == 6){
-					 raceMap["Chinese"]++; 
-				}
-				else if (d["Mracbpi2"] == 7){
-					 raceMap["Filipino"]++; 
-				}
-				else if (d["Mracbpi2"] == 12){
-					 raceMap["Asian"]++; 
-				}
-				else if (d["Mracbpi2"] == 17){
-					 raceMap["Multiple"]++; 
-				}
-			}
-		});
-		
-		var total = raceMap["White"]+ raceMap["Black"] + raceMap["Alaska"] + 
-					raceMap["Chinese"] + raceMap["Filipino"] + 
-					raceMap["Asian"] + raceMap["Multiple"];
-		
-		raceMap["White"] = ((raceMap["White"]/total)*100).toFixed(1);
-		//console.log("********"+raceMap["White"]);
-		raceMap["Black"] = ((raceMap["Black"]/total)*100).toFixed(1);
-		raceMap["Alaska"] = ((raceMap["Alaska"]/total)*100).toFixed(1);
-		raceMap["Chinese"] = ((raceMap["Chinese"]/total)*100).toFixed(1);
-		raceMap["Filipino"] = ((raceMap["Filipino"]/total)*100).toFixed(1);
-		raceMap["Asian"] = ((raceMap["Asian"]/total)*100).toFixed(1);
-		raceMap["Multiple"] = ((raceMap["Multiple"]/total)*100).toFixed(1);
-		
-		var dataArray = [parseFloat(raceMap["White"]), parseFloat(raceMap["Black"]), 
-						parseFloat(raceMap["Alaska"]), parseFloat(raceMap["Chinese"]), 
-						parseFloat(raceMap["Filipino"]), parseFloat(raceMap["Asian"]), 
-						parseFloat(raceMap["Multiple"])];
-		
-		$(function () {
-			$('#race').highcharts({
-				chart: {
-					type: 'line'
-				},
-				title: {
-					text: 'Race'
-				},
-				subtitle: {
-					text: ''
-				},
-				credits: {
-					enabled: false
-				},
-				xAxis: {
-					categories: ['White', 'Black', 'Alaska Native', 'Chinese', 'Filipino', 'Asian Indian', 'Multiple race']
-				},
-				yAxis: {
-					title: {
-						text: 'Patient Population (%)'
-					}
-				},
-				plotOptions: {
-					line: {
-						dataLabels: {
-							enabled: true
-						},
-						enableMouseTracking: false
-					}
-				},
-				series: [{
-					name: globDisease,
-					data: dataArray,
-					color: '#44003D'
-				}]
-			});
-		});
-	});
-}
-
-/************* End of RACE Code*****************/
 function getGaugeData(age){
 	
 	d3.csv("dataset/MedicalConditions.csv", function(data) {

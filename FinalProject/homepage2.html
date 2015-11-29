@@ -32,7 +32,8 @@
 			}
 
 			#input-wrapper {
-			  width: 250px!important;
+			  width: 300px;
+			  margin: 0 auto;
 			  position: relative;
 			  padding-top: 64px;
 			  padding-bottom: 10px;
@@ -47,7 +48,7 @@
 			  outline: none;
 			  height: 5px;
 			  width: 100%;
-			  background-color: rgba(0, 0, 0, 0.3);
+			  background: rgba(0, 0, 0, 0.3);
 			}
 
 			#rangeslider::-webkit-slider-thumb {
@@ -57,7 +58,6 @@
 			  height: 5px;
 			  width: 54px;
 			  position: relative;
-
 			}
 
 			#rangeslider::-webkit-slider-thumb:after {
@@ -214,47 +214,52 @@
 		
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-sm-3" style="margin-top: -130px">
+				<div class="col-sm-3">
 					<div class="panel panel-primary">
 						<div id= "panel-body" class="panel-body">
-							<h4 id = "ageTitle" style="margin-top: 0px!important">AGE ANALYSIS</h4>
+							<h4 style="padding-bottom:0px;">AGE ANALYSIS</h4>
+							<!-- to see the distribution of patients among the listed diseases
+							<p>
+								(Drag slider to the desired age to see the distribution of patients among the listed diseases)
+							</p>
+							<input id="slide" type="range" name="points" min="18" max="85" value="0">
+							Age: <div style = "display:inline;" id = "sliderAmount"></div>  -->
 							
-							<div>
-								<div id="gauge" align="center" style="width: 250px!important; height: 160px; padding-top=0px;"></div>
-								
-								<div id="input-wrapper" style="padding-top=0px;">
-										
-										<input type="range" id="rangeslider" min="0" max="100" value="20" step="1"
-										style = "visibility:hidden"
-										oninput="updateOutput(value, true)" 
-										onchange="deactivate()" 
-										onmouseup="deactivate()" >
-									<div id="reel">
-									<div id="rn"></div>
-									</div>
-									<div id="static-output"></div>
+							<!--<div id="gauge" style="width: 300px; height: 160px; padding-top=0px;"></div>
+							
+							<div id="input-wrapper" style="padding-top=0px;">
+									
+									<input type="range" id="rangeslider" min="0" max="100" value="20" step="1"
+									style = "visibility:hidden"
+									oninput="updateOutput(value, true)" 
+									onchange="deactivate()" 
+									onmouseup="deactivate()" >
+								<div id="reel">
+								<div id="rn"></div>
 								</div>
-							</div>			
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-5" style="margin-top: -60px;">
-					<div class="panel panel-primary">
-						<div id= "panel-body" class="panel-body" style="padding-left:0px; padding-right:0px;padding-top:0px; padding-bottom:0px;">
-							<div id="race" style="min-width: 250px; height: 300px; margin: 0 auto"></div>
+								<div id="static-output"></div>
+							</div>-->				
 						</div>
 					</div>
 				</div>
 				
 				
-				<div class="col-sm-4">
+				
+				<div class="col-sm-5">
 					<div class="panel panel-primary">
 						<div id= "panel-body" class="panel-body">
 								<h4 style="margin-top: 0px!important">REASONS</h4>
 						</div>
 					</div>
 				</div>
-				
+				<div class="col-sm-3">
+					<div class="panel panel-primary">
+						<div id= "panel-body" class="panel-body">
+							<h3>RACE</h3>
+			
+						</div>
+					</div>
+				</div>
 				
 		</div>
 		
