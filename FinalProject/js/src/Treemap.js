@@ -575,149 +575,6 @@ function filterData(){
 
 
 
-
-/* 
-function showGauge(){
-	
-	$(function () {
-
-		var gaugeOptions = {
-
-			chart: {
-				type: 'solidgauge'
-			},
-
-			title: null,
-
-			pane: {
-				center: ['50%', '85%'],
-				size: '140%',
-				startAngle: -90,
-				endAngle: 90,
-				background: {
-					backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-					innerRadius: '60%',
-					outerRadius: '100%',
-					shape: 'arc'
-				}
-			},
-
-			tooltip: {
-				enabled: false
-			},
-
-			// the value axis
-			yAxis: {
-				stops: [
-					[0.1, '#55BF3B'], // green
-					[0.5, '#DDDF0D'], // yellow
-					[0.9, '#DF5353'] // red
-				],
-				lineWidth: 0,
-				minorTickInterval: null,
-				tickPixelInterval: 400,
-				tickWidth: 0,
-				title: {
-					y: -70
-				},
-				labels: {
-					y: 16
-				}
-			},
-
-			plotOptions: {
-				solidgauge: {
-					dataLabels: {
-						y: 5,
-						borderWidth: 0,
-						useHTML: true
-					}
-				}
-			}
-		};
-
-		// The speed gauge
-		$('#container-speed').highcharts(Highcharts.merge(gaugeOptions, {
-			yAxis: {
-				min: 0,
-				max: 100,
-				title: {
-					text: 'Speed'
-				}
-			},
-
-			credits: {
-				enabled: false
-			},
-
-			series: [{
-				name: 'Speed',
-				data: [0],
-				dataLabels: {
-					format: '<div style="text-align:center"><span style="font-size:25px;color:' +
-						((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-						   '<span style="font-size:12px;color:silver">km/h</span></div>'
-				},
-				tooltip: {
-					valueSuffix: ' km/h'
-				}
-			}]
-
-		}));
-		
-		var slide = document.getElementById('slide'),
-		sliderDiv = document.getElementById("sliderAmount");
-		//console.log("slide: "+slide);
-		
-		
-		
-		// Bring life to the dials
-		slide.oninput = function() {
-		this.value = 18;
-		getGaugeData(this.value);
-		/*var upperLimit = function () {
-							var min = Infinity, max = -Infinity, x;
-							for( x in conditionByAge) {
-								//if( conditionByAge[x] < min) min = conditionByAge[x];
-								if( conditionByAge[x] > max) max = conditionByAge[x];
-							}
-							return max;
-						}; */
-		
-		//console.log(upperLimit);
-/*		
-		var val = conditionByAge["hyper"];
-		
-		//console.log(val);
-		
-		// Speed
-		var chart = $('#container-speed').highcharts(),
-		point,
-		//newVal,
-		inc;
-
-		if (chart) {
-			point = chart.series[0].points[0];
-			//inc = Math.round((Math.random() - 0.5) * 100);
-			inc = 0;
-			newVal = val;
-
-			if (newVal < 0 || newVal > 100) {
-				newVal = val;
-			}
-
-			point.update(newVal);
-		}
-
-	 
-
-
-		}
-	});
-}*/
-
-
-
 function position() {
   this.style("left", function(d) { return d.x + "px"; })
       .style("top", function(d) { return d.y + "px"; })
@@ -839,7 +696,34 @@ function infoText(){
 });
 
 
-var conditionByAge = {hyper:0, cancer:0, heart:0, diabetes:0, cholestrol:0};
+/************* Age Analysis Code*****************/
+
+
+/*
+
+
+
+	diseaseObj['Hypev'] = "Hypertension"
+	diseaseObj['Chlev'] = "High Cholesterol"
+	diseaseObj['Chdev'] = "Coronary Heart Disease"
+	diseaseObj['Angev'] = "Angina Pectoris"
+	diseaseObj['Miev'] = "Heart Attack"
+	diseaseObj['Hrtev'] = "Heart Condition/Disease"
+	diseaseObj['Strev'] = "Stroke"
+	diseaseObj['Ephev'] = "Emphysema"
+	diseaseObj['Aasmev'] = "Asthma"
+	diseaseObj['Ulcev'] = "Ulcer"
+	diseaseObj['Canev'] = "Cancer"
+	diseaseObj['Dibev'] = "Diabetes"
+	diseaseObj['Arth1'] = "Arthritis"
+	diseaseObj['Copdev'] = "COPD"
+
+
+
+
+*/
+
+var conditionByAge = {Hypev:0, Chlev:0, Angev:0, Miev:0, Hrtev:0, Strev:0, Ephev:0, Aasmev:0, Ulcev:0, Canev:0, Dibev:0, Arth1:0, Copdev:0};
 
 
 function showGauge(disease){
@@ -901,38 +785,10 @@ function showGauge(disease){
 			}
 		};
 
-		// Hypertension
-		$('#hyper').highcharts(Highcharts.merge(gaugeOptions, {
-			yAxis: {
-				min: 0,
-				max: 100,
-				title: {
-					text: ''
-				}
-			},
-
-			credits: {
-				enabled: false
-			},
-
-			series: [{
-				name: 'Hypertension',
-				data: [0],
-				dataLabels: {
-					format: '<div style="text-align:center"><span style="font-size:25px;color:' +
-						((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-						   '<span style="font-size:14px;color:silver">%</span></div>'
-				},
-				tooltip: {
-					valueSuffix: 'Hypertension'
-				}
-			}]
-
-		}));
 		
 		
 		// Diabetes
-		$('#diabetes').highcharts(Highcharts.merge(gaugeOptions, {
+		$('#gauge').highcharts(Highcharts.merge(gaugeOptions, {
 			yAxis: {
 				min: 0,
 				max: 100,
@@ -946,7 +802,7 @@ function showGauge(disease){
 			},
 
 			series: [{
-				name: 'diabetes',
+				name: globDisease,
 				data: [0],
 				dataLabels: {
 					format: '<div style="text-align:center"><span style="font-size:25px;color:' +
@@ -954,171 +810,146 @@ function showGauge(disease){
 						   '<span style="font-size:14px;color:silver">%</span></div>'
 				},
 				tooltip: {
-					valueSuffix: 'diabetes'
+					valueSuffix: globDisease
 				}
 			}]
 
 		}));
-		
-		
-		// Heart
-		$('#heart').highcharts(Highcharts.merge(gaugeOptions, {
-			yAxis: {
-				min: 0,
-				max: 100,
-				title: {
-					text: ''
-				}
-			},
-
-			credits: {
-				enabled: false
-			},
-
-			series: [{
-				name: 'heart',
-				data: [0],
-				dataLabels: {
-					format: '<div style="text-align:center"><span style="font-size:25px;color:' +
-						((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-						   '<span style="font-size:14px;color:silver">%</span></div>'
-				},
-				tooltip: {
-					valueSuffix: 'heart'
-				}
-			}]
-
-		}));
-		
-		// Cancer
-		$('#cancer').highcharts(Highcharts.merge(gaugeOptions, {
-			yAxis: {
-				min: 0,
-				max: 100,
-				title: {
-					text: ''
-				}
-			},
-
-			credits: {
-				enabled: false
-			},
-
-			series: [{
-				name: 'cancer',
-				data: [0],
-				dataLabels: {
-					format: '<div style="text-align:center"><span style="font-size:25px;color:' +
-						((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-						   '<span style="font-size:14px;color:silver">%</span></div>'
-				},
-				tooltip: {
-					valueSuffix: 'cancer'
-				}
-			}]
-
-		}));
-		
-		
-		// Cholestrol
-		$('#cholestrol').highcharts(Highcharts.merge(gaugeOptions, {
-			yAxis: {
-				min: 0,
-				max: 100,
-				title: {
-					text: ''
-				}
-			},
-
-			credits: {
-				enabled: false
-			},
-
-			series: [{
-				name: 'cholestrol',
-				data: [0],
-				dataLabels: {
-					format: '<div style="text-align:center"><span style="font-size:25px;color:' +
-						((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-						   '<span style="font-size:14px;color:silver">%</span></div>'
-				},
-				tooltip: {
-					valueSuffix: 'cholestrol'
-				}
-			}]
-
-		}));
-		
+				
 		
 		onMove(20);
-		
-		
-		//var rangeslider = document.getElementById('rangeslider'),
-		//sliderDiv = document.getElementById("sliderAmount");
-		
-		
-		//var rangeslider = document.getElementById('rangeslider'),
-		//sliderDiv = document.getElementById("sliderAmount");
-		
-		
-		
-		
-		
-		// Connect slider to the hypertension dial
-		//rangeslider.oninput = function(){
-		//					onMove(this.value);
-		//}
-		
-		
-		
 		
 	});
 }
 
 function onMove(value) {
-			d3.select("#sliderAmount").text(value);
 			var age = value;
 			d3.csv("dataset/MedicalConditions.csv", function(data) {	
 				
-					
-				if (globDisease == "Diabetes") {
-					var diabetesAge = data.filter(function(d, i) { 
-						if (d["Dibev"] == 1 && d["Age_P"] <= age){	
+				
+				/*
+				"Hypertension"
+	diseaseObj['Chlev'] = "High Cholesterol"
+	diseaseObj['Chdev'] = "Coronary Heart Disease"
+	diseaseObj['Angev'] = "Angina Pectoris"
+	diseaseObj['Miev'] = "Heart Attack"
+	diseaseObj['Hrtev'] = "Heart Condition/Disease"
+	diseaseObj['Strev'] = "Stroke"
+	diseaseObj['Ephev'] = "Emphysema"
+	diseaseObj['Aasmev'] = "Asthma"
+	diseaseObj['Ulcev'] = "Ulcer"
+	diseaseObj['Canev'] = "Cancer"
+	diseaseObj['Dibev'] = "Diabetes"
+	diseaseObj['Arth1'] = "Arthritis"
+	diseaseObj['Copdev'] = "COPD"
+				
+				*/
+				
+				
+				// Diabetes slider	
+				
+					var currentAge = data.filter(function(d, i) { 
+						if ( globDisease == "Diabetes" && d["Dibev"] == 1 && d["Age_P"] <= age){	
 							return d; 
 						} 
+						else if (globDisease == "High Cholesterol" && d["Chlev"] == 1 && d["Age_P"] <= age){
+							return d;
+						}
+						else if (globDisease == "Coronary Heart Disease" && d["Chdev"] == 1 && d["Age_P"] <= age){
+							return d;
+						}
+						else if (globDisease == "Angina Pectoris" && d["Angev"] == 1 && d["Age_P"] <= age){
+							return d;
+						}
+						else if (globDisease == "Heart Attack" && d["Miev"] == 1 && d["Age_P"] <= age){
+							return d;
+						}
+						else if (globDisease == "Heart Condition/Disease" && d["Hrtev"] == 1 && d["Age_P"] <= age){
+							return d;
+						}		
+						else if (globDisease == "Stroke" && d["Strev"] == 1 && d["Age_P"] <= age){
+							return d;
+						}
+						else if (globDisease == "Emphysema" && d["Ephev"] == 1 && d["Age_P"] <= age){
+							return d;
+						}
+						else if (globDisease == "Asthma" && d["Aasmev"] == 1 && d["Age_P"] <= age){
+							return d;
+						}
+						else if (globDisease == "Ulcer" && d["Ulcev"] == 1 && d["Age_P"] <= age){
+							return d;
+						}
+						else if (globDisease == "Cancer" && d["Canev"] == 1 && d["Age_P"] <= age){
+							return d;
+						}
+						else if (globDisease == "Arthritis" && d["Arth1"] == 1 && d["Age_P"] <= age){
+							return d;
+						}
+						else if (globDisease == "COPD" && d["Copdev"] == 1 && d["Age_P"] <= age){
+							return d;
+						}
 					})
 					
-					var diabetesAllAges = data.filter(function(d, i) { 
-						if (d["Dibev"] == 1){	
+					var allAges = data.filter(function(d, i) { 
+						if ( globDisease == "Diabetes" && d["Dibev"] == 1){	
 							return d; 
 						} 
+						else if (globDisease == "High Cholesterol" && d["Chlev"] == 1){
+							return d;
+						}
+						else if (globDisease == "Coronary Heart Disease" && d["Chdev"] == 1){
+							return d;
+						}
+						else if (globDisease == "Angina Pectoris" && d["Angev"] == 1 ){
+							return d;
+						}
+						else if (globDisease == "Heart Attack" && d["Miev"] == 1){
+							return d;
+						}
+						else if (globDisease == "Heart Condition/Disease" && d["Hrtev"] == 1){
+							return d;
+						}		
+						else if (globDisease == "Stroke" && d["Strev"] == 1 ){
+							return d;
+						}
+						else if (globDisease == "Emphysema" && d["Ephev"] == 1 ){
+							return d;
+						}
+						else if (globDisease == "Asthma" && d["Aasmev"] == 1 ){
+							return d;
+						}
+						else if (globDisease == "Ulcer" && d["Ulcev"] == 1 ){
+							return d;
+						}
+						else if (globDisease == "Cancer" && d["Canev"] == 1 ){
+							return d;
+						}
+						else if (globDisease == "Arthritis" && d["Arth1"] == 1 ){
+							return d;
+						}
+						else if (globDisease == "COPD" && d["Copdev"] == 1 ){
+							return d;
+						}
 					})
 					
 					
 					//var total  = cholestrolAge.length + cancerAge.length + heartAge.length + diabetesAge.length + hyperAge.length;
-					var total  = diabetesAllAges.length;
+					var total  = allAges.length;
 					
 					if ( total == 0){
 						total = 1;
 					}
 					
-					/*cholestrolAge = parseFloat(((cholestrolAge.length/total) * 100).toFixed(1));
-					cancerAge = parseFloat(((cancerAge.length/total) * 100).toFixed(1));
-					heartAge = parseFloat(((heartAge.length/total) * 100).toFixed(1));*/
-					diabetesAge = parseFloat(((diabetesAge.length/total) * 100).toFixed(1));
-					//diabetesAge = parseFloat(((diabetesAge.length/total) * 100).toFixed(1));
 					
-					//hyperAge = parseFloat(((hyperAge.length/total) * 100).toFixed(1));
-					
-					//cholestrolAge = parseFloat(cholestrolAge.toFixed(1));
+					currentAge = parseFloat(((currentAge.length/total) * 100).toFixed(1));
 					
 					// Connect slider to diabetes div
-					conditionByAge["diabetes"] = diabetesAge;
+					conditionByAge["diabetes"] = currentAge;
 					
 					var val_diabetes = conditionByAge["diabetes"];
 					
 					// Diabetes
-					var chart_diabetes = $('#diabetes').highcharts(),
+					var chart_diabetes = $('#gauge').highcharts(),
 					point_diabetes,
 					newVal_diabetes;
 					//inc;
@@ -1133,8 +964,7 @@ function onMove(value) {
 						}
 
 						point_diabetes.update(newVal_diabetes);
-					}
-				}				
+					}				
 		});
 	}
 
@@ -1147,3 +977,6 @@ function getUpperLimit(d) {
 	}
 	return max;
 }
+
+
+/************* End of Age Analysis Code*****************/
