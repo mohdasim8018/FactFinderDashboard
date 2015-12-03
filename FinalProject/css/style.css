@@ -264,7 +264,7 @@ path.color1 {
 /* callouts*/
 div.callout {
 	height: 20px;
-	width: 80px;
+	width: 50px;
 	float: left;
 }
 
@@ -274,7 +274,7 @@ div.callout {
 	position: relative;
 	color: #ccc;
 	border-radius: 3px;
-	margin: 25px 25px 10px 25px;
+	margin: 0px 0px 10px 0px;
 	border: 1px solid #333;
 	text-shadow: 0 0 1px #000;
 	
@@ -316,12 +316,16 @@ div.callout {
 .callout.top-left::before {
 	left: 7px;
 	bottom: -20px;
-	border-top: 10px solid #444;
+	border-top: 10px solid #3d0044;
 }
 
 .callout.top-right::before {
 	right: 7px;
 	bottom: -20px;
-	border-top: 10px solid #444;
+	border-top: 10px solid #3d0044;
 }
+.panel-primary {
+    border-color: #ccc!important;
+}
+
 /* callouts*/
