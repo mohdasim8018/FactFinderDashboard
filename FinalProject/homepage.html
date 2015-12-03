@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script  src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"> </script>
-		<script src="https://code.highcharts.com/highcharts.js"></script>
-		<script src="https://code.highcharts.com/highcharts-more.js"></script>
-		<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
-		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<script  src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"> </script>
 		<script type="text/javascript" src="js/lib/d3.min.js"></script>
+		
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+		
+		
+		
+		
+		
+		<script type="text/javascript" src="js/src/highchart.js"></script>
+		<script src="https://code.highcharts.com/highcharts-more.js"></script>		
+		<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+
+		
 		<script type="text/javascript" src="js/src/Treemap.js"></script>
-		<!-- <script type="text/javascript" src="js/src/slider.js"></script> -->
-		
-		
-				<!-- plus a jQuery UI theme, here I use "flick" 
-		<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
-		<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'> -->
 		
 		
 		<link rel="stylesheet" href="css/style.css">
@@ -167,7 +169,7 @@
 		
 			 <div class="row">
 				<div class="col-sm-3">
-					<div class="panel panel-primary">
+					<div class="panel panel-primary" id="genderSection" style="visibility: hidden">
 						<div id= "panel-body" class="panel-body">
 							<h4 id = "genderTitle" style="margin-top: 0px!important">GENDER (All Diseases)</h4>
 
@@ -199,10 +201,9 @@
 					</div>
 				</div>
 				<div class="col-sm-4">
-					<div class="panel panel-primary">
+					<div class="panel panel-primary" id="regionSection" style="visibility: hidden">
 						<div id= "panel-body" class="panel-body">
 							<h4 id = "regionTitle" style="margin-top: 0px!important">REGION (All Diseases)</h4>
-
 								<div id="graphContainerDetailed">
 								</div>
 						</div>
@@ -215,7 +216,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm-3" style="margin-top: -130px">
-					<div class="panel panel-primary">
+					<div class="panel panel-primary" id="ageSection" style="visibility: hidden">
 						<div id= "panel-body" class="panel-body">
 							<h4 id = "ageTitle" style="margin-top: 0px!important">AGE ANALYSIS</h4>
 							
@@ -239,7 +240,7 @@
 					</div>
 				</div>
 				<div class="col-sm-5" style="margin-top: -60px;">
-					<div class="panel panel-primary">
+					<div class="panel panel-primary" id="raceSection" style="visibility: hidden">
 						<div id= "panel-body" class="panel-body" style="padding-left:0px; padding-right:0px;padding-top:0px; padding-bottom:0px;">
 							<div id="race" style="min-width: 250px; height: 300px; margin: 0 auto"></div>
 						</div>
@@ -248,9 +249,11 @@
 				
 				
 				<div class="col-sm-4">
-					<div class="panel panel-primary">
+					<div class="panel panel-primary" id="reasonsSection" style="visibility: hidden">
 						<div id= "panel-body" class="panel-body">
 								<h4 style="margin-top: 0px!important">REASONS</h4>
+								<div id="impactContainer">
+								</div>
 						</div>
 					</div>
 				</div>

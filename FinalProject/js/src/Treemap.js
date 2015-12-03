@@ -80,44 +80,18 @@ function parseCSV(){
 				Canev: data[i].Canev,
 				Dibev: data[i].Dibev,
 				Arth1: data[i].Arth1,
-				Cnkind1: data[i].Cnkind1,
-				Cnkind2: data[i].Cnkind2,
-				Cnkind3: data[i].Cnkind3,
-				Cnkind4: data[i].Cnkind4,
-				Cnkind5: data[i].Cnkind5,
-				Cnkind6: data[i].Cnkind6,
-				Cnkind7: data[i].Cnkind7,
-				Cnkind8: data[i].Cnkind8,
-				Cnkind9: data[i].Cnkind9,
-				Cnkind10: data[i].Cnkind10,
-				Cnkind11: data[i].Cnkind11,
-				Cnkind12: data[i].Cnkind12,
-				Cnkind13: data[i].Cnkind13,
-				Cnkind14: data[i].Cnkind14,
-				Cnkind15: data[i].Cnkind15,
-				Cnkind16: data[i].Cnkind16,
-				Cnkind17: data[i].Cnkind17,
-				Cnkind18: data[i].Cnkind18,
-				Cnkind19: data[i].Cnkind19,
-				Cnkind20: data[i].Cnkind20,
-				Cnkind21: data[i].Cnkind21,
-				Cnkind22: data[i].Cnkind22,
-				Cnkind23: data[i].Cnkind23,
-				Cnkind24: data[i].Cnkind24,
-				Cnkind25: data[i].Cnkind25,
-				Cnkind26: data[i].Cnkind26,
-				Cnkind27: data[i].Cnkind27,
-				Cnkind28: data[i].Cnkind28,
-				Cnkind29: data[i].Cnkind29,
-				Cnkind30: data[i].Cnkind30,
-				CV: cv
+				Aflhca3 : data[i].Aflhca3, 
+				Aflhca7 : data[i].Aflhca7,
+				Aflhca8 : data[i].Aflhca8,
+				Aflhca9 : data[i].Aflhca9,
+				Aflhca10 : data[i].Aflhca10,
+				Aflhca11 : data[i].Aflhca11,
+				Aflhca12 : data[i].Aflhca12
 			})
 			buildDiseaseObj(data[i]);
 			
 			
 		}
-		/*diseaseObj['CV'].value = diseaseObj['Chdev'].value + diseaseObj['Angev'].value + diseaseObj['Miev'].value + diseaseObj['Hrtev'].value + diseaseObj['Strev'].value;*/
-		console.log(diseaseObj);
 		calculateGenderProportion();
 		allGenderProportion();
 		//scaleGenderSize(maleProportion,femaleProportion);
@@ -133,10 +107,10 @@ function calculateGenderProportion(){
 		
 		diseaseObj[disease].maleCount = ((diseaseObj[disease].maleCount/diseaseObj[disease].value)*100).toFixed(2);
 		diseaseObj[disease].femaleCount = ((diseaseObj[disease].femaleCount/diseaseObj[disease].value)*100).toFixed(2);
-		diseaseObj[disease].northEast = ((diseaseObj[disease].northEast/allData)*100).toFixed(2);
-		diseaseObj[disease].midWest = ((diseaseObj[disease].midWest/allData)*100).toFixed(2);
-		diseaseObj[disease].south = ((diseaseObj[disease].south/allData)*100).toFixed(2);
-		diseaseObj[disease].west = ((diseaseObj[disease].west/allData)*100).toFixed(2);
+		diseaseObj[disease].northEast = ((diseaseObj[disease].northEast/allNorthEast)*100).toFixed(2);
+		diseaseObj[disease].midWest = ((diseaseObj[disease].midWest/allMidWest)*100).toFixed(2);
+		diseaseObj[disease].south = ((diseaseObj[disease].south/allSouth)*100).toFixed(2);
+		diseaseObj[disease].west = ((diseaseObj[disease].west/allWest)*100).toFixed(2);
 	}
 }
 
@@ -165,23 +139,33 @@ function allMap(){
 	mapData.sort(function(a,b){
 		return b.count - a.count;
 	});
+	console.log(mapData);
 	buildMap(mapData,mapShade)
 }
 
+
 function showSpecificMap(conditionData){
 	var mapData=[];
+	// var northEast = ((conditionData.northEast/allNorthEast)*100).toFixed(2)
+	// var midWest = ((conditionData.midWest/allMidWest)*100).toFixed(2)
+	// var south = ((conditionData.south/allSouth)*100).toFixed(2)
+	// var west = ((conditionData.west/allWest)*100).toFixed(2)
 	mapData = [{count: conditionData.northEast,region: "Northeast"},{count: conditionData.midWest,region: "Midwest"},{count: conditionData.south,region: "South"},{count: conditionData.west,region: "West"}];
 	mapData.sort(function(a,b){
 		return b.count - a.count;
 	});
+	
 	buildMap(mapData,mapShade)
 }
 
+
+
 function buildMap(mapData,colorShades){
+	$("#mapTip").remove();
 	var width = 400;
 	var height = 400;
 	$("#detailedGraph").remove();
-	console.log(mapData);
+	
 	var svg = d3.select("#graphContainerDetailed")
 								.append("div").attr("id","detailedGraph")
 								.append("svg")
@@ -200,6 +184,16 @@ function buildMap(mapData,colorShades){
 	//defining the path
 	var path = d3.geo.path()
                  .projection(projection);
+				 
+	
+	var mapTip =  d3.select("#graphContainerDetailed").append("div")
+				.attr("id","mapTip")
+				.attr("class","mapTip")		
+				.style("opacity", 0)
+				.style("display","none")
+
+				 
+				 
 	//loading the json file
 	d3.json("dataset/us-states.json", function(json) {
 	//binding GeoJson to path element
@@ -235,6 +229,35 @@ function buildMap(mapData,colorShades){
 			return "black";
 		})
 		.attr("d", path)
+		.on('mouseover',function(d,i){
+		d3.select("#mapTip").style("display","block");
+		var currentState = this;
+		var region;
+		var count = 0;
+       for(var i=0;i<mapData.length;i++){
+		   if(d.properties.region == mapData[i].region){
+			   region = mapData[i].region;
+			   count = mapData[i].count;
+			   break;
+		   }
+	   }
+	
+		mapTip.transition()
+		   .style("opacity","0.9")
+		mapTip
+		   .style("width","120px")
+		   .style("border-radius","0.3px")
+		   .style("height","20px")
+		   .style("background","black");
+		mapTip.html("<strong><span style='color: red'>"+region+"</span></strong>"+"<span style='color: white'> :"+ count+"%</span>") 
+			.style("left", (d3.event.pageX) - 900 + "px")
+			.style("color","white")			
+			.style("top", (d3.event.pageY - 120) + "px");
+				
+		})
+		.on("mouseout",function(d,i){
+			d3.select("#mapTip").style("display","none");
+		});
 
 		
 	//building the map	
@@ -256,8 +279,100 @@ function buildMap(mapData,colorShades){
 		.attr('font-size','8pt')
 		.attr("font-family","Arial")
 		.attr("font-weight","bold");
+		
+		
 	});
 }
+
+
+function calculateImpact(conditionData){
+	console.log(conditionData)
+	var impact = csvObj.filter(function(d){
+			return d[conditionData.impact] == "1";
+		});
+	
+	console.log(conditionData.name)
+	/*if(conditionData.name == "Hypertension"){
+		impact = csvObj.filter(function(d){
+			return d.Aflhca9 == "1";
+		})
+	}*/
+	var percent = ((impact.length/conditionData.value)*100).toFixed(0);
+	//console.log(impact.length);
+	drawDonutChart(parseInt(percent));
+	
+	
+}
+
+function drawDonutChart(percent) {
+  var element = "#impact";
+  var width = 130;
+  var height = 130;
+  var text_y = "0.35em"
+  var duration   = 1000,
+    transition = 200;
+
+  $(element).remove();
+  d3.select("#impactContainer").append("div").attr("id","impact");		
+  var dataset = {
+        lower: calcPercent(0),
+        upper: calcPercent(percent)
+      },
+      radius = Math.min(width, height) / 2,
+      pie = d3.layout.pie().sort(null),
+      format = d3.format(".0%");
+  var arc = d3.svg.arc()
+        .innerRadius(radius - 20)
+        .outerRadius(radius);
+
+  var svg = d3.select(element).append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .append("g")
+        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+  var path = svg.selectAll("path")
+        .data(pie(dataset.lower))
+        .enter().append("path")
+        .attr("class", function(d, i) { console.log(d);return "color" + i })
+        .attr("d", arc)
+        .each(function(d) { this._current = d; }); // store the initial values
+
+  var text = svg.append("text")
+        .attr("text-anchor", "middle")
+		.attr("class","impactCount")
+        .attr("dy", text_y);
+
+  if (typeof(percent) === "string") {
+    text.text(percent);
+  }
+  else {
+    var progress = 0;
+    var timeout = setTimeout(function () {
+      clearTimeout(timeout);
+      path = path.data(pie(dataset.upper)); // update the data
+      path.transition().duration(500).attrTween("d", function (a) {
+        // Store the displayed angles in _current.
+        // Then, interpolate from _current to the new angles.
+        // During the transition, _current is updated in-place by d3.interpolate.
+        var i  = d3.interpolate(this._current, a);
+        var i2 = d3.interpolate(progress, percent)
+        this._current = i(0);
+        return function(t) {
+          text.text( format(i2(t) / 100) );
+          return arc(i(t));
+        };
+      }); // redraw the arcs
+    }, 200);
+  }
+};
+function calcPercent(percent) {
+  return [percent, 100-percent];
+};
+
+
+
+
 
 function buildDiseaseObj(data){
 	if(data.Hypev == "1"){
@@ -668,19 +783,19 @@ function buildDiseaseObj(data){
 
 function buildHashMaps(){
 	//disease map
-	diseaseObj['Hypev'] = {name: "Hypertension",value: 0,isChild: false,parent: "",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0};
+	diseaseObj['Hypev'] = {name: "Hypertension",value: 0,isChild: false,parent: "",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0,impact: "Aflhca9"};
 	diseaseObj['Chlev'] = {name: "High Cholesterol",value: 0,isChild: false,parent: "",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0};
 	diseaseObj['Chdev'] = {name: "Coronary Heart Disease",value: 0,isChild: true,parent: "Cardio Vascular",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0};
 	diseaseObj['Angev'] = {name: "Angina Pectoris",value: 0,isChild: true,parent: "Cardio Vascular",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0};
 	diseaseObj['Miev'] = {name: "Heart Attack",value: 0,isChild: true,parent: "Cardio Vascular",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0};
-	diseaseObj['Hrtev'] = {name: "Heart Condition/Disease",value: 0,isChild: true,parent: "Cardio Vascular",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0};
-	diseaseObj['Strev'] = {name: "Stroke",value: 0,isChild: true,parent: "Cardio Vascular",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0};
+	diseaseObj['Hrtev'] = {name: "Heart Condition/Disease",value: 0,isChild: true,parent: "Cardio Vascular",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0,impact: "Aflhca7"};
+	diseaseObj['Strev'] = {name: "Stroke",value: 0,isChild: true,parent: "Cardio Vascular",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0,impact: "Aflhca8"};
 	diseaseObj['Ephev'] = {name: "Emphysema",value: 0,isChild: false,parent: "",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0};
-	diseaseObj['Aasmev'] = {name: "Asthma",value: 0,isChild: false,parent: "",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0};
+	diseaseObj['Aasmev'] = {name: "Asthma",value: 0,isChild: false,parent: "",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0,impact: "Aflhca11"};
 	diseaseObj['Ulcev'] = {name: "Ulcer",value: 0,isChild: false,parent: "",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0};
-	diseaseObj['Canev'] = {name: "Cancer",value: 0,isChild: false,parent: "",isParent: true,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0};
-	diseaseObj['Dibev'] = {name: "Diabetes",value: 0,isChild: false,parent: "",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0};
-	diseaseObj['Arth1'] = {name: "Arthritis",value: 0,isChild: false,parent: "",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0};
+	diseaseObj['Canev'] = {name: "Cancer",value: 0,isChild: false,parent: "",isParent: true,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0,impact: "Aflhca12"};
+	diseaseObj['Dibev'] = {name: "Diabetes",value: 0,isChild: false,parent: "",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0,impact: "Aflhca10"};
+	diseaseObj['Arth1'] = {name: "Arthritis",value: 0,isChild: false,parent: "",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0,impact: "Aflhca3"};
 	diseaseObj['Copdev'] = {name: "COPD",value: 0,isChild: false,parent: "",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0};
 }
 
@@ -734,7 +849,8 @@ function assignColorValues(){
 			northEast: diseaseObj[disease].northEast,
 			midWest: diseaseObj[disease].midWest,
 			south: diseaseObj[disease].south,
-			west: diseaseObj[disease].west
+			west: diseaseObj[disease].west,
+			impact: diseaseObj[disease].impact
 			});
 
 			
@@ -818,14 +934,15 @@ function buildTreeMap(tree){
 		.on("mouseout",function(d,i){
 			d3.select(".tooltip").style("display","none");
 		}).on("click",function(d,i){
-			
+			document.getElementById("genderSection").setAttribute("style", "visibility:visible");
+			document.getElementById("ageSection").setAttribute("style", "visibility:visible");
+			document.getElementById("regionSection").setAttribute("style", "visibility:visible");
+			document.getElementById("raceSection").setAttribute("style", "visibility:visible");
+			document.getElementById("reasonsSection").setAttribute("style", "visibility:visible");
 			document.getElementById("rangeslider").setAttribute("style", "visibility:visible");
 			document.getElementById("rangeslider").value = "20";
 			updateOutput($("#rangeslider").val(), false);
 			mapShade = ["#88419d","#8c96c6","#b3cde3","#edf8fb"];
-			console.log(prev);
-			console.log(prevBgColor);
-			console.log(prevColor);
 			if(prev !== undefined && prevBgColor !== undefined && prevColor!== undefined){
 				d3.select(prev).style("background-color",prevBgColor);
 				d3.select(prev).style("color",prevColor);
@@ -835,8 +952,7 @@ function buildTreeMap(tree){
 			prevColor = d3.select(this).style("color");
 			d3.select(this).style("background-color","#3d0044");
 			d3.select(this).style("color","white");
-			console.log(d);
-			console.log(d.id);
+			//console.log(d);
 			document.getElementById("maleCount").innerHTML = "";
 			
 			
@@ -854,11 +970,13 @@ function buildTreeMap(tree){
 			//scaleGenderSize(d.maleCount,d.femaleCount);
 			
 			
-			console.log("Yes! Yes!!");
+			calculateImpact(d);
+			
 			globDisease = d.id;
 			showGauge(d.id);
 			raceGauge();
 			showSpecificMap(d);
+			
 		})
   
  /* d3.selectAll("#hiddenB").on("click", function() {
@@ -1056,7 +1174,6 @@ function assignColorValuesF(){
 	calculateExtremes(treeData);
 	//buildTreeMap(tree);
 	filteredTree = tree;
-	//console.log(filteredTree);
 	//document.getElementById("hiddenB").click();
 }
 parseCSV();
@@ -1757,7 +1874,6 @@ function raceGauge (){
 					raceMap["Asian"] + raceMap["Multiple"];
 		
 		raceMap["White"] = ((raceMap["White"]/total)*100).toFixed(1);
-		//console.log("********"+raceMap["White"]);
 		raceMap["Black"] = ((raceMap["Black"]/total)*100).toFixed(1);
 		raceMap["Alaska"] = ((raceMap["Alaska"]/total)*100).toFixed(1);
 		raceMap["Chinese"] = ((raceMap["Chinese"]/total)*100).toFixed(1);

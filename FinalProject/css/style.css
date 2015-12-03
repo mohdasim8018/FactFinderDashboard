@@ -11,7 +11,18 @@ div.tooltip {
   height: 30px;		
   padding: 1px;	
   font: 12px sans-serif;	
-  background: black;	
+  background: r;	
+  border: 0px;					
+	
+}
+div.mapTip {
+ position: absolute;
+ text-align: center;	
+  width: 100px;	
+  height: 30px;		
+  padding: 1px;	
+  font: 12px sans-serif;	
+  background: r;	
   border: 0px;					
 	
 }
@@ -227,4 +238,24 @@ alert-info {
 	opacity: 0.3!important;
 }
  
-.
+#impact {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+}
+
+path.color0 {
+  fill: #88419d;
+}
+
+path.color1 {
+  fill: #b3cde3;
+}
+
+.impactCount{
+  font-family: "RamaGothicM-Heavy",Impact,Haettenschweiler,"Franklin Gothic Bold",Charcoal,"Helvetica Inserat","Bitstream Vera Sans Bold","Arial Black",sans-serif;
+  font-size: 4rem;
+  font-weight: 400;
+  line-height: 10rem;
+  fill: #3d0044;
+}
