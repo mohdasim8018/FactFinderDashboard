@@ -86,16 +86,21 @@ function parseCSV(){
 				Aflhca9 : data[i].Aflhca9,
 				Aflhca10 : data[i].Aflhca10,
 				Aflhca11 : data[i].Aflhca11,
-				Aflhca12 : data[i].Aflhca12
+				Aflhca12 : data[i].Aflhca12,
+				Aflhca35 : data[i].Aflhca35,
+				Aflhca36 : data[i].Aflhca36,
+				Aflhca37 : data[i].Aflhca37,
+				Aflhca38 : data[i].Aflhca38,
+				Aflhca39 : data[i].Aflhca39
 			})
 			buildDiseaseObj(data[i]);
 			
 			
 		}
 		calculateGenderProportion();
-		allGenderProportion();
+		//allGenderProportion();
 		//scaleGenderSize(maleProportion,femaleProportion);
-		allMap();
+		//allMap();
 		assignColorValues();
 		
 	});
@@ -784,19 +789,19 @@ function buildDiseaseObj(data){
 function buildHashMaps(){
 	//disease map
 	diseaseObj['Hypev'] = {name: "Hypertension",value: 0,isChild: false,parent: "",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0,impact: "Aflhca9"};
-	diseaseObj['Chlev'] = {name: "High Cholesterol",value: 0,isChild: false,parent: "",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0};
-	diseaseObj['Chdev'] = {name: "Coronary Heart Disease",value: 0,isChild: true,parent: "Cardio Vascular",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0};
-	diseaseObj['Angev'] = {name: "Angina Pectoris",value: 0,isChild: true,parent: "Cardio Vascular",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0};
-	diseaseObj['Miev'] = {name: "Heart Attack",value: 0,isChild: true,parent: "Cardio Vascular",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0};
+	diseaseObj['Chlev'] = {name: "High Cholesterol",value: 0,isChild: false,parent: "",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0,impact: "Aflhca35"};
+	diseaseObj['Chdev'] = {name: "Coronary Heart Disease",value: 0,isChild: true,parent: "Cardio Vascular",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0,impact: "Aflhca7"};
+	diseaseObj['Angev'] = {name: "Angina Pectoris",value: 0,isChild: true,parent: "Cardio Vascular",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0,impact: "Aflhca38"};
+	diseaseObj['Miev'] = {name: "Heart Attack",value: 0,isChild: true,parent: "Cardio Vascular",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0,impact: "Aflhca7"};
 	diseaseObj['Hrtev'] = {name: "Heart Condition/Disease",value: 0,isChild: true,parent: "Cardio Vascular",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0,impact: "Aflhca7"};
 	diseaseObj['Strev'] = {name: "Stroke",value: 0,isChild: true,parent: "Cardio Vascular",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0,impact: "Aflhca8"};
-	diseaseObj['Ephev'] = {name: "Emphysema",value: 0,isChild: false,parent: "",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0};
+	diseaseObj['Ephev'] = {name: "Emphysema",value: 0,isChild: false,parent: "",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0,impact: "Aflhca36"};
 	diseaseObj['Aasmev'] = {name: "Asthma",value: 0,isChild: false,parent: "",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0,impact: "Aflhca11"};
-	diseaseObj['Ulcev'] = {name: "Ulcer",value: 0,isChild: false,parent: "",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0};
+	diseaseObj['Ulcev'] = {name: "Ulcer",value: 0,isChild: false,parent: "",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0,impact: "Aflhca39"};
 	diseaseObj['Canev'] = {name: "Cancer",value: 0,isChild: false,parent: "",isParent: true,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0,impact: "Aflhca12"};
 	diseaseObj['Dibev'] = {name: "Diabetes",value: 0,isChild: false,parent: "",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0,impact: "Aflhca10"};
 	diseaseObj['Arth1'] = {name: "Arthritis",value: 0,isChild: false,parent: "",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0,impact: "Aflhca3"};
-	diseaseObj['Copdev'] = {name: "COPD",value: 0,isChild: false,parent: "",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0};
+	diseaseObj['Copdev'] = {name: "COPD",value: 0,isChild: false,parent: "",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0,impact: "Aflhca37"};
 }
 
 
@@ -958,9 +963,7 @@ function buildTreeMap(tree){
 			
 			document.getElementById("femaleCount").innerHTML = "";
 			$("#maleCount").css("background-color","#3d0044");
-			$("#maleImage").attr("src","images/male_changed.png");
 			$("#femaleCount").css("background-color","#3d0044");
-			$("#femaleImage").attr("src","images/female_changed.png");
 			document.getElementById("maleCount").innerHTML = d.maleCount + "%";
 			document.getElementById("femaleCount").innerHTML = d.femaleCount + "%";
 			document.getElementById("genderTitle").innerHTML = "GENDER (" + d.name + ")";
