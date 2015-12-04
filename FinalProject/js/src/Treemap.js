@@ -946,7 +946,9 @@ function buildTreeMap(tree){
 			document.getElementById("reasonsSection").setAttribute("style", "visibility:visible");
 			document.getElementById("rangeslider").setAttribute("style", "visibility:visible");
 			document.getElementById("rangeslider").value = "20";
-			updateOutput($("#rangeslider").val(), false);
+			document.getElementById("rangeslider1").value = "60";
+			
+			//updateOutput($("#rangeslider").val(), false);
 			mapShade = ["#88419d","#8c96c6","#b3cde3","#edf8fb"];
 			if(prev !== undefined && prevBgColor !== undefined && prevColor!== undefined){
 				d3.select(prev).style("background-color",prevBgColor);
@@ -969,7 +971,7 @@ function buildTreeMap(tree){
 			document.getElementById("genderTitle").innerHTML = "GENDER (" + d.name + ")";
 			document.getElementById("regionTitle").innerHTML = "REGION (" + d.name + ")";
 			document.getElementById("diseaseTitle").innerHTML = "DISEASE ANALYSIS (" + d.name + ")";
-			document.getElementById("ageTitle").innerHTML = "AGE ANALYSIS (" + d.name + ")";
+			//document.getElementById("ageTitle").innerHTML = "AGE ANALYSIS (" + d.name + ")";
 			//scaleGenderSize(d.maleCount,d.femaleCount);
 			
 			
@@ -1290,7 +1292,7 @@ function showGauge(disease){
 				type: 'solidgauge'
 			},
 
-			title: null,
+			title: '',
 
 			pane: {
 				center: ['50%', '85%'],
@@ -1371,78 +1373,62 @@ function showGauge(disease){
 		}));
 				
 		
-		onMove(20);
+		onMove();
 		
 	});
 }
 
-function onMove(value) {
-			var age = value;
-			d3.csv("dataset/MedicalConditions.csv", function(data) {	
-				
-				
-				/*
-				"Hypertension"
-	diseaseObj['Chlev'] = "High Cholesterol"
-	diseaseObj['Chdev'] = "Coronary Heart Disease"
-	diseaseObj['Angev'] = "Angina Pectoris"
-	diseaseObj['Miev'] = "Heart Attack"
-	diseaseObj['Hrtev'] = "Heart Condition/Disease"
-	diseaseObj['Strev'] = "Stroke"
-	diseaseObj['Ephev'] = "Emphysema"
-	diseaseObj['Aasmev'] = "Asthma"
-	diseaseObj['Ulcev'] = "Ulcer"
-	diseaseObj['Canev'] = "Cancer"
-	diseaseObj['Dibev'] = "Diabetes"
-	diseaseObj['Arth1'] = "Arthritis"
-	diseaseObj['Copdev'] = "COPD"
-				
-				*/
-				
+function onMove() {
+			var age1 = $("#rangeslider").val();
+			var age2 = $("#rangeslider1").val();
+			
+			console.log("*****"+age1+"=>"+age2);
+			
+			d3.csv("dataset/MedicalConditions.csv", function(data) {					
 				
 				// Diabetes slider	
 				
 					var currentAge = data.filter(function(d, i) { 
-						if ( globDisease == "Diabetes" && d["Dibev"] == 1 && d["Age_P"] <= age){	
+						if ( globDisease == "Diabetes" && d["Dibev"] == 1 && d["Age_P"] >= age1 && d["Age_P"] <= age2){	
 							return d; 
 						} 
-						else if (globDisease == "High Cholesterol" && d["Chlev"] == 1 && d["Age_P"] <= age){
+						else if (globDisease == "High Cholesterol" && d["Chlev"] == 1 && d["Age_P"] >= age1 && d["Age_P"] <= age2){
 							return d;
 						}
-						else if (globDisease == "Coronary Heart Disease" && d["Chdev"] == 1 && d["Age_P"] <= age){
+						else if (globDisease == "Coronary Heart Disease" && d["Chdev"] == 1 && d["Age_P"] >= age1 && d["Age_P"] <= age2){
 							return d;
 						}
-						else if (globDisease == "Angina Pectoris" && d["Angev"] == 1 && d["Age_P"] <= age){
+						else if (globDisease == "Angina Pectoris" && d["Angev"] == 1 && d["Age_P"] >= age1 && d["Age_P"] <= age2){
 							return d;
 						}
-						else if (globDisease == "Heart Attack" && d["Miev"] == 1 && d["Age_P"] <= age){
+						else if (globDisease == "Heart Attack" && d["Miev"] == 1 && d["Age_P"] >= age1 && d["Age_P"] <= age2){
 							return d;
 						}
-						else if (globDisease == "Heart Condition/Disease" && d["Hrtev"] == 1 && d["Age_P"] <= age){
+						else if (globDisease == "Heart Condition/Disease" && d["Hrtev"] == 1 && d["Age_P"] >= age1 && d["Age_P"] <= age2){
 							return d;
 						}		
-						else if (globDisease == "Stroke" && d["Strev"] == 1 && d["Age_P"] <= age){
+						else if (globDisease == "Stroke" && d["Strev"] == 1 && d["Age_P"] >= age1 && d["Age_P"] <= age2){
 							return d;
 						}
-						else if (globDisease == "Emphysema" && d["Ephev"] == 1 && d["Age_P"] <= age){
+						else if (globDisease == "Emphysema" && d["Ephev"] == 1 && d["Age_P"] >= age1 && d["Age_P"] <= age2){
 							return d;
 						}
-						else if (globDisease == "Asthma" && d["Aasmev"] == 1 && d["Age_P"] <= age){
+						else if (globDisease == "Asthma" && d["Aasmev"] == 1 && d["Age_P"] >= age1 && d["Age_P"] <= age2){
 							return d;
 						}
-						else if (globDisease == "Ulcer" && d["Ulcev"] == 1 && d["Age_P"] <= age){
+						else if (globDisease == "Ulcer" && d["Ulcev"] == 1 && d["Age_P"] >= age1 && d["Age_P"] <= age2){
 							return d;
 						}
-						else if (globDisease == "Cancer" && d["Canev"] == 1 && d["Age_P"] <= age){
+						else if (globDisease == "Cancer" && d["Canev"] == 1 && d["Age_P"] >= age1 && d["Age_P"] <= age2){
 							return d;
 						}
-						else if (globDisease == "Arthritis" && d["Arth1"] == 1 && d["Age_P"] <= age){
+						else if (globDisease == "Arthritis" && d["Arth1"] == 1 && d["Age_P"] >= age1 && d["Age_P"] <= age2){
 							return d;
 						}
-						else if (globDisease == "COPD" && d["Copdev"] == 1 && d["Age_P"] <= age){
+						else if (globDisease == "COPD" && d["Copdev"] == 1 && d["Age_P"] >= age1 && d["Age_P"] <= age2){
 							return d;
 						}
-						else if (globDisease == "Hypertension" && d["Hypev"] == 1 && d["Age_P"] <= age){
+						else if (globDisease == "Hypertension" && d["Hypev"] == 1 && d["Age_P"] >= age1 && d["Age_P"] <= age2){
 							return d;
 						}
 					})

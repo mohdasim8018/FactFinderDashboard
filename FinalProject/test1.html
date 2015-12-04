@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 		
 		
@@ -46,16 +45,6 @@
 				</div>
 			</div>
 		</div>
-		<!--<div class="row">
-			<ul class="nav nav-tabs nav-justified" >
-			  <li class = "active"><a href="#"><b>Home</b></a></li>
-			  <li ><a href="treemap.html">Disease Analysis</a></li>
-			  <li ><a href="slider.html">Age Analysis</a></li>
-			  <li ><a href="bubble.html">Medical Surveys</a></li>
-			</ul>
-		</div>
-		
-		<br> -->
 		
 		<div class="container-fluid">
 		
@@ -112,33 +101,15 @@
 				<div class="col-sm-3" style="margin-top: -90px">
 					<div class="panel panel-primary" id="ageSection" style="visibility: hidden">
 						<div id= "panel-body" class="panel-body">
-							<h5 align="center">AGE ANALYSIS</h5>
-							
-							<div id="gauge" align="center" style="width: 250px!important; height: 160px; padding-top=0px;"></div>
-							<div data-role="rangeslider">
-								<label for="rangeslider"></label>
-								<input name="rangeslider" id="rangeslider" min="0" max="85" value="20" type="range" onchange="onMove()"/>
-								<label for="rangeslider1"></label>
-								<input name="rangeslider1" id="rangeslider1" min="0" max="85" value="60" type="range" onchange="onMove()"/>
-							</div>
-							
-							
-							<!--<div>
-								<div id="gauge" align="center" style="width: 250px!important; height: 160px; padding-top=0px;"></div>
-								
-								<div id="input-wrapper" style="padding-top=0px;">
-										
-										<input type="range" id="rangeslider" min="0" max="100" value="20" step="1"
-										style = "visibility:hidden"
-										oninput="updateOutput(value, true)" 
-										onchange="deactivate()" 
-										onmouseup="deactivate()" >
-									<div id="reel">
-									<div id="rn"></div>
-									</div>
-									<div id="static-output"></div>
+							<h4 id = "ageTitle" style="margin-top: 0px!important">AGE ANALYSIS</h4>
+							<div>
+								<div data-role="rangeslider">
+									<label for="range-1a">Rangeslider:</label>
+									<input name="range-1a" id="rangeslider" min="0" max="100" value="0" type="range" />
+									<label for="range-1b">Rangeslider:</label>
+									<input name="range-1b" id="range-1b" min="0" max="100" value="100" type="range" />
 								</div>
-							</div>	-->		
+							</div>			
 						</div>
 					</div>
 				</div>
@@ -165,7 +136,5 @@
 		</div>
 		
 		</div>
-		
-	
 	</body>
 </html>
