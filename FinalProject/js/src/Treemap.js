@@ -188,9 +188,10 @@ function buildMap(mapData,colorShades){
 								.attr("id","mapHolder")
 								.attr("width", width)
 								.attr("height", height)
-								.style("margin-top","-20%")
+								.style("margin-top","-15%")
 								.style("margin-bottom","-35%")
-								.style("margin-left","5%");
+								.style("margin-left","5%")
+
 
 	//projecting 3D to 2D
 	var projection = d3.geo.albersUsa()
