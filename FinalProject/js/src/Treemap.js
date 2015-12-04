@@ -955,9 +955,9 @@ function buildTreeMap(tree){
 		   .style("height","30px")
 		   .style("background","black");
 		tip.html("<strong><span style='color: red'>"+d.name+"</span></strong>"+"<br><span style='color: white'> Count = "+ d.value+"</span>") 
-			.style("left", d3.event.pageX - 500 +"px")
+			.style("left", d3.event.pageX - 100 +"px")
 			.style("color","white")			
-			.style("top", d3.event.pageY - 250 + "px");	
+			.style("top", d3.event.pageY - 180 + "px");	
 		
 		})
 		.on("mouseout",function(d,i){
