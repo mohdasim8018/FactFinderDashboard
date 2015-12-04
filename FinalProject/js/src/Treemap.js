@@ -138,9 +138,11 @@ function allGenderProportion(){
 function scaleGenderSize(male,female){
 	
 	document.getElementById("maleImage").style.height = male + "px";
-	document.getElementById("maleImage").style.width = male + "px";
+	document.getElementById("maleDiv").style.height = male + "px";
+	//document.getElementById("maleImage").style.width = male + "px";
 	document.getElementById("femaleImage").style.height = female + "px";
-	document.getElementById("femaleImage").style.width = female + "px";
+	document.getElementById("femaleDiv").style.height = female + "px";
+	//document.getElementById("femaleImage").style.width = female + "px";
 }
 
 function allMap(){
@@ -989,9 +991,9 @@ function buildTreeMap(tree){
 			document.getElementById("femaleCount").innerHTML = d.femaleCount + "%";
 			//document.getElementById("genderTitle").innerHTML = "GENDER (" + d.name + ")";
 			//document.getElementById("regionTitle").innerHTML = "REGION (" + d.name + ")";
-			document.getElementById("diseaseTitle").innerHTML = "DISEASE ANALYSIS (" + d.name + ")";
+			//document.getElementById("diseaseTitle").innerHTML = "DISEASE ANALYSIS (" + d.name + ")";
 			//document.getElementById("ageTitle").innerHTML = "AGE ANALYSIS (" + d.name + ")";
-			//scaleGenderSize(d.maleCount,d.femaleCount);
+			scaleGenderSize(d.maleCount,d.femaleCount);
 			
 			
 			calculateImpact(d);
@@ -1913,7 +1915,7 @@ function raceGauge (){
 		$(function () {
 			$('#race').highcharts({
 				chart: {
-					type: 'line'
+					type: 'column'
 				},
 				title: {
 					text: 'Race'
@@ -1927,10 +1929,16 @@ function raceGauge (){
 				xAxis: {
 					categories: ['White', 'Black', 'Alaska Native', 'Chinese', 'Filipino', 'Asian Indian', 'Multiple race']
 				},
+				tooltip:{
+					shared: true
+				},
 				yAxis: {
 					title: {
 						text: 'Patient Population (%)'
 					}
+				},
+				legend: {
+					enabled: false
 				},
 				plotOptions: {
 					line: {
