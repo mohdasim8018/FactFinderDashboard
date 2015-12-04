@@ -206,8 +206,7 @@ function buildMap(mapData,colorShades){
 				.attr("id","mapTip")
 				.attr("class","mapTip")		
 				.style("opacity", 0)
-				.style("display","block")
-				.html("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+				.style("display","none")
 
 				 
 				 
