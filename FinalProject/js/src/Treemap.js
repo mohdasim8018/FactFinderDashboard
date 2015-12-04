@@ -145,19 +145,19 @@ function scaleGenderSize(male,female){
 	//document.getElementById("femaleImage").style.width = female + "px";
 }
 
-function allMap(){
-	var mapData=[];
-	var northEast = ((allNorthEast/allData)*100).toFixed(2);
-	var midWest = ((allMidWest/allData)*100).toFixed(2);
-	var south = ((allSouth/allData)*100).toFixed(2);
-	var west = ((allWest/allData)*100).toFixed(2);
-	mapData = [{count: northEast,region: "Northeast"},{count: midWest,region: "Midwest"},{count: south,region: "South"},{count: west,region: "West"}];
-	mapData.sort(function(a,b){
-		return b.count - a.count;
-	});
-	console.log(mapData);
-	buildMap(mapData,mapShade)
-}
+// function allMap(){
+	// var mapData=[];
+	// var northEast = ((allNorthEast/allData)*100).toFixed(2);
+	// var midWest = ((allMidWest/allData)*100).toFixed(2);
+	// var south = ((allSouth/allData)*100).toFixed(2);
+	// var west = ((allWest/allData)*100).toFixed(2);
+	// mapData = [{count: northEast,region: "Northeast"},{count: midWest,region: "Midwest"},{count: south,region: "South"},{count: west,region: "West"}];
+	// mapData.sort(function(a,b){
+		// return b.count - a.count;
+	// });
+	// console.log(mapData);
+	// buildMap(mapData,mapShade)
+// }
 
 
 function showSpecificMap(conditionData){
@@ -206,7 +206,8 @@ function buildMap(mapData,colorShades){
 				.attr("id","mapTip")
 				.attr("class","mapTip")		
 				.style("opacity", 0)
-				.style("display","none")
+				.style("display","block")
+				.html("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
 
 				 
 				 
@@ -266,9 +267,9 @@ function buildMap(mapData,colorShades){
 		   .style("height","20px")
 		   .style("background","black");
 		mapTip.html("<strong><span style='color: red'>"+region+"</span></strong>"+"<span style='color: white'> :"+ count+"%</span>") 
-			.style("left", (d3.event.pageX) - 900 + "px")
+			.style("left", (d3.event.pageX) -820 + "px")
 			.style("color","white")			
-			.style("top", (d3.event.pageY - 120) + "px");
+			.style("top", (d3.event.pageY - 400) + "px");
 				
 		})
 		.on("mouseout",function(d,i){
@@ -904,7 +905,7 @@ function assignColorValues(){
 
 function buildTreeMap(tree){
 
-	var margin = {top:0, right: 0, bottom: 10, left: 20},
+	var margin = {top:0, right: 0, bottom: 0, left: 0},
     width = 540 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
