@@ -91,7 +91,16 @@ function parseCSV(){
 				Aflhca36 : data[i].Aflhca36,
 				Aflhca37 : data[i].Aflhca37,
 				Aflhca38 : data[i].Aflhca38,
-				Aflhca39 : data[i].Aflhca39
+				Aflhca39 : data[i].Aflhca39,
+				Anouspl1 : data[i].Anouspl1,
+				Anouspl2 : data[i].Anouspl2,
+				Anouspl3 : data[i].Anouspl3,
+				Anouspl4 : data[i].Anouspl4,
+				Anouspl5 : data[i].Anouspl5,
+				Anouspl6 : data[i].Anouspl6,
+				Anouspl7 : data[i].Anouspl7,
+				Anouspl8 : data[i].Anouspl8,
+				Anouspl9 : data[i].Anouspl9
 			})
 			buildDiseaseObj(data[i]);
 			
@@ -110,8 +119,8 @@ function calculateGenderProportion(){
 	
 	for(var disease in diseaseObj){
 		
-		diseaseObj[disease].maleCount = ((diseaseObj[disease].maleCount/diseaseObj[disease].value)*100).toFixed(2);
-		diseaseObj[disease].femaleCount = ((diseaseObj[disease].femaleCount/diseaseObj[disease].value)*100).toFixed(2);
+		diseaseObj[disease].maleCount = Math.round(((diseaseObj[disease].maleCount/diseaseObj[disease].value)*100).toFixed(2));
+		diseaseObj[disease].femaleCount = Math.round(((diseaseObj[disease].femaleCount/diseaseObj[disease].value)*100).toFixed(2));
 		diseaseObj[disease].northEast = ((diseaseObj[disease].northEast/allNorthEast)*100).toFixed(2);
 		diseaseObj[disease].midWest = ((diseaseObj[disease].midWest/allMidWest)*100).toFixed(2);
 		diseaseObj[disease].south = ((diseaseObj[disease].south/allSouth)*100).toFixed(2);
@@ -129,9 +138,11 @@ function allGenderProportion(){
 function scaleGenderSize(male,female){
 	
 	document.getElementById("maleImage").style.height = male + "px";
-	document.getElementById("maleImage").style.width = male + "px";
+	document.getElementById("maleDiv").style.height = male + "px";
+	//document.getElementById("maleImage").style.width = male + "px";
 	document.getElementById("femaleImage").style.height = female + "px";
-	document.getElementById("femaleImage").style.width = female + "px";
+	document.getElementById("femaleDiv").style.height = female + "px";
+	//document.getElementById("femaleImage").style.width = female + "px";
 }
 
 function allMap(){
@@ -375,7 +386,19 @@ function calcPercent(percent) {
   return [percent, 100-percent];
 };
 
-
+function calculateReasons(){
+	var reasonsArray = [
+							{code: "Anouspl1",text:"Doesn't need doctor/haven't had problems",count: 0},
+							{code: "Anouspl2",text:"Doesn't like/trust/believe in doctors",count: 0},
+							{code: "Anouspl3",text: "Doesn't know where to go",count: 0},
+							{code: "Anouspl4",text:"Previous doctor is not available/moved",count: 0},
+							{code: "Anouspl5",text:"Too expensive/no insurance/cost",count: 0},
+							{code: "Anouspl6",text:"Speak a different language",count: 0},
+							{code: "Anouspl7",text:"No care available/too far away/not convenient",count: 0},
+							{code: "Anouspl8",text:"Put if off/didn't get around to it",count: 0},
+							{code: "Anouspl9",text:"Other reason no usual place of care",count: 0},
+						   ]
+}
 
 
 
@@ -882,8 +905,8 @@ function assignColorValues(){
 function buildTreeMap(tree){
 
 	var margin = {top:0, right: 0, bottom: 10, left: 20},
-    width = 470 - margin.left - margin.right,
-    height = 130 - margin.top - margin.bottom;
+    width = 500 - margin.left - margin.right,
+    height = 290 - margin.top - margin.bottom;
 
 
 	var colorScale = d3.scale.linear()
@@ -971,8 +994,11 @@ function buildTreeMap(tree){
 			document.getElementById("genderTitle").innerHTML = "GENDER (" + d.name + ")";
 			document.getElementById("regionTitle").innerHTML = "REGION (" + d.name + ")";
 			document.getElementById("diseaseTitle").innerHTML = "DISEASE ANALYSIS (" + d.name + ")";
-			//document.getElementById("ageTitle").innerHTML = "AGE ANALYSIS (" + d.name + ")";
 			//scaleGenderSize(d.maleCount,d.femaleCount);
+			//document.getElementById("genderTitle").innerHTML = "GENDER (" + d.name + ")";
+			//document.getElementById("regionTitle").innerHTML = "REGION (" + d.name + ")";
+			//document.getElementById("diseaseTitle").innerHTML = "DISEASE ANALYSIS (" + d.name + ")";
+			scaleGenderSize(d.maleCount,d.femaleCount);
 			
 			
 			calculateImpact(d);
@@ -1878,7 +1904,7 @@ function raceGauge (){
 		$(function () {
 			$('#race').highcharts({
 				chart: {
-					type: 'line'
+					type: 'column'
 				},
 				title: {
 					text: 'Race'
@@ -1892,10 +1918,16 @@ function raceGauge (){
 				xAxis: {
 					categories: ['White', 'Black', 'Alaska Native', 'Chinese', 'Filipino', 'Asian Indian', 'Multiple race']
 				},
+				tooltip:{
+					shared: true
+				},
 				yAxis: {
 					title: {
 						text: 'Patient Population (%)'
 					}
+				},
+				legend: {
+					enabled: false
 				},
 				plotOptions: {
 					line: {

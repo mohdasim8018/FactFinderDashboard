@@ -30,7 +30,7 @@
 		
 	</head>
 	<body onload="showGauge(0);">
-		<div class = "page-header" style="border: 1px solid;background-color: black;color: black;font-size: 200%;font-family:verdana, arial, 'sans-serif';margin-top: -1%">
+		<div class = "page-header" style="border: 1px solid;background-color: black;color: black;font-size: 200%;font-family:verdana, arial, 'sans-serif';margin-top: -1%;padding-bottom: -%2">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-4"></div>
@@ -46,70 +46,30 @@
 				</div>
 			</div>
 		</div>
-		<!--<div class="row">
+		<!-- <div class="row">
 			<ul class="nav nav-tabs nav-justified" >
 			  <li class = "active"><a href="#"><b>Home</b></a></li>
 			  <li ><a href="treemap.html">Disease Analysis</a></li>
 			  <li ><a href="slider.html">Age Analysis</a></li>
 			  <li ><a href="bubble.html">Medical Surveys</a></li>
 			</ul>
-		</div>
+		</div>  -->
 		
-		<br> -->
+		<br>
 		
-		<div class="container-fluid">
+		<div class="container-fluid" style="margin-top: -2.75%">
 		
 			 <div class="row">
-				<div class="col-sm-3">
-					<div class="panel panel-primary" id="genderSection" style="visibility: hidden">
-						<div id= "panel-body" class="panel-body">
-							<h4 id = "genderTitle" style="margin-top: 0px!important">GENDER (All Diseases)</h4>
-
-								<div>
-									<div align = "center">
-										<div>
-											<div class="col-md-4 callout top" id="maleCount" style="background-color: #195930;color: white;">COUNT</div>
-											<div class="col-md-4"></div>
-											<div class="col-md-4 callout top" id="femaleCount" style="background-color: #195930;;color: white;">COUNT</div>
-											<!-- <div class="callout top-left">Your Favourite HTML,CSS,JS Playground!</div>
-											<div class="callout top-right">Your Favourite HTML,CSS,JS Playground!</div> -->
-										</div>
-										<div style="margin-top: -10px">
-											<div class="col-md-6"><img id ="maleImage" src="images/male.png" style="width: 50px;height: 50px"></img></div>
-											<div class="col-md-6"><img id ="femaleImage" src="images/female.png" style="width: 50px;height: 50px"></img></div>
-										</div>
-										
-										
-									</div>
-								</div>
-						</div>
-					</div>
-				</div>
+			 
 				<div class="col-sm-5">
 					<div class="panel panel-primary">
 						<div id= "panel-body" class="panel-body">
-							<h4 id = "diseaseTitle" style="margin-top: 0px!important">DISEASE ANALYSIS (All Diseases)</h4>
 							<div id = "wrapper">
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-4">
-					<div class="panel panel-primary" id="regionSection" style="visibility: hidden">
-						<div id= "panel-body" class="panel-body">
-							<h4 id = "regionTitle" style="margin-top: 0px!important">REGION (All Diseases)</h4>
-								<div id="graphContainerDetailed">
-								</div>
-						</div>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-		
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-sm-3" style="margin-top: -90px">
+				<div class="col-sm-3">
 					<div class="panel panel-primary" id="ageSection" style="visibility: hidden">
 						<div id= "panel-body" class="panel-body">
 							<h5 align="center">AGE ANALYSIS</h5>
@@ -122,49 +82,115 @@
 								<input name="rangeslider1" id="rangeslider1" min="0" max="85" value="60" type="range" onchange="onMove()"/>
 							</div>
 							
-							
-							<!--<div>
-								<div id="gauge" align="center" style="width: 250px!important; height: 160px; padding-top=0px;"></div>
-								
-								<div id="input-wrapper" style="padding-top=0px;">
-										
-										<input type="range" id="rangeslider" min="0" max="100" value="20" step="1"
-										style = "visibility:hidden"
-										oninput="updateOutput(value, true)" 
-										onchange="deactivate()" 
-										onmouseup="deactivate()" >
-									<div id="reel">
-									<div id="rn"></div>
-									</div>
-									<div id="static-output"></div>
-								</div>
-							</div>	-->		
+									
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-5" style="margin-top: -60px;">
-					<div class="panel panel-primary" id="raceSection" style="visibility: hidden">
-						<div id= "panel-body" class="panel-body" style="padding-left:0px; padding-right:0px;padding-top:0px; padding-bottom:0px;">
-							<div id="race" style="min-width: 250px; height: 300px; margin: 0 auto"></div>
-						</div>
-					</div>
-				</div>
-				
-				
-				<div class="col-sm-4">
-					<div class="panel panel-primary" id="reasonsSection" style="visibility: hidden">
+				 <div class="col-sm-4">
+					<div class="panel panel-primary" id="regionSection" style="visibility: hidden">
 						<div id= "panel-body" class="panel-body">
-								<h4 style="margin-top: 0px!important">IMPACT</h4>
-								<div id="impactContainer">
+								<div id="graphContainerDetailed">
 								</div>
 						</div>
 					</div>
 				</div>
 				
 				
+				
+				
+				
+				<!-- <div class="col-sm-2">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="panel panel-primary" id="genderSection" style="visibility: hidden">
+								<div id= "panel-body" class="panel-body">
+									<div>
+										<div align = "center">
+											<div style="margin-top: -10px">
+												<div class="col-md-4 callout top-left" id="maleCount" style="background-color: #195930;color: white;">COUNT</div>
+												<div class="col-md-4"></div>
+												<div class="col-md-4 callout top-right" id="femaleCount" style="background-color: #195930;;color: white;">COUNT</div>
+											</div>
+											<div style="margin-top: -10px">
+												<div class="col-md-6"><img id ="maleImage" src="images/male.png" style="width: 50px;height: 50px"></img></div>
+												<div class="col-md-6"><img id ="femaleImage" src="images/female.png" style="width: 50px;height: 50px"></img></div>
+											</div>	
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="panel panel-primary" id="reasonsSection" style="visibility: hidden;">
+								<div id= "panel-body" class="panel-body">
+										<div id="impactContainer" style="margin-bottom: -2%">
+										</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> -->
+				
+			</div>
 		</div>
 		
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-2" style="margin-top: -1%">
+					<div class="panel panel-primary" id="genderSection" style="visibility: hidden">
+						<div id= "panel-body" class="panel-body">
+							<div>
+								<div align = "center">
+									<div style="margin-top: -10px">
+										<div class="col-md-4 callout top-left" id="maleCount" style="background-color: #195930;color: white;">COUNT</div>
+										<div class="col-md-4"></div>
+										<div class="col-md-4 callout top-right" id="femaleCount" style="background-color: #195930;;color: white;">COUNT</div>
+									</div>
+									<div style="margin-top: -10px">
+										<div class="col-md-6" id="maleDiv"><img id ="maleImage" src="images/male.png" style="width: 50px;height: 50px"></img></div>
+										<div class="col-md-6" id="femaleDiv"><img id ="femaleImage" src="images/female.png" style="width: 50px;height: 50px"></img></div>
+									</div>	
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class = "col-sm-3" style="margin-top: -1%">
+					<div class="panel panel-primary" id="reasonsSection" style="visibility: hidden;">
+						<div id= "panel-body" class="panel-body">
+								<div id="impactContainer" style="margin-bottom: -2%">
+								</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-sm-7" style="margin-top: -10%">
+					<div class="panel panel-primary" id="raceSection" style="visibility: hidden">
+						<div id= "panel-body" class="panel-body">
+							<div id="race" style="min-width: 250px; height: 250px; margin: 0 auto"></div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		
 		</div>
+		<!-- <div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-5">
+				</div>
+			</div>
+			<div class="col-sm-3" style="margin-top: -150px;">
+				<div class="panel panel-primary" id="reasonsSection" style="visibility: hidden;">
+					<div id= "panel-body" class="panel-body">
+							<div id="impactContainer">
+							</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+			</div>
+		</div> -->
 		
 	
 	</body>
