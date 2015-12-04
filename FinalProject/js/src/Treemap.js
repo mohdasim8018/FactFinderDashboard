@@ -179,7 +179,7 @@ function showSpecificMap(conditionData){
 function buildMap(mapData,colorShades){
 	$("#mapTip").remove();
 	var width = 400;
-	var height = 400;
+	var height = 320;
 	$("#detailedGraph").remove();
 	
 	var svg = d3.select("#graphContainerDetailed")
@@ -905,8 +905,8 @@ function assignColorValues(){
 function buildTreeMap(tree){
 
 	var margin = {top:0, right: 0, bottom: 10, left: 20},
-    width = 800 - margin.left - margin.right,
-    height = 225 - margin.top - margin.bottom;
+    width = 540 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
 
 
 	var colorScale = d3.scale.linear()
