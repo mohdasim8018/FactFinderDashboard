@@ -991,9 +991,9 @@ function buildTreeMap(tree){
 			$("#femaleCount").css("background-color","#3d0044");
 			document.getElementById("maleCount").innerHTML = d.maleCount + "%";
 			document.getElementById("femaleCount").innerHTML = d.femaleCount + "%";
-			document.getElementById("genderTitle").innerHTML = "GENDER (" + d.name + ")";
-			document.getElementById("regionTitle").innerHTML = "REGION (" + d.name + ")";
-			document.getElementById("diseaseTitle").innerHTML = "DISEASE ANALYSIS (" + d.name + ")";
+			//document.getElementById("genderTitle").innerHTML = "GENDER (" + d.name + ")";
+			//document.getElementById("regionTitle").innerHTML = "REGION (" + d.name + ")";
+			//document.getElementById("diseaseTitle").innerHTML = "DISEASE ANALYSIS (" + d.name + ")";
 			//scaleGenderSize(d.maleCount,d.femaleCount);
 			//document.getElementById("genderTitle").innerHTML = "GENDER (" + d.name + ")";
 			//document.getElementById("regionTitle").innerHTML = "REGION (" + d.name + ")";
@@ -1907,7 +1907,7 @@ function raceGauge (){
 					type: 'column'
 				},
 				title: {
-					text: 'Race'
+					text: ''
 				},
 				subtitle: {
 					text: ''
