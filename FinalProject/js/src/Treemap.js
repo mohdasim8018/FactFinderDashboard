@@ -269,7 +269,7 @@ function buildMap(mapData,colorShades){
 		mapTip.html("<strong><span style='color: red'>"+region+"</span></strong>"+"<span style='color: white'> :"+ count+"%</span>") 
 			.style("left", (d3.event.pageX) -820 + "px")
 			.style("color","white")			
-			.style("top", (d3.event.pageY - 400) + "px");
+			.style("top", (d3.event.pageY - 420) + "px");
 				
 		})
 		.on("mouseout",function(d,i){
