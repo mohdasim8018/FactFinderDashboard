@@ -968,7 +968,7 @@ function buildTreeMap(tree){
 			document.getElementById("raceSection").setAttribute("style", "visibility:visible");
 			document.getElementById("reasonsSection").setAttribute("style", "visibility:visible");
 			document.getElementById("rangeslider").setAttribute("style", "visibility:visible");
-			document.getElementById("rangeslider").value = "20";
+			document.getElementById("rangeslider").value = "15";
 			document.getElementById("rangeslider1").value = "60";
 			
 			//updateOutput($("#rangeslider").val(), false);
