@@ -1400,12 +1400,12 @@ function showGauge(disease){
 		}));
 				
 		
-		onMove();
+		onMoveOverview();
 		
 	});
 }
 
-function onMove() {
+function onMoveOverview() {
 			var age1 = $("#rangeslider").val();
 			var age2 = $("#rangeslider1").val();
 			

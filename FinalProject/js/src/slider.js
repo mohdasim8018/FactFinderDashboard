@@ -2,7 +2,6 @@
 var conditionByAge = {hyper:0, cancer:0, heart:0, diabetes:0, cholestrol:0};
 
 
-function showGauge(){
 	
 	$(function () {
 
@@ -67,7 +66,7 @@ function showGauge(){
 				min: 0,
 				max: 100,
 				title: {
-					text: ''
+					text: 'Hypertension'
 				}
 			},
 
@@ -97,7 +96,7 @@ function showGauge(){
 				min: 0,
 				max: 100,
 				title: {
-					text: ''
+					text: 'Diabetes'
 				}
 			},
 
@@ -109,7 +108,7 @@ function showGauge(){
 				name: 'diabetes',
 				data: [0],
 				dataLabels: {
-					format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+					format: '<div style="text-align:center; paddingBottom:0px"><span style="font-size:25px;color:' +
 						((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
 						   '<span style="font-size:14px;color:silver">%</span></div>'
 				},
@@ -127,7 +126,7 @@ function showGauge(){
 				min: 0,
 				max: 100,
 				title: {
-					text: ''
+					text: 'Heart'
 				}
 			},
 
@@ -139,7 +138,7 @@ function showGauge(){
 				name: 'heart',
 				data: [0],
 				dataLabels: {
-					format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+					format: '<br><div style="text-align:center"><span style="font-size:25px;color:' +
 						((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
 						   '<span style="font-size:14px;color:silver">%</span></div>'
 				},
@@ -156,7 +155,7 @@ function showGauge(){
 				min: 0,
 				max: 100,
 				title: {
-					text: ''
+					text: 'Cancer'
 				}
 			},
 
@@ -186,7 +185,7 @@ function showGauge(){
 				min: 0,
 				max: 100,
 				title: {
-					text: ''
+					text: 'cholestrol'
 				}
 			},
 
@@ -195,10 +194,10 @@ function showGauge(){
 			},
 
 			series: [{
-				name: 'cholestrol',
+				name: 'Cholestrol',
 				data: [0],
 				dataLabels: {
-					format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+					format: '<div style="text-align:center;"><span style="font-size:20px;color:' +
 						((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
 						   '<span style="font-size:14px;color:silver">%</span></div>'
 				},
@@ -215,7 +214,6 @@ function showGauge(){
 		
 		
 	});
-}
 
 function onMove() {
 			var age1 = $("#rangeslider").val();
