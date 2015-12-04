@@ -87,24 +87,25 @@
 		
 		<br>
 		<div class="container-fluid">
-			<div id = "frame" class="panel panel-primary" style="position:fixed;background-color: white;margin: 5%;margin-top: 10px;border-radius: 4px;z-index: 500;display: none;margin-left: 8%;">
-			<div id="panel" class="section-heading">Age Analysis</div>
-			<a href="#" onclick="closeDetailedView()">
-					<span style="float: right;margin-bottom: 5px;">
-						<img src="images/close1.png" height="12px" width="12px"></img>
-					</span>
-			</a>
+			<div id = "frame" class="panel panel-primary" style="width: 75%;position:fixed;background-color: white;margin: 5%;margin-top: 10px;border-radius: 4px;z-index: 500;display: none;margin-left: 12%;">
+			<div id="panel" class="section-heading">Age Analysis
+				<a href="#" onclick="closeDetailedView()">
+						<span style="float: right;margin-bottom: 5px;">
+							<img src="images/close1.png" height="12px" width="12px"></img>
+						</span>
+				</a>
+			</div>
 			<div id="panel-body" class="panel-body">
 				<div class="container-fluid">
 					  <div class="row">
-						<div class="col-sm-3">
-							<div class="panel panel-primary">
+						<div class="col-sm-3" style="margin-left: 1%">
+							<div class="panel panel-primary" style="webkit-box-shadow: 0 1px 1px rgba(0,0,0,0);">
 								<div class="panel-body">
-									<div id="diabetes" style="width: 300px; height: 160px; float: left"></div>
+									<div id="diabetes" style="width: 250px; height: 160px; float: left"></div>
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-3">
+						<div class="col-sm-4">
 							<div class="panel panel-primary">		
 								<div class="panel-body" style = "padding:15px;">
 									<p>
@@ -123,32 +124,32 @@
 						<div class="col-sm-3">
 							<div class="panel panel-primary">
 								<div class="panel-body">
-									<div id="heart" style="width: 300px; height: 160px; float: left"></div>
+									<div id="heart" style="width: 250px; height: 160px; float: left"></div>
 								</div>
 							</div>
 						</div>
 						<div class="col-sm-3"></div>
 					  </div>
 		  
-					  <div class="row">
-						<div class="col-sm-3">
+					  <div class="row" style="margin-top: 1%!important">
+						<div class="col-sm-3" style="margin-left: 5%">
 							<div class="panel panel-primary">
 								<div class="panel-body">
-									<div id="cancer" style="width: 300px; height:160px; float: left"></div>
+									<div id="cancer" style="width: 250px; height:160px; float: left"></div>
 								</div>
 							</div>
 						</div>
 						<div class="col-sm-3">
 							<div class="panel panel-primary">
 								<div class="panel-body">
-									<div id="hyper" style="width: 300px; height: 160px; float: left"></div>
+									<div id="hyper" style="width: 250px; height: 160px; float: left"></div>
 								</div>
 							</div>
 						</div>
 						<div class="col-sm-3">
 							<div class="panel panel-primary">
 								<div class="panel-body">
-									<div id="cholestrol" style="width: 300px; height: 160px; float: left"></div>
+									<div id="cholestrol" style="width: 250px; height: 160px; float: left"></div>
 								</div>
 							</div>
 						</div>
@@ -178,7 +179,7 @@
 							<div class="col-sm-7">
 								<div class="panel panel-primary" id="raceSection" style="visibility: hidden">
 									<div id= "panel-body" class="panel-body">
-										<h5 align="center"><b>RACE &nbsp;
+										<h5 align="center" style="margin-top: -2%"><b>RACE &nbsp;
 											<label style="display:inline-block;">
 												<a target="_blank" href="#" title="Compare the distribution of patient population among the races for the selected disease.">
 													<img src="images/help.jpg" height="20px"/>
@@ -186,15 +187,15 @@
 											</label>
 											</b> 
 										</h5>
-										<div id="race" style="min-width: 250px; height: 200px; margin: 0 auto"></div>
+										<div id="race" style="min-width: 250px; height: 230px; margin: 0 auto"></div>
 									</div>
 								</div>
 							</div>
 						
 							<div class="col-sm-5">
-								<div class="panel panel-primary" id="ageSection" style="visibility: hidden">
+								<div class="panel panel-primary" id="ageSection" style="visibility: hidden;">
 									<div id= "panel-body" class="panel-body" style="padding-top:0px">
-										<h5 align="center"><b>AGE
+										<h5 align="center" style="margin-top: 1%"><b>AGE
 											&nbsp;
 											<label style="display:inline-block; width:20px">
 												<a target="_blank" href="#" title="Analyse the concentration of patients that are suffering from the selected disease at a given age range.">
@@ -203,12 +204,8 @@
 											</label>
 											</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											
-											<label style="display:inline-block; width:20px">
-												<a target="_blank" href="#" title="Compare 5 popular diseases within a age range in more detail"
-													class="myButton" onclick="showPopUp()">
-												<font color="white"> more </font>
-												</a>
-											</label>
+											
+											
 										</h5>
 												
 										
@@ -218,7 +215,15 @@
 											<input name="rangesliderOverview" id="rangesliderOverview" min="15" max="95" value="15" type="range" onchange="onMoveOverview()"/>
 											<label for="rangesliderOverview1"></label>
 											<input name="rangesliderOverview1" id="rangesliderOverview1" min="15" max="95" value="60" type="range" onchange="onMoveOverview()"/>
-										</div>		
+										</div>
+											<!-- <label style="display:inline-block; width:20px">
+												<a target="_blank" href="#" title="Compare 5 popular diseases within a age range in more detail"
+													class="myButton" onclick="showPopUp()">
+												<font color="white"> more </font>
+												</a>
+											</label> -->
+											
+												<div style="float: right;text-shadow: none!important"><button type="button" class="btn btn-primary" onclick="showPopUp()">Compare Diseases</button></div>
 									</div>
 								</div>
 							</div>
@@ -228,9 +233,9 @@
 						
 						<div class="row">
 							<div class = "col-sm-3" >
-								<div class="panel panel-primary" id="reasonsSection" style="visibility: hidden;">
+								<div class="panel panel-primary" id="reasonsSection" style="visibility: hidden">
 									<div id= "panel-body" class="panel-body">
-											<h5 align="center"><b>IMPACT ON ROUTINE
+											<h5 align="center" style="margin-top: -2%"><b>IMPACT ON ROUTINE
 												&nbsp;
 												<label style="display:inline-block;">
 													<a target="_blank" href="#" title="Shows the proportion of population whose routine life is getting affected by the selected disease">
@@ -269,7 +274,7 @@
 								<div class="panel panel-primary" id="genderSection" style="visibility: hidden">
 									<div id= "panel-body" class="panel-body">
 										<div>
-											<h5 align="center"><b>GENDER
+											<h5 align="center" style="margin-top: -8%"><b>GENDER
 												&nbsp;
 												<label style="display:inline-block;">
 													<a target="_blank" href="#" title="Compare the distribution of patient popoulation among the two genders for a given disease">
