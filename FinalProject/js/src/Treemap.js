@@ -1371,7 +1371,7 @@ function showGauge(disease){
 		
 		
 		// Diabetes
-		$('#gauge').highcharts(Highcharts.merge(gaugeOptions, {
+		$('#gaugeOverview').highcharts(Highcharts.merge(gaugeOptions, {
 			yAxis: {
 				min: 0,
 				max: 100,
@@ -1399,15 +1399,16 @@ function showGauge(disease){
 
 		}));
 				
-		
+		document.getElementById("rangesliderOverview").value = "15";
+		document.getElementById("rangesliderOverview1").value = "60";
 		onMoveOverview();
 		
 	});
 }
 
 function onMoveOverview() {
-			var age1 = $("#rangeslider").val();
-			var age2 = $("#rangeslider1").val();
+			var age1 = $("#rangesliderOverview").val();
+			var age2 = $("#rangesliderOverview1").val();
 			
 			console.log("*****"+age1+"=>"+age2);
 			
@@ -1522,7 +1523,7 @@ function onMoveOverview() {
 					var val_diabetes = conditionByAge["diabetes"];
 					
 					// Diabetes
-					var chart_diabetes = $('#gauge').highcharts(),
+					var chart_diabetes = $('#gaugeOverview').highcharts(),
 					point_diabetes,
 					newVal_diabetes;
 					//inc;
