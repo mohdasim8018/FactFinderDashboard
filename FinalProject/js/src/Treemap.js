@@ -905,8 +905,8 @@ function assignColorValues(){
 function buildTreeMap(tree){
 
 	var margin = {top:0, right: 0, bottom: 10, left: 20},
-    width = 500 - margin.left - margin.right,
-    height = 290 - margin.top - margin.bottom;
+    width = 800 - margin.left - margin.right,
+    height = 225 - margin.top - margin.bottom;
 
 
 	var colorScale = d3.scale.linear()

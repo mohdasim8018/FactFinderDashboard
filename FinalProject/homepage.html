@@ -53,7 +53,7 @@
 		
 			 <div class="row">
 			 
-				<div class="col-sm-5">
+				<div class="col-sm-8">
 					<div class="panel panel-primary">
 						<div id= "panel-body" class="panel-body">
 							<div id = "wrapper">
@@ -61,23 +61,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-3">
-					<div class="panel panel-primary" id="ageSection" style="visibility: hidden">
-						<div id= "panel-body" class="panel-body">
-							<h5 align="center"><b>AGE</b></h5>
-							
-							<div id="gauge" align="center" style="width: 250px!important; height: 160px; padding-top=0px;"></div>
-							<div data-role="rangeslider">
-								<label for="rangeslider"></label>
-								<input name="rangeslider" id="rangeslider" min="15" max="95" value="15" type="range" onchange="onMove()"/>
-								<label for="rangeslider1"></label>
-								<input name="rangeslider1" id="rangeslider1" min="15" max="95" value="60" type="range" onchange="onMove()"/>
-							</div>
-							
-									
-						</div>
-					</div>
-				</div>
+				
 				 <div class="col-sm-4">
 					<div class="panel panel-primary" id="regionSection" style="visibility: hidden">
 						<div id= "panel-body" class="panel-body">
@@ -94,7 +78,17 @@
 		
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-sm-2" style="margin-top: -1%">
+			
+				<div class="col-sm-5">
+					<div class="panel panel-primary" id="raceSection" style="visibility: hidden">
+						<div id= "panel-body" class="panel-body">
+							<h5 align="center"><b>RACE</b></h5>
+							<div id="race" style="min-width: 250px; height: 250px; margin: 0 auto"></div>
+						</div>
+					</div>
+				</div>
+			
+				<div class="col-sm-2">
 					<div class="panel panel-primary" id="genderSection" style="visibility: hidden">
 						<div id= "panel-body" class="panel-body">
 							<div>
@@ -114,7 +108,8 @@
 						</div>
 					</div>
 				</div>
-				<div class = "col-sm-3" >
+				
+				<div class = "col-sm-2" >
 					<div class="panel panel-primary" id="reasonsSection" style="visibility: hidden;">
 						<div id= "panel-body" class="panel-body">
 								<h5 align="center"><b>IMPACT ON ROUTINE</b></h5>
@@ -124,11 +119,21 @@
 					</div>
 				</div>
 				
-				<div class="col-sm-7" style="margin-top: -5%">
-					<div class="panel panel-primary" id="raceSection" style="visibility: hidden">
+				
+				<div class="col-sm-3">
+					<div class="panel panel-primary" id="ageSection" style="visibility: hidden">
 						<div id= "panel-body" class="panel-body">
-							<h5 align="center"><b>RACE</b></h5>
-							<div id="race" style="min-width: 250px; height: 250px; margin: 0 auto"></div>
+							<h5 align="center"><b>AGE</b></h5>
+							
+							<div id="gauge" align="center" style="width: 250px!important; height: 160px; padding-top=0px;"></div>
+							<div data-role="rangeslider">
+								<label for="rangeslider"></label>
+								<input name="rangeslider" id="rangeslider" min="15" max="95" value="15" type="range" onchange="onMove()"/>
+								<label for="rangeslider1"></label>
+								<input name="rangeslider1" id="rangeslider1" min="15" max="95" value="60" type="range" onchange="onMove()"/>
+							</div>
+							
+									
 						</div>
 					</div>
 				</div>
