@@ -1964,3 +1964,13 @@ function getGaugeData(age){
 	});
 	
 }
+
+function showPopUp(){
+	$("#overlay").show();
+	$("#frame").show();
+}
+
+function closeDetailedView(){
+	$("#overlay").hide();
+	$("#frame").hide();
+}
