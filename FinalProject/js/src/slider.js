@@ -2,7 +2,7 @@
 var conditionByAge = {hyper:0, cancer:0, heart:0, diabetes:0, cholestrol:0};
 
 
-function showGauge(disease){
+function showGauge(){
 	
 	$(function () {
 
@@ -209,89 +209,169 @@ function showGauge(disease){
 
 		}));
 		
-		
-		onMove(20);
-		
-		
-		var rangeslider = document.getElementById('rangeslider'),
-		sliderDiv = document.getElementById("sliderAmount");
-		
-		
-		var rangeslider = document.getElementById('rangeslider'),
-		sliderDiv = document.getElementById("sliderAmount");
-		
-		
-		
-		
-		
-		// Connect slider to the hypertension dial
-		//rangeslider.oninput = function(){
-		//					onMove(this.value);
-		//}
-		
-		
+		document.getElementById("rangeslider").value = "15";
+		document.getElementById("rangeslider1").value = "60";
+		onMove();
 		
 		
 	});
 }
 
-function onMove(value) {
-			d3.select("#sliderAmount").text(value);
-			var age = value;
+function onMove() {
+			var age1 = $("#rangeslider").val();
+			var age2 = $("#rangeslider1").val();
+			
+			console.log("****"+age1+"**"+age2);
+			
 			d3.csv("dataset/MedicalConditions.csv", function(data) {				
 					
-				if (globDisease == "Diabetes") {
-					var diabetesAge = data.filter(function(d, i) { 
-						if (d["Dibev"] == 1 && d["Age_P"] == age){	
-							return d; 
-						} 
-					})
-					
-					
-					//var total  = cholestrolAge.length + cancerAge.length + heartAge.length + diabetesAge.length + hyperAge.length;
-					var total  = diabetesAge.length;
-					
-					if ( total == 0){
-						total = 1;
+				
+				var diabetesAge = data.filter(function(d, i) { 
+					if (d["Dibev"] == 1 && d["Age_P"] >= age1 && d["Age_P"] <= age2){	
+						return d; 
+					} 
+				})
+				
+				
+				var heartAge = data.filter(function(d, i) { 
+					if (d["Hrtev"] == 1 && d["Age_P"] >= age1 && d["Age_P"] <= age2){	
+						return d; 
+					} 
+				})
+				
+				var cancerAge = data.filter(function(d, i) { 
+					if (d["Canev"] == 1 && d["Age_P"] >= age1 && d["Age_P"] <= age2){	
+						return d; 
+					} 
+				})
+				
+				
+				var cholestrolAge = data.filter(function(d, i) {	
+					if (d["Chlev"] == 1 && d["Age_P"] >= age1 && d["Age_P"] <= age2){
+							return d;
 					}
+				})	
 					
-					/*cholestrolAge = parseFloat(((cholestrolAge.length/total) * 100).toFixed(1));
-					cancerAge = parseFloat(((cancerAge.length/total) * 100).toFixed(1));
-					heartAge = parseFloat(((heartAge.length/total) * 100).toFixed(1));*/
-					//diabetesAge = parseFloat(((diabetesAge.length/total) * 100).toFixed(1));
-					//diabetesAge = parseFloat(((diabetesAge.length/total) * 100).toFixed(1));
+				var hyperAge = data.filter(function(d, i) {	
+					if (d["Hypev"] == 1 && d["Age_P"] >= age1 && d["Age_P"] <= age2){
+						return d;
+					}
+				})
 					
-					//hyperAge = parseFloat(((hyperAge.length/total) * 100).toFixed(1));
+				var total  = cholestrolAge.length + cancerAge.length + heartAge.length + diabetesAge.length + hyperAge.length;
+				//var total  = diabetesAge.length;
+				if ( total == 0){
+					total = 1;
+				}
+				
+				cholestrolAge = parseFloat(((cholestrolAge.length/total) * 100).toFixed(1));
+				cancerAge = parseFloat(((cancerAge.length/total) * 100).toFixed(1));
+				heartAge = parseFloat(((heartAge.length/total) * 100).toFixed(1));
+				diabetesAge = parseFloat(((diabetesAge.length/total) * 100).toFixed(1));
+				hyperAge = parseFloat(((hyperAge.length/total) * 100).toFixed(1));
+				
+				
+				// Connect slider to diabetes div
+				conditionByAge["diabetes"] = diabetesAge;
+				conditionByAge["heart"] = heartAge;
+				conditionByAge["hyper"] = hyperAge;
+				conditionByAge["cancer"] = cancerAge;
+				conditionByAge["cholestrol"] = cholestrolAge;
 					
-					//cholestrolAge = parseFloat(cholestrolAge.toFixed(1));
+				var val_diabetes = conditionByAge["diabetes"];
+				var val_heart = conditionByAge["heart"];
+				var val_hyper = conditionByAge["hyper"];
+				var val_cancer = conditionByAge["cancer"];
+				var val_cholestrol = conditionByAge["cholestrol"];
+				
+				console.log("----"+val_diabetes);
+				
 					
-					// Connect slider to diabetes div
-					conditionByAge["diabetes"] = diabetesAge.length;
-					//console.log('Value=>'+conditionByAge["diabetes"]);
-					
-					var val_diabetes = conditionByAge["diabetes"];
-					
-					//console.log('Dia =>'+val_diabetes);
-					
-					// Diabetes
-					var chart_diabetes = $('#diabetes').highcharts(),
-					point_diabetes,
-					newVal_diabetes;
-					//inc;
+				// Diabetes
+				var chart_diabetes = $('#diabetes').highcharts(),
+				point_diabetes,
+				newVal_diabetes;
+				//inc;
 
-					if (chart_diabetes) {
-						point_diabetes = chart_diabetes.series[0].points[0];
-						//inc = 0;
-						newVal_diabetes = val_diabetes;
+				if (chart_diabetes) {
+					point_diabetes = chart_diabetes.series[0].points[0];
+					//inc = 0;
+					newVal_diabetes = val_diabetes;
 			
-						if (newVal_diabetes < 0 || newVal_diabetes > 100) {
-							newVal_diabetes = val_diabetes;
-						}
-
-						point_diabetes.update(newVal_diabetes);
+					if (newVal_diabetes < 0 || newVal_diabetes > 100) {
+						newVal_diabetes = val_diabetes;
 					}
-				}				
-		});
+					point_diabetes.update(newVal_diabetes);
+				}
+				
+				// Heart
+				var chart_heart = $('#heart').highcharts(),
+				point_heart,
+				newVal_heart;
+				//inc;
+
+				if (chart_heart) {
+					point_heart = chart_heart.series[0].points[0];
+					//inc = 0;
+					newVal_heart = val_heart;
+			
+					if (newVal_heart < 0 || newVal_heart > 100) {
+						newVal_heart = val_heart;
+					}
+					point_heart.update(newVal_heart);
+				}
+				
+				// Cancer
+				var chart_cancer = $('#cancer').highcharts(),
+				point_cancer,
+				newVal_cancer;
+				//inc;
+
+				if (chart_cancer) {
+					point_cancer = chart_cancer.series[0].points[0];
+					//inc = 0;
+					newVal_cancer = val_cancer;
+			
+					if (newVal_cancer < 0 || newVal_cancer > 100) {
+						newVal_cancer = val_cancer;
+					}
+					point_cancer.update(newVal_cancer);
+				}
+				
+				// Cholestrol
+				var chart_cholestrol = $('#cholestrol').highcharts(),
+				point_cholestrol,
+				newVal_cholestrol;
+				//inc;
+
+				if (chart_cholestrol) {
+					point_cholestrol = chart_cholestrol.series[0].points[0];
+					//inc = 0;
+					newVal_cholestrol = val_cholestrol;
+			
+					if (newVal_cholestrol < 0 || newVal_cholestrol > 100) {
+						newVal_cholestrol = val_cholestrol;
+					}
+					point_cholestrol.update(newVal_cholestrol);
+				}
+				
+				// Hyper
+				var chart_hyper = $('#hyper').highcharts(),
+				point_hyper,
+				newVal_hyper;
+				//inc;
+
+				if (chart_hyper) {
+					point_hyper = chart_hyper.series[0].points[0];
+					//inc = 0;
+					newVal_hyper = val_hyper;
+			
+					if (newVal_hyper < 0 || newVal_hyper > 100) {
+						newVal_hyper = val_hyper;
+					}
+					point_hyper.update(newVal_hyper);
+				}
+			});				
 	}
 
 
