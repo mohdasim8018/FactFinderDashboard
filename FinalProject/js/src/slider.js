@@ -66,7 +66,7 @@ var conditionByAge = {hyper:0, cancer:0, heart:0, diabetes:0, cholestrol:0};
 				min: 0,
 				max: 100,
 				title: {
-					text: 'Hypertension'
+					text: 'hypertension'
 				}
 			},
 
@@ -96,7 +96,7 @@ var conditionByAge = {hyper:0, cancer:0, heart:0, diabetes:0, cholestrol:0};
 				min: 0,
 				max: 100,
 				title: {
-					text: 'Diabetes'
+					text: 'diabetes'
 				}
 			},
 
@@ -126,7 +126,7 @@ var conditionByAge = {hyper:0, cancer:0, heart:0, diabetes:0, cholestrol:0};
 				min: 0,
 				max: 100,
 				title: {
-					text: 'Heart'
+					text: 'heart'
 				}
 			},
 
@@ -155,7 +155,7 @@ var conditionByAge = {hyper:0, cancer:0, heart:0, diabetes:0, cholestrol:0};
 				min: 0,
 				max: 100,
 				title: {
-					text: 'Cancer'
+					text: 'cancer'
 				}
 			},
 
