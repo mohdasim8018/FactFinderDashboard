@@ -197,7 +197,7 @@ var conditionByAge = {hyper:0, cancer:0, heart:0, diabetes:0, cholestrol:0};
 				name: 'Cholestrol',
 				data: [0],
 				dataLabels: {
-					format: '<div style="text-align:center;"><span style="font-size:20px;color:' +
+					format: '<div style="text-align:center;"><span style="font-size:25px;color:' +
 						((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
 						   '<span style="font-size:14px;color:silver">%</span></div>'
 				},
