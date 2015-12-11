@@ -53,6 +53,7 @@ var prev;
 var prevBgColor;
 var prevColor;
 
+//parsing the csv file and storing it in an object
 function parseCSV(){
 	var cv = 0;
 	buildHashMaps();
@@ -114,7 +115,7 @@ function parseCSV(){
 		
 	});
 }
-
+//calculating the gender proportion
 function calculateGenderProportion(){
 	
 	for(var disease in diseaseObj){
@@ -128,6 +129,7 @@ function calculateGenderProportion(){
 	}
 }
 
+//calculating the total gender proportion
 function allGenderProportion(){
 	maleProportion = ((allMale/allData)*100).toFixed(2);
 	femaleProportion = ((allFemale/allData)*100).toFixed(2);
@@ -135,37 +137,23 @@ function allGenderProportion(){
 	document.getElementById("femaleCount").innerHTML = femaleProportion + "%";
 }
 
+
+//for scaling the image size
 function scaleGenderSize(male,female){
 	
 	document.getElementById("maleImage").style.height = male + "px";
 	document.getElementById("maleDiv").style.height = male + "px";
-	//document.getElementById("maleImage").style.width = male + "px";
+
 	document.getElementById("femaleImage").style.height = female + "px";
 	document.getElementById("femaleDiv").style.height = female + "px";
-	//document.getElementById("femaleImage").style.width = female + "px";
+
 }
 
-// function allMap(){
-	// var mapData=[];
-	// var northEast = ((allNorthEast/allData)*100).toFixed(2);
-	// var midWest = ((allMidWest/allData)*100).toFixed(2);
-	// var south = ((allSouth/allData)*100).toFixed(2);
-	// var west = ((allWest/allData)*100).toFixed(2);
-	// mapData = [{count: northEast,region: "Northeast"},{count: midWest,region: "Midwest"},{count: south,region: "South"},{count: west,region: "West"}];
-	// mapData.sort(function(a,b){
-		// return b.count - a.count;
-	// });
-	// console.log(mapData);
-	// buildMap(mapData,mapShade)
-// }
 
 
+//displaying the map of usa
 function showSpecificMap(conditionData){
 	var mapData=[];
-	// var northEast = ((conditionData.northEast/allNorthEast)*100).toFixed(2)
-	// var midWest = ((conditionData.midWest/allMidWest)*100).toFixed(2)
-	// var south = ((conditionData.south/allSouth)*100).toFixed(2)
-	// var west = ((conditionData.west/allWest)*100).toFixed(2)
 	mapData = [{count: conditionData.northEast,region: "Northeast"},{count: conditionData.midWest,region: "Midwest"},{count: conditionData.south,region: "South"},{count: conditionData.west,region: "West"}];
 	mapData.sort(function(a,b){
 		return b.count - a.count;
@@ -175,7 +163,7 @@ function showSpecificMap(conditionData){
 }
 
 
-
+//building the map of usa
 function buildMap(mapData,colorShades){
 	$("#mapTip").remove();
 	var width = 400;
@@ -301,7 +289,7 @@ function buildMap(mapData,colorShades){
 	});
 }
 
-
+//calculating the impact of medical conditions
 function calculateImpact(conditionData){
 	console.log(conditionData)
 	var impact = csvObj.filter(function(d){
@@ -321,6 +309,7 @@ function calculateImpact(conditionData){
 	
 }
 
+//drwaing the donut chart
 function drawDonutChart(percent) {
   var element = "#impact";
   var width = 130;
@@ -402,7 +391,7 @@ function calculateReasons(){
 }
 
 
-
+//building the disease object data
 function buildDiseaseObj(data){
 	if(data.Hypev == "1"){
 		diseaseObj['Hypev'].value++;
@@ -810,6 +799,7 @@ function buildDiseaseObj(data){
 	}
 }
 
+//building the master hashmap
 function buildHashMaps(){
 	//disease map
 	diseaseObj['Hypev'] = {name: "Hypertension",value: 0,isChild: false,parent: "",isParent: false,maleCount: 0,femaleCount: 0,northEast: 0,midWest:0,south:0,west:0,impact: "Aflhca9"};
@@ -829,6 +819,7 @@ function buildHashMaps(){
 }
 
 
+//building maps for filters
 function buildFilterMaps(){
 	//region map
 	regionMap['Northeast'] = {value:"1"};
